@@ -979,6 +979,258 @@
         }
       ];
         // --- SENTENCE DATA ---
+      // --- 補上遺漏的單字資料 ---
+      const initialVocabSections = [
+        // --- Unit 1 Vocab ---
+        {
+          title: "Unit 1: 求職面試 (1-12)",
+          unitId: "Unit 1",
+          desc: "基礎單字 Part A",
+          color: "blue",
+          icon: Briefcase,
+          words: [
+            { word: "Interview", kk: "[ˈɪntɚˌvju]", mean: "面試", tip: "重音在最前。中間 t 常被吞掉，唸 Inner-view。" },
+            { word: "Employer", kk: "[ɪmˈplɔɪɚ]", mean: "雇主", tip: "重音在第二音節 ploy。" },
+            { word: "Pleasure", kk: "[ˈplɛʒɚ]", mean: "榮幸", tip: "s 發 [ʒ] (類似「熱」的捲舌音)，勿唸 sure。" },
+            { word: "Hire", kk: "[haɪr]", mean: "雇用", tip: "完整發出字尾 r 的捲舌音。" },
+            { word: "Role-playing", kk: "[rol ˈpleɪɪŋ]", mean: "角色扮演", tip: "Role 嘴型要圓，唸起來像 Row (划船)。" },
+            { word: "Aligned", kk: "[əˈlaɪnd]", mean: "一致/符合", tip: "gn 不發音，只發 line，字尾 d 輕點。" },
+            { word: "Progressive", kk: "[prəˈgrɛsɪv]", mean: "連續/累積的", tip: "重音在中間 gre，嘴巴張大。" },
+            { word: "Hospitality", kk: "[ˌhɑspɪˈtæləti]", mean: "觀光/好客", tip: "重音在 ta。唸 Hos-pi-TA-li-ty。" },
+            { word: "Initial", kk: "[ɪˈnɪʃəl]", mean: "最初的", tip: "ti 發 [ʃ] (許) 的音。" },
+            { word: "Associate", kk: "[əˈsoʃɪɪt]", mean: "助理/夥伴", tip: "ci 發 [ʃ] (許)。字尾 ate 唸短音 [ɪt]。" },
+            { word: "Concierge", kk: "[ˌkɑnsɪˈɛrʒ]", mean: "禮賓接待員", tip: "法文外來語，重音在後。ge 發 [ʒ]。" },
+            { word: "Concise", kk: "[kənˈsaɪs]", mean: "簡潔的", tip: "cise 唸起來像 size，重音在後。" }
+          ]
+        },
+        {
+          title: "Unit 1: 求職面試 (13-24)",
+          unitId: "Unit 1",
+          desc: "基礎單字 Part B",
+          color: "green",
+          icon: Feather,
+          words: [
+            { word: "Thoroughly", kk: "[ˈθɝroli]", mean: "徹底地", tip: "th 輕咬舌尖吐氣，馬上接 r 捲舌。" },
+            { word: "The Lalu", kk: "[ðə ˈlalu]", mean: "涵碧樓", tip: "專有名詞，發音輕鬆清楚即可。" },
+            { word: "Demanding", kk: "[dɪˈmændɪŋ]", mean: "要求高的", tip: "重音在 man，發蝴蝶音 [æ]。" },
+            { word: "Stressful", kk: "[ˈstrɛsfəl]", mean: "有壓力的", tip: "兩個 s 都要清楚，中間 t 別漏。" },
+            { word: "Meditation", kk: "[ˌmɛdəˈteʃən]", mean: "冥想", tip: "重音在 ta。前面是 Medi (麥迪)。" },
+            { word: "Specific", kk: "[spɪˈsɪfɪk]", mean: "具體的", tip: "重音在中間 ci。" },
+            { word: "Focus", kk: "[ˈfokəs]", mean: "專注", tip: "o 發雙母音 [oʊ]，嘴形要有「歐-烏」的滑動。" },
+            { word: "Appeal", kk: "[əˈpil]", mean: "吸引/訴求", tip: "ea 發長音 [i]，尾音 l 舌尖頂上顎。" },
+            { word: "Apply", kk: "[əˈplaɪ]", mean: "申請", tip: "重音在後面 ply。" },
+            { word: "Mind", kk: "[maɪnd]", mean: "心智/介意", tip: "字尾 nd 的鼻音要發出來。" },
+            { word: "Industry", kk: "[ˈɪndəstri]", mean: "產業", tip: "注意！重音在第一音節 In。" },
+            { word: "Contraction", kk: "[kənˈtrækʃən]", mean: "縮讀/縮寫", tip: "重音在 trac，發蝴蝶音 [æ]。" }
+          ]
+        },
+        // --- Unit 2 Vocab ---
+        {
+          title: "Unit 2: 商務參展 (1-12)",
+          unitId: "Unit 2",
+          desc: "基礎單字 Part A",
+          color: "amber",
+          icon: Layout,
+          words: [
+            { word: "Exhibition", kk: "[ˌɛksəˈbɪʃən]", mean: "展覽", tip: "ex 唸 [ɛks]；h 不發音；重音在 bi。" },
+            { word: "Booth", kk: "[buθ]", mean: "展位/攤位", tip: "字尾 th 舌頭伸出輕咬吐氣，別唸成 s。" },
+            { word: "Address", kk: "[əˈdrɛs]", mean: "稱呼/演說", tip: "動詞時重音在第二音節 dress。" },
+            { word: "Brief", kk: "[brif]", mean: "簡介", tip: "長音 [i]；字尾 f 咬下唇吐氣。" },
+            { word: "Linear", kk: "[ˈlɪnɪɚ]", mean: "線型的", tip: "重音在最前 Li；唸 Li-nee-er。" },
+            { word: "Corner", kk: "[ˈkɔrnɚ]", mean: "角落/轉角", tip: "or 捲舌音要出來；不要唸 Cona。" },
+            { word: "Peninsula", kk: "[pəˈnɪnsələ]", mean: "半島型展位", tip: "重音在 nin。唸 Puh-NIN-suh-la。" },
+            { word: "Island", kk: "[ˈaɪlənd]", mean: "中島型展位", tip: "注意 s 不發音！唸 Eye-land。" },
+            { word: "Option", kk: "[ˈɑpʃən]", mean: "選項", tip: "Op 發 [ɑ] (張大嘴)；tion 發 [ʃən]。" },
+            { word: "Budget", kk: "[ˈbʌdʒɪt]", mean: "預算", tip: "u 發短音 [ʌ]；dg 發 [dʒ]，別唸 Ba-get。" },
+            { word: "Terms", kk: "[tɝmz]", mean: "條款/方面", tip: "er 捲舌長一點；字尾 ms 有鼻音震動。" },
+            { word: "Dimension", kk: "[dɪˈmɛnʃən]", mean: "尺寸/面積", tip: "重音在 men；sion 發 [ʃən]。" }
+          ]
+        },
+        {
+          title: "Unit 2: 商務參展 (13-25)",
+          unitId: "Unit 2",
+          desc: "基礎單字 Part B",
+          color: "purple",
+          icon: MapPin,
+          words: [
+            { word: "Package", kk: "[ˈpækɪdʒ]", mean: "套裝方案", tip: "重音 Pac 发 [æ]；age 唸 [ɪdʒ]。" },
+            { word: "Comprise", kk: "[kəmˈpraɪz]", mean: "包含", tip: "重音在後 prise；pri 發 [praɪ]。" },
+            { word: "Signboard", kk: "[ˈsaɪnˌbɔrd]", mean: "看板", tip: "複合字重音在前。g 不發音。" },
+            { word: "Partition", kk: "[pɑrˈtɪʃən]", mean: "隔板", tip: "重音在 ti；par 的 ar 要捲舌。" },
+            { word: "Straight", kk: "[stret]", mean: "直的", tip: "gh 不發音。唸起來像 A 的長音。" },
+            { word: "Surrounded", kk: "[səˈraʊndɪd]", mean: "被環繞的", tip: "重音在 roun，發 [aʊ] 音。" },
+            { word: "Proceed", kk: "[prəˈsid]", mean: "繼續進行", tip: "重音在後 ceed，長音 [i]。" },
+            { word: "VAT", kk: "[vi e ti]", mean: "加值稅", tip: "直接唸字母 V-A-T。" },
+            { word: "Exhibitor", kk: "[ɪgˈzɪbɪtɚ]", mean: "參展商", tip: "重音轉移到第二音節 zi；h 不發音。" },
+            { word: "Application", kk: "[ˌæpləˈkeʃən]", mean: "申請", tip: "重音在 ca；前 app 發蝴蝶音 [æ]。" },
+            { word: "Available", kk: "[əˈveləb!]", mean: "可用的", tip: "重音在 vai (欸)；ble 輕唸。" },
+            { word: "Offer", kk: "[ˈɔfɚ]", mean: "提供", tip: "開頭 o 發 [ɔ] (嘴呈 O 型)。" },
+            { word: "Arrange", kk: "[əˈrendʒ]", mean: "安排", tip: "重音在後 range；字尾 ge 發 [dʒ]。" }
+          ]
+        },
+        // --- Unit 3 Vocab ---
+        {
+          title: "Unit 3: 參展會議 (1-12)",
+          unitId: "Unit 3",
+          desc: "基礎單字 Part A",
+          color: "teal",
+          icon: MessageCircle,
+          words: [
+            { word: "Discuss", kk: "[dɪˈskʌs]", mean: "討論", tip: "重音在後 scuss。字尾 ss 的氣音要長一點。" },
+            { word: "Suggestion", kk: "[səˈdʒɛstʃən]", mean: "建議", tip: "重音在 ges。ges 發 [dʒɛs] (傑)。" },
+            { word: "Peninsula", kk: "[pəˈnɪnsələ]", mean: "半島", tip: "重音在 nin。唸 Puh-NIN-suh-la。" },
+            { word: "Keen", kk: "[kin]", mean: "熱衷於", tip: "長音 [i]，嘴角要往兩邊拉開微笑。" },
+            { word: "Bulky", kk: "[ˈbʌlkɪ]", mean: "笨重的", tip: "[ʌ] 短音。l 的音要含在喉嚨裡。" },
+            { word: "Potential", kk: "[pəˈtɛnʃəl]", mean: "潛在的", tip: "重音在 ten。ti 發 [ʃ] (許) 的音。" },
+            { word: "Linger", kk: "[ˈlɪŋgɚ]", mean: "逗留", tip: "ng 發 [ŋg] (嗯-葛)，後面有 g 的聲音。" },
+            { word: "Inviting", kk: "[ɪnˈvaɪtɪŋ]", mean: "誘人的", tip: "重音在 vi。注意 v 要咬下唇震動。" },
+            { word: "Invaluable", kk: "[ɪnˈvæljʊəb!]", mean: "無價的", tip: "重音在 va。注意 l 接 u 的滑音。" },
+            { word: "Sufficient", kk: "[səˈfɪʃənt]", mean: "足夠的", tip: "重音在 fi。ci 發 [ʃ] (許)。" },
+            { word: "Cramped", kk: "[kræmpt]", mean: "擁擠的", tip: "蝴蝶音 [æ]。字尾 mp 嘴巴閉緊再吐氣接 t。" },
+            { word: "Spacious", kk: "[ˈspeʃəs]", mean: "寬敞的", tip: "ci 發 [ʃ] (許)。唸 Spei-shus。" }
+          ]
+        },
+        {
+          title: "Unit 3: 參展會議 (13-25)",
+          unitId: "Unit 3",
+          desc: "基礎單字 Part B",
+          color: "orange",
+          icon: Lightbulb,
+          words: [
+            { word: "Comfortable", kk: "[ˈkʌmfɚtəb!]", mean: "舒適的", tip: "重音在第一音節！口語常唸 Comf-ta-ble。" },
+            { word: "Launch", kk: "[lɔntʃ]", mean: "發布/推出", tip: "[ɔ] 嘴巴成 O 型。字尾 ch 要短促有力。" },
+            { word: "Display", kk: "[dɪˈsple]", mean: "展示", tip: "重音在後 play。" },
+            { word: "Feature", kk: "[ˈfitʃɚ]", mean: "特色", tip: "fea 發長音 [i]；ture 發 [tʃɚ] (徹)。" },
+            { word: "Station", kk: "[ˈsteʃən]", mean: "安置/駐紮", tip: "tion 發 [ʃən]。" },
+            { word: "Occupy", kk: "[ˈɑkjəˌpaɪ]", mean: "佔據", tip: "重音在前 O。cu 發 [kjə]。" },
+            { word: "Second", kk: "[ˈsɛkənd]", mean: "附議", tip: "會議用語。重音在 se。" },
+            { word: "Winner", kk: "[ˈwɪnɚ]", mean: "贏家/首選", tip: "短音 [ɪ]，嘴形放鬆。" },
+            { word: "Input", kk: "[ˈɪnˌpʊt]", mean: "意見/投入", tip: "重音在 In。put 發短音 [ʊ]。" },
+            { word: "Decision", kk: "[dɪˈsɪʒən]", mean: "決定", tip: "si 發 [ʒ] (日) 的震動音，非 [ʃ]。" },
+            { word: "Catch", kk: "[kætʃ]", mean: "聽清楚", tip: "蝴蝶音 [æ]。字尾 ch 清楚。" },
+            { word: "Comfy", kk: "[ˈkʌmfɪ]", mean: "舒適的(口語)", tip: "Comfortable 的簡稱。mf 連唸。" },
+            { word: "Trade show", kk: "[tred ʃo]", mean: "貿易展", tip: "tr 要唸得像 ㄔㄨ (chu) 的氣音。" }
+          ]
+        },
+        // --- Unit 4 Vocab ---
+        {
+          title: "Unit 4: 設備檢查 (1-11)",
+          unitId: "Unit 4",
+          desc: "基礎單字 Part A",
+          color: "indigo",
+          icon: Wifi,
+          words: [
+            { word: "Held", kk: "[hɛld]", mean: "舉行", tip: "尾音 ld 要輕，舌尖頂住上顎，勿唸 hel-do。" },
+            { word: "Ma'am", kk: "[mæm]", mean: "女士", tip: "扁平母音 [æ]。madam 的縮讀。" },
+            { word: "Venue", kk: "[ˈvɛnju]", mean: "場地", tip: "字尾 [u] 要噘嘴，發音像 V-N-U。" },
+            { word: "U-shaped", kk: "[ˈjuˌʃept]", mean: "馬蹄形的", tip: "尾音 t 要輕促。連字號要連讀。" },
+            { word: "Laptop", kk: "[ˈlæpˌtɑp]", mean: "筆電", tip: "中間 p 不用噴氣(閉氣)，直接接 top。" },
+            { word: "Access", kk: "[ˈæksɛs]", mean: "存取/連接", tip: "重音在第一音節。兩個 s 都要清晰。" },
+            { word: "Wireless", kk: "[ˈwaɪrlɪs]", mean: "無線的", tip: "less 發音短促，不要念成 lace。" },
+            { word: "Password", kk: "[ˈpæsˌwɝd]", mean: "密碼", tip: "pass 扁嘴。word 捲舌像 were。" },
+            { word: "Built-in", kk: "[ˈbɪltˌɪn]", mean: "內建的", tip: "連讀時聽起來像 bil-tin。" },
+            { word: "Scan", kk: "[skæn]", mean: "掃描", tip: "sk 的 k 不送氣，發成類似「ㄍ」。" },
+            { word: "Eco-friendly", kk: "[ˌikoˈfrɛndlɪ]", mean: "環保的", tip: "friendly 的 d 不發音，唸 fren-li。" }
+          ]
+        },
+        {
+          title: "Unit 4: 設備檢查 (12-21)",
+          unitId: "Unit 4",
+          desc: "基礎單字 Part B",
+          color: "blue",
+          icon: Settings,
+          words: [
+            { word: "Wiring", kk: "[ˈwaɪrɪŋ]", mean: "線路", tip: "wire + ing。中間 [r] 要滑順。" },
+            { word: "Port", kk: "[pɔrt]", mean: "連接埠", tip: "母音 [ɔ] 嘴巴圓，最後加上捲舌 rt。" },
+            { word: "Rehearsed", kk: "[rɪˈhɝst]", mean: "排練", tip: "hear 發 [hɝ] 捲舌。字尾 ed 發 [t]。" },
+            { word: "Pinpoint", kk: "[ˈpɪnˌpɔɪnt]", mean: "精確指出", tip: "兩個 p 都要噴氣。oi 滑動明顯。" },
+            { word: "Audio", kk: "[ˈɔdɪˌo]", mean: "音訊", tip: "開頭 [ɔ] 圓嘴。結尾 [o] 也要圓嘴。" },
+            { word: "Stitch", kk: "[stɪtʃ]", mean: "一針", tip: "[ɪ] 短音。tch 發 [tʃ]。" },
+            { word: "Facilities", kk: "[fəˈsɪlətɪz]", mean: "設施", tip: "重音在 ci [sɪ]。" },
+            { word: "Laser pointer", kk: "[ˈlezɚ ˌpɔɪntɚ]", mean: "雷射筆", tip: "laser 的 s 發 [z]。er 都要捲舌。" },
+            { word: "Flattered", kk: "[ˈflætɚd]", mean: "受寵若驚", tip: "中間 tt 發輕快彈舌音 [d]。" },
+            { word: "Superb", kk: "[sʊˈpɝb]", mean: "極好的", tip: "重音在後。su 發 [sʊ] (書)。" }
+          ]
+        },
+        // --- Unit 5 Vocab ---
+        {
+          title: "Unit 5: 差旅核銷 (1-10)",
+          unitId: "Unit 5",
+          desc: "Reimbursement Policy Part A",
+          color: "red",
+          icon: CreditCard,
+          words: [
+            { word: "Reimbursement", kk: "[͵riɪmˋbɝsmənt]", mean: "核銷；報帳", tip: "★難字挑戰。重音在 bur。注意 re-im-burse-ment 四個音節清楚。中間的 [m] 和 [b] 嘴巴都要確實閉起來。" },
+            { word: "Keynote speaker", kk: "[ˋki͵not ˋspikɚ]", mean: "主講人", tip: "Keynote 的 [o] 是長母音，嘴型要圓且凸。Speaker 的 [sp] 不送氣，聽起來像「ㄅ」。" },
+            { word: "Policy", kk: "[ˋpɑləsɪ]", mean: "政策", tip: "注意重音在第一音節。[l] 舌尖要頂住上排牙齒後方。" },
+            { word: "Subsistence", kk: "[səbˋsɪstəns]", mean: "生存；生活", tip: "[b] 緊接 [s]，嘴唇閉一下立刻接絲絲聲。唸起來像 sub-sis-tence。" },
+            { word: "Expenditure", kk: "[ɪkˋspɛndɪtʃɚ]", mean: "支出；花費", tip: "重音在 pen。[tʃɚ] 嘴巴要嘟起來，發出類似「去ㄦ」的捲舌音。" },
+            { word: "Accommodation", kk: "[ə͵kɑməˋdeʃən]", mean: "住宿", tip: "雙母音 [m] 出現兩次，嘴唇要閉緊。重音在 de。" },
+            { word: "Allowance", kk: "[əˋlaʊəns]", mean: "津貼；零用錢", tip: "[aʊ] 是大口音（如 ouch），嘴巴要張大再縮圓。" },
+            { word: "Receipt", kk: "[rɪˋsit]", mean: "收據", tip: "超級易錯！中間的 p 是不發音的。唸起來像 re-seat。" },
+            { word: "Incur", kk: "[ɪnˋkɝ]", mean: "招致；產生(費用)", tip: "[kɝ] 是捲舌長音，像 bird 的音。" },
+            { word: "Spouse", kk: "[spaʊs]", mean: "配偶", tip: "[sp] 唸「ㄅ」的音。[aʊ] 嘴巴張大。尾音 [s] 氣音要輕。" }
+          ]
+        },
+        {
+          title: "Unit 5: 差旅核銷 (11-20)",
+          unitId: "Unit 5",
+          desc: "Reimbursement Policy Part B",
+          color: "amber",
+          icon: Briefcase,
+          words: [
+            { word: "Accompany", kk: "[əˋkʌmpənɪ]", mean: "陪同；伴隨", tip: "重音在 cum。[m] 接 [p] 是標準雙唇音練習，嘴唇閉緊再爆開。" },
+            { word: "Itinerary", kk: "[aɪˋtɪnə͵rɛrɪ]", mean: "行程表", tip: "[aɪ] 發音飽滿。注意音節多，慢慢唸 i-tin-e-rar-y。" },
+            { word: "Submit", kk: "[səbˋmɪt]", mean: "呈交；提交", tip: "[b] 接 [m]，這是講義重點！嘴唇閉一次即可，不用分開唸 sub-mit，而是順著氣流帶過。" },
+            { word: "Regulation", kk: "[͵rɛgjəˋleʃən]", mean: "規定", tip: "[g] 接 [j] 要滑順。重音在 la。" },
+            { word: "Sufficient", kk: "[səˋfɪʃənt]", mean: "充足的", tip: "[ʃ] 是噓聲，嘴巴嘟圓。" },
+            { word: "Economy class", kk: "[ɪˋkɑnəmɪ klæs]", mean: "經濟艙", tip: "Economy 重音在 co。Class 的 [æ] 是蝴蝶音，嘴巴要向兩側咧開。" },
+            { word: "Business class", kk: "[ˋbɪznɪs klæs]", mean: "商務艙", tip: "Business 只有兩個音節 [ˋbɪz-nɪs]，不要唸成 busy-ness。" },
+            { word: "Original", kk: "[əˋrɪdʒən!]", mean: "正本的；原始的", tip: "[dʒ] 嘴巴嘟起震動。結尾 [l] 舌尖頂上顎，喉嚨發出模糊音。" },
+            { word: "High-speed rail", kk: "[haɪ spid rel]", mean: "高鐵", tip: "Rail 的 [r] 嘴型圓，結尾 [l] 舌尖上頂。" },
+            { word: "Invitation", kk: "[͵ɪnvəˋteʃən]", mean: "邀請(函)", tip: "[v] 上排牙齒咬下唇震動。重音在 ta。" }
+          ]
+        },
+        // --- Unit 6 Vocab ---
+        {
+          title: "Unit 6: 緊急變更 (1-10)",
+          unitId: "Unit 6",
+          desc: "Emergency Change Part A",
+          color: "red",
+          icon: AlertTriangle,
+          words: [
+            { word: "Urgent", kk: "[ˋɝdʒənt]", mean: "緊急的", tip: "重音在首。Ur- 要捲舌發 [ɝ]，gent 的 [dʒ] 嘴巴要嘟起來震動。" },
+            { word: "Terrorist", kk: "[ˋtɛrərɪst]", mean: "恐怖份子", tip: "重音在第一音節。注意中間的 ro 是弱音，rist 結尾的 [st] 輕輕收尾。" },
+            { word: "Stockholm", kk: "[ˋstɑk͵hom]", mean: "斯德哥爾摩", tip: "[st] 不送氣重點！唸成 Stock-home。 [l] 幾乎不發音或很輕。" },
+            { word: "Hijacked", kk: "[ˋhaɪdʒækt]", mean: "被劫持的", tip: "複合字 High-jacked。注意字尾 [k] 是無聲，所以 -ed 會發成 [t] 的音。" },
+            { word: "British", kk: "[ˋbrɪtɪʃ]", mean: "英國的", tip: "[br] 雙唇震動快。結尾 [ʃ] 是「噓」的聲音，嘴巴要圓。" },
+            { word: "Belgian", kk: "[ˋbɛldʒən]", mean: "比利時的", tip: "重音在 Bel。注意 [dʒ] 的音，不要唸成 [g]。" },
+            { word: "Terrified", kk: "[ˋtɛrə͵faɪd]", mean: "嚇壞了", tip: "第一音節重音。fied 包含雙母音 [aɪ]，嘴巴要張開。" },
+            { word: "Traumatic", kk: "[traʊˋmætɪk]", mean: "創傷的", tip: "[aʊ] 是大口音（像 ouch）。重音在 ma，嘴巴向兩側咧開 (蝴蝶音 [æ])。" },
+            { word: "Frustration", kk: "[frʌˋstreʃən]", mean: "挫折；沮喪", tip: "[str] 不送氣重點！[t] 轉音似「ㄉ」。唸起來像 frus-dray-shun。" },
+            { word: "Struggle", kk: "[ˋstrʌg!]", mean: "掙扎；努力", tip: "[str] 不送氣重點。結尾 [g!] 是喉嚨發出的模糊音，舌尖頂上顎。" }
+          ]
+        },
+        {
+          title: "Unit 6: 緊急變更 (11-20)",
+          unitId: "Unit 6",
+          desc: "Emergency Change Part B",
+          color: "orange",
+          icon: AlertTriangle,
+          words: [
+            { word: "Student", kk: "[ˋstjudnt]", mean: "學生", tip: "[st] 不送氣重點。不要噴氣，唸起來像「斯丟等」。" },
+            { word: "Start", kk: "[stɑrt]", mean: "開始", tip: "[st] 不送氣重點。[ar] 要發飽滿的捲舌長音。" },
+            { word: "Stable", kk: "[ˋsteb!]", mean: "穩定的", tip: "[st] 不送氣重點。唸起來像「stay-ball」。" },
+            { word: "Replace", kk: "[rɪˋples]", mean: "取代；接替", tip: "Re 輕讀。Place 的 [p] 要送氣（噴氣），尾音 [s] 氣長。" },
+            { word: "Notice", kk: "[ˋnotɪs]", mean: "通知；注意", tip: "重音在 No。[o] 嘴型要圓。tice 的 [s] 輕聲。" },
+            { word: "Paris", kk: "[ˋpærɪs]", mean: "巴黎", tip: "重音在 Pa。注意 [æ] 是蝴蝶音。字尾 [s] 要發出來（不像法文）。" },
+            { word: "Barcelona", kk: "[͵bɑrsəˋlonə]", mean: "巴塞隆納", tip: "音節多，慢慢唸 Bar-ce-lo-na。Lo 是重音，嘴巴要圓。" },
+            { word: "Local", kk: "[ˋlok!]", mean: "當地的", tip: "[o] 發音要足。cal 發 [k!]，舌尖頂住上排牙齒後方發聲。" },
+            { word: "Owe", kk: "[o]", mean: "虧欠", tip: "只有一個母音 [o]。嘴巴嘟圓，像唸英文字母 O。" },
+            { word: "Minute", kk: "[ˋmɪnɪt]", mean: "分鐘", tip: "注意發音是 [ˋmɪnɪt]，不是 my-nute。i 發短母音 [ɪ]。" }
+          ]
+        }
+      ];
       const initialInterviewData = [
         // --- UNIT 1 ---
         {
