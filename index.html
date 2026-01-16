@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英語學習系統 (優化版)</title>
+    <style>
+        /* --- 基礎設定 --- */
+        body { 
+            font-family: "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif; 
+            padding: 20px; 
+            background-color: #f4f4f9; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+        h2 { text-align: center; color: #333; }
+
+        /* --- 頁籤 (Tabs) 樣式 --- */
+        .tabs { 
+            display: flex; 
+            gap: 5px; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #ddd; 
+            padding-bottom: 10px; 
+            overflow-x: auto; /* 手機版如果按鈕太多可滑動 */
+        }
+        .tab-btn { 
+            flex: 1;
+            padding: 12px 10px; 
+            cursor: pointer; 
+            border: none; 
+            background: #e0e0e0; 
+            border-radius: 5px 5px 0 0; 
+            font-size: 16px; 
+            font-weight: bold;
+            color: #555;
+            white-space: nowrap;
+        }
+        .tab-btn.active { 
+            background: #4CAF50; 
+            color: white; 
+        }
+        
+        /* --- 內容區域 --- */
+        .content-section { display: none; animation: fadeIn 0.3s; }
+        .content-section.active { display: block; }
+        
+        /* --- 練習項目卡片 --- */
+        .practice-item { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background: #fff; 
+            border: 1px solid #eee; 
+            margin-bottom: 12px; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .text-group { flex-grow: 1; padding-right: 10px; }
+        .text-content { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
+        .result-text { font-size: 14px; color: #888; display: block; min-height: 20px;}
+
+        /* --- 麥克風按鈕 --- */
+        .mic-btn { 
+            width: 50px;
+            height: 50px;
+            background-color: #008CBA; 
+            color: white; 
+            border: none; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 24px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0; /* 防止按鈕被壓縮 */
+        }
+        .mic-btn:active { transform: scale(0.95); }
+        
+        /* 錄音中的特效 */
+        .mic-btn.recording { 
+            background-color: #ff4444; 
+            animation: pulse 1.5s infinite; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🗣️ English Practice</h2>
+    
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'vocab')">單字 (Vocab)</button>
+        <button class="tab-btn" onclick="switchTab(event, 'sentence')">句型 (Sentences)</button>
+        <button class="tab-btn" onclick="switchTab(event, 'prep')">介係詞 (Prep)</button>
+    </div>
+
+    <div id="vocab" class="content-section active">
+        <div class="practice-item">
+            <div class="text-group">
+                <div class="text-content">Apple</div>
+                <span id="res-v1" class="result-text">點擊麥克風開始...</span>
+            </div>
+            <button class="mic-btn" onclick="toggleMic(this, 'res-v1')">🎤</button>
+        </div>
+        <div class="practice-item">
+            <div class="text-group">
+                <div class="text-content">Banana</div>
+                <span id="res-v2" class="result-text">點擊麥克風開始...</span>
+            </div>
+            <button class="mic-btn" onclick="toggleMic(this, 'res-v2')">🎤</button>
+        </div>
+    </div>
+
+    <div id="sentence" class="content-section">
+        <div class="practice-item">
+            <div class="text-group">
+                <div class="text-content">How are you doing today?</div>
+                <span id="res-s1" class="result-text">點擊麥克風開始...</span>
+            </div>
+            <button class="mic-btn" onclick="toggleMic(this, 'res-s1')">🎤</button>
+        </div>
+        <div class="practice-item">
+            <div class="text-group">
+                <div class="text-content">I'm learning to code.</div>
+                <span id="res-s2" class="result-text">點擊麥克風開始...</span>
+            </div>
+            <button class="mic-btn" onclick="toggleMic(this, 'res-s2')">🎤</button>
+        </div>
+    </div>
+
+    <div id="prep" class="content-section">
+        <div class="practice-item">
+            <div class="text-group">
+                <div class="text-content">Interested in</div>
+                <span id="res-p1" class="result-text">點擊麥克風開始...</span>
+            </div>
+            <button class="mic-btn" onclick="toggleMic(this, 'res-p1')">🎤</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- 1. 全域變數設定 (解決重複授權的關鍵) ---
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition; 
+    let activeBtn = null;       // 正在使用的按鈕
+    let activeResultId = null;  // 正在寫入的結果欄位 ID
+
+    // 初始化語音識別物件 (只做一次)
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';       // 設定語言
+        recognition.continuous = false;   // 講完一句就停
+        recognition.interimResults = false; // 不需要即時顯示過程
+
+        // 當錄音正式開始
+        recognition.onstart = function() {
+            if(activeBtn) activeBtn.classList.add('recording');
+        };
+
+        // 當錄音結束
+        recognition.onend = function() {
+            if(activeBtn) {
+                activeBtn.classList.remove('recording');
+                activeBtn = null;
+            }
+        };
+
+        // 當識別出結果
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            if (activeResultId) {
+                const el = document.getElementById(activeResultId);
+                el.innerText = `你說: "${transcript}"`;
+                el.style.color = "#0066cc"; // 讓結果變藍色
+            }
+        };
+
+        // 錯誤處理
+        recognition.onerror = function(event) {
+            console.error(event.error);
+            if(activeBtn) activeBtn.classList.remove('recording');
+            if(event.error === 'not-allowed') {
+                alert("請允許麥克風權限以使用此功能。");
+            }
+        };
+    } else {
+        alert("抱歉，您的瀏覽器不支援語音識別 (建議使用 Chrome, Edge 或 Safari)");
+    }
+
+    // --- 2. 麥克風開關邏輯 ---
+    function toggleMic(btn, resultId) {
+        if (!recognition) return;
+
+        // 情況A: 如果按的是正在錄音的同一顆按鈕 -> 停止
+        if (activeBtn === btn) {
+            recognition.stop();
+            return;
+        }
+
+        // 情況B: 如果正在錄別句 -> 先停掉上一句
+        if (activeBtn) {
+            recognition.stop();
+            // 這裡不需 return，因為 stop 是非同步的，我們直接搶過來設定新的狀態
+        }
+
+        // 設定新的目標
+        activeBtn = btn;
+        activeResultId = resultId;
+        
+        // 嘗試開始錄音
+        try {
+            recognition.start();
+        } catch(e) {
+            // 如果切換太快，上一句還沒完全釋放，這裡做個防呆
+            console.log("重試錄音...");
+            setTimeout(() => recognition.start(), 200);
+        }
+    }
+
+    // --- 3. 頁籤切換 ---
+    function switchTab(evt, tabName) {
+        // 隱藏所有內容
+        document.querySelectorAll('.content-section').forEach(div => div.classList.remove('active'));
+        // 取消所有按鈕激活狀態
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+        // 顯示當前內容與按鈕
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
