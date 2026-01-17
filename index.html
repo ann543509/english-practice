@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>商務英語會話 (資料分離版)</title>
+  <title>商務英語會話 (Unit 1-7 循環播放版)</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -12,10 +12,47 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <style>
-     /* ... (原本的 CSS 全部保留) ... */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+    body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .font-serif-en { font-family: 'Merriweather', serif; }
+    .highlight-kw { font-weight: 700; border-bottom: 2px solid currentColor; }
+    
+    @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+    .animate-pulse-red { animation: pulse-red 1.5s infinite; }
+    
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .animate-spin-slow { animation: spin-slow 2s linear infinite; }
+
+    .animate-fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .blind-mode-blur { filter: blur(6px); user-select: none; transition: filter 0.3s ease; cursor: help; }
+    .blind-mode-blur:hover { filter: blur(0px); }
+
+    .chunk-separator { color: #cbd5e1; font-weight: 300; margin: 0 6px; display: inline-block; transform: translateY(-1px); }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+    
+    .word-correct { color: #16a34a; font-weight: bold; }
+    .word-missed { color: #dc2626; text-decoration: line-through; opacity: 0.6; }
+    
+    .playing-card { background-color: #eff6ff; border-color: #3b82f6; transform: scale(1.01); transition: all 0.3s ease; }
+
+    /* 錯誤顯示區 */
+    #error-display { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 100000; padding: 20px; overflow: auto; color: red; font-family: monospace; font-size: 16px; white-space: pre-wrap; }
   </style>
 </head>
 <body class="bg-gray-50 selection:bg-yellow-100 min-h-screen relative">
+
+  <div id="error-display"></div>
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      const errorDiv = document.getElementById('error-display');
+      errorDiv.style.display = 'block';
+      errorDiv.innerHTML = `<h1>💥 程式發生錯誤 (Error)</h1><hr/><strong>Message:</strong> ${message}<br/><strong>Source:</strong> ${source}<br/><strong>Line:</strong> ${lineno}`;
+    };
+  </script>
 
   <div id="root"></div>
   <div id="feedback-portal-root"></div>
@@ -23,36 +60,59 @@
   <script src="data.js"></script>
 
   <script type="text/babel">
-    // ... (原本的 React 程式邏輯) ...
-    
-    // 唯一的修改點：讀取資料的來源變了
-    // 原本是 const initialVocabSections = [...]
-    // 現在改成讀取 window 變數
-    
+    const { useState, useEffect, useRef, useMemo, useCallback } = React;
+    const { createPortal } = ReactDOM;
+
+    // --- 1. 取得資料 (來自 data.js 的 window 變數) ---
     const vocabData = window.vocabData || [];
     const sentenceData = window.sentenceData || [];
     const prepData = window.prepData || [];
 
-    // icon Mapping (因為 JSON 不能存 React Component，所以我們用字串對應)
-    const IconMap = {
-        Briefcase: Briefcase,
-        BookOpen: BookOpen,
-        MessageCircle: MessageCircle,
-        Link2: Link2,
-        Lightbulb: Lightbulb,
-        Feather: Feather,
-        Layout: Layout,
-        MapPin: MapPin,
-        Zap: Zap,
-        Settings: Settings,
-        Check: Check,
-        Save: Save,
-        Wifi: Wifi,
-        CreditCard: CreditCard,
-        AlertTriangle: AlertTriangle
+    // --- 2. 全域語音變數 ---
+    let globalRecognition = null;
+    let globalTimeout = null;
+
+    const getSharedRecognition = () => {
+      if (!globalRecognition) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+          globalRecognition = new SpeechRecognition();
+          globalRecognition.lang = 'en-US';
+          globalRecognition.interimResults = false;
+          globalRecognition.maxAlternatives = 1;
+          globalRecognition.continuous = false; 
+        }
+      }
+      return globalRecognition;
     };
 
-    // ... (剩下的 App 邏輯完全不用動，只要把用到的資料變數換成上面的 vocabData 等等) ...
-  </script>
-</body>
-</html>
+    // --- 3. 圖示元件 ---
+    const Icon = ({ children, className, ...props }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>{children}</svg>
+    );
+    // 定義所有需要的圖示
+    const Briefcase = (p) => <Icon {...p}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></Icon>;
+    const BookOpen = (p) => <Icon {...p}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
+    const MessageCircle = (p) => <Icon {...p}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></Icon>;
+    const Link2 = (p) => <Icon {...p}><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></Icon>;
+    const Play = (p) => <Icon {...p}><polygon points="5 3 19 12 5 21 5 3"/></Icon>;
+    const Turtle = (p) => <Icon {...p}><path d="m19 12-1.5 3"/><path d="M16.5 10.5 19 8"/><path d="m7 16 1.5 3"/><path d="M7.5 10.5 5 8"/><path d="M12 21a6 6 0 0 0 6-6v-2a6 6 0 0 0-6-6 6 6 0 0 0-6 6v2a6 6 0 0 0 6 6Z"/><path d="M12 21V9"/><path d="M12 21a4 4 0 0 1-4-4H6"/><path d="M12 21a4 4 0 0 0 4-4h2"/></Icon>;
+    const Volume2 = (p) => <Icon {...p}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></Icon>;
+    const Info = (p) => <Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></Icon>;
+    const Trash2 = (p) => <Icon {...p}><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></Icon>;
+    const X = (p) => <Icon {...p}><path d="M18 6 6 18"/><path d="m6 6 18 18"/></Icon>;
+    const Save = (p) => <Icon {...p}><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></Icon>;
+    const Lightbulb = (p) => <Icon {...p}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2 1.5-3.5 0-3-2.5-5.5-5.5-5.5S7 5 7 8c0 1.5.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></Icon>;
+    const Feather = (p) => <Icon {...p}><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></Icon>;
+    const Layout = (p) => <Icon {...p}><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></Icon>;
+    const MapPin = (p) => <Icon {...p}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></Icon>;
+    const Zap = (p) => <Icon {...p}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></Icon>;
+    const Mic = (p) => <Icon {...p}><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></Icon>;
+    const Check = (p) => <Icon {...p}><polyline points="20 6 9 17 4 12"/></Icon>;
+    const AlertCircle = (p) => <Icon {...p}><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></Icon>;
+    const MousePointerClick = (p) => <Icon {...p}><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></Icon>;
+    const Filter = (p) => <Icon {...p}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Icon>;
+    const Settings = (p) => <Icon {...p}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
+    const Wifi = (p) => <Icon {...p}><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></Icon>;
+    const Eye = (p) => <Icon {...p}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></Icon>;
+    const EyeOff = (p) => <Icon {...p}><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1
