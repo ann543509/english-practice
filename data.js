@@ -255,7 +255,40 @@ window.vocabData = [
       { word: "Owe", kk: "[o]", mean: "虧欠", tip: "只有一個母音 [o]。嘴巴嘟圓，像唸英文字母 O。" },
       { word: "Minute", kk: "[ˋmɪnɪt]", mean: "分鐘", tip: "注意發音是 [ˋmɪnɪt]，不是 my-nute。i 發短母音 [ɪ]。" }
     ]
-  }
+  },
+  // --- Unit 7 Vocab ---
+  {
+    title: "Unit 7: 特殊需求 (1-23)",
+    unitId: "Unit 7",
+    desc: "Special Requests",
+    color: "teal",
+    icon: "Check",
+    words: [
+      { word: "Confirm", kk: "[kənˋfɝm]", mean: "確認", tip: "[m] 閉嘴練習。字尾的 irm 要把嘴巴閉緊。" },
+      { word: "Arrangement", kk: "[əˋrendʒmənt]", mean: "安排", tip: "重音在 range。ment 的 m 也要確實閉嘴。" },
+      { word: "Accommodation", kk: "[ə͵kɑməˋdeʃən]", mean: "住宿", tip: "雙 m 出現！中間的 -mm- 要唸得飽滿。" },
+      { word: "Connecting room", kk: "[kəˋnɛktɪŋ rum]", mean: "連通房", tip: "Connecting 重音在 nec。Room 結尾 [m] 閉嘴。" },
+      { word: "Request", kk: "[rɪˋkwɛst]", mean: "要求", tip: "[kw] 嘴型像吹氣球一樣圓。結尾 [st] 氣音要輕。" },
+      { word: "Chef", kk: "[ʃɛf]", mean: "廚師", tip: "注意 ch 這裡發 [ʃ] (噓聲)，不要唸成 chief。" },
+      { word: "Variety", kk: "[vəˋraɪətɪ]", mean: "各式各樣", tip: "重音在 ri。ri [raɪ] 發雙母音。" },
+      { word: "Religious", kk: "[rɪˋlɪdʒəs]", mean: "宗教的", tip: "重音在 li。gious 的 [dʒ] 嘴巴嘟起來震動。" },
+      { word: "Vegetarian", kk: "[͵vɛdʒəˋtɛrɪən]", mean: "素食者", tip: "字很長，重音在 ta。Ve-ge 唸快一點。" },
+      { word: "Strict", kk: "[strɪkt]", mean: "嚴格的", tip: "[str] 不送氣！唸起來像「死追-kt」。" },
+      { word: "Buddhist", kk: "[ˋbudɪst]", mean: "佛教徒", tip: "注意 [u] 是長音，嘴巴嘟圓。" },
+      { word: "Garlic", kk: "[ˋgɑrlɪk]", mean: "大蒜", tip: "[ar] 嘴巴張大發捲舌音。" },
+      { word: "Leeks", kk: "[liks]", mean: "韭菜", tip: "[i] 是長母音，嘴角向兩側咧開微笑。" },
+      { word: "Attend to", kk: "[əˋtɛnd tu]", mean: "注意；照料", tip: "前面的 d 可以省略不發，直接唸 atten-to。" },
+      { word: "Malay", kk: "[məˋle]", mean: "馬來人", tip: "重音在後 lay。Ma 發輕音 [ə]。" },
+      { word: "Islamic", kk: "[ɪsˋlɑmɪk]", mean: "伊斯蘭的", tip: "重音在 la。[m] 閉嘴音出現在中間。" },
+      { word: "Pork", kk: "[pɔrk]", mean: "豬肉", tip: "[ɔr] 嘴巴要圓，像唸 O。" },
+      { word: "Blood", kk: "[blʌd]", mean: "血", tip: "注意母音是 [ʌ] (短音阿)，唸起來像 blad。" },
+      { word: "Wine", kk: "[waɪn]", mean: "酒", tip: "[w] 嘴型圓。結尾 [n] 不要閉嘴。" },
+      { word: "Laksa", kk: "[ˋlɑksɑ]", mean: "叻沙", tip: "兩個 a 都是張大口的 [ɑ]。" },
+      { word: "Conform", kk: "[kənˋfɔrm]", mean: "符合；一致", tip: "Con-form 嘴型是圓的 O，不同於 Confirm。" },
+      { word: "Problem", kk: "[ˋprɑbləm]", mean: "問題", tip: "[m] 閉嘴練習。請務必在結尾閉上嘴巴。" },
+      { word: "See to it", kk: "[si tu ɪt]", mean: "確實執行", tip: "三個字連成一氣。it 的 [t] 可以輕輕停頓。" }
+    ]
+  } 
 ];
 
 // --- 2. 句型資料庫 (Sentences) ---
@@ -453,11 +486,28 @@ window.sentenceData = [
       { id: "u6-13", type: "Idea", text: "Well...let me see. A couple of names have just <span class='highlight-kw'>crossed my mind</span>.", plain: "Well...let me see. A couple of names have just crossed my mind.", mean: "嗯...讓我想想。我剛想到幾個人名。", tip: "Crossed my 的 ed [t] 接 [m] 變得很輕。", traps: { "mind": "nd 鼻音。" } },
       { id: "u6-14", type: "Thanks", text: "I totally understand your <span class='highlight-kw'>frustration</span> and concern. Thank you so much. I <span class='highlight-kw'>owe</span> you one.", plain: "I totally understand your frustration and concern. Thank you so much. I owe you one.", mean: "我完全理解妳的挫折與擔憂。非常感謝，我欠你一個人情。", tip: "Owe you 連音 [o-ju]。", traps: { "frustration": "[str] 不送氣。" } }
     ]
+  },
+  // --- Unit 7 Sentences ---
+  {
+    id: 7, category: "Unit 7: 特殊需求", unitId: "Unit 7", desc: "Special Requests", colorTheme: "teal", icon: "Check",
+    sentences: [
+      { id: "u7-1", type: "Intro", text: "I'm calling to <span class='highlight-kw'>confirm</span> the <span class='highlight-kw'>arrangements</span> for the <span class='highlight-kw'>accommodations</span>.", plain: "I'm calling to confirm the arrangements for the accommodations.", mean: "我打來確認住宿的安排。", tip: "Calling to 的 g 省略。Confirm 的 m 閉嘴。", traps: { "confirm": "m 閉嘴練習。" } },
+      { id: "u7-2", type: "Confirm", text: "You booked five double rooms and one <span class='highlight-kw'>connecting room</span>, right?", plain: "You booked five double rooms and one connecting room, right?", mean: "您預訂了五間雙人房和一間連通房，對嗎？", tip: "Connecting room 的 g 不發音。", traps: { "connecting": "g 不發音。" } },
+      { id: "u7-3", type: "Req", text: "Do you have any <span class='highlight-kw'>special requests</span> for the dinner party?", plain: "Do you have any special requests for the dinner party?", mean: "晚餐派對有什麼特別的要求嗎？", tip: "Requests 結尾 sts 氣音要輕。", traps: { "request": "kw 嘴圓。" } },
+      { id: "u7-4", type: "Detail", text: "Make sure that your <span class='highlight-kw'>chef</span> can prepare a <span class='highlight-kw'>variety of</span> dishes for different <span class='highlight-kw'>religious needs</span>.", plain: "Make sure that your chef can prepare a variety of dishes for different religious needs.", mean: "請確保您的廚師可以因應不同宗教需求來烹調各種料理。", tip: "Variety of 連音 [vəˋraɪətɪ-jəv]。", traps: { "chef": "發 [ʃ] 噓聲。" } },
+      { id: "u7-5", type: "List", text: "Some clients are <span class='highlight-kw'>strict</span> Buddhist <span class='highlight-kw'>vegetarians</span> who can't have eggs, <span class='highlight-kw'>garlic</span>, or <span class='highlight-kw'>leeks</span>.", plain: "Some clients are strict Buddhist vegetarians who can't have eggs, garlic, or leeks.", mean: "有些客戶是嚴謹的佛教徒，不吃蛋、蒜或韭菜。", tip: "Garlic, leeks 注意標點停頓。", traps: { "strict": "str 不送氣。" } },
+      { id: "u7-6", type: "Attend", text: "Any other religious needs that we have to <span class='highlight-kw'>attend to</span>?", plain: "Any other religious needs that we have to attend to?", mean: "還有其他我們需要注意的宗教需求嗎？", tip: "Attend to 的 d 省略。", traps: { "attend": "d 省略。" } },
+      { id: "u7-7", type: "Islamic", text: "Five of our guests are <span class='highlight-kw'>Malays</span> who keep <span class='highlight-kw'>strict</span> <span class='highlight-kw'>Islamic</span> dietary laws.", plain: "Five of our guests are Malays who keep strict Islamic dietary laws.", mean: "有五位客人是馬來人，遵守嚴格的伊斯蘭飲食律法。", tip: "Islamic 注意 [m] 的閉嘴。", traps: { "islamic": "m 閉嘴。" } },
+      { id: "u7-8", type: "Ban", text: "Do not serve anything containing <span class='highlight-kw'>pork</span>, <span class='highlight-kw'>blood</span>, or <span class='highlight-kw'>wine</span>.", plain: "Do not serve anything containing pork, blood, or wine.", mean: "不要提供任何含有豬肉、血或酒的餐點。", tip: "Blood 母音是 [ʌ]。Wine 結尾 n 不要閉嘴。", traps: { "blood": "唸 blad。" } },
+      { id: "u7-9", type: "Suggest", text: "<span class='highlight-kw'>How about</span> some curry <span class='highlight-kw'>Laksa</span>? You <span class='highlight-kw'>can't go wrong with</span> it.", plain: "How about some curry Laksa? You can't go wrong with it.", mean: "來點咖哩叻沙如何？選它絕對不會錯。", tip: "How about 連音。Laksa 兩個 a 都要張大口。", traps: { "laksa": "a 張大口。" } },
+      { id: "u7-10", type: "Promise", text: "I'll <span class='highlight-kw'>try my best</span> to <span class='highlight-kw'>see to it</span> that all your needs are satisfied.", plain: "I'll try my best to see to it that all your needs are satisfied.", mean: "我會盡力確認您的所有需求都得到滿足。", tip: "See to it 連讀 [si-tu-wɪt]。", traps: { "satisfied": "d 輕音。" } }
+    ]
   }
 ];
 
 // --- 3. 介係詞資料庫 (Prepositions) ---
 window.prepData = [
+  // === Unit 1 ~ Unit 4 (保留原本的) ===
   { id: "p1", phrase: "help ... with", sentence: "Can you <span class='highlight-kw'>help</span> me <span class='highlight-kw'>with</span> my job interview?", plain: "Can you help me with my job interview?", mean: "協助某人處理某事", tip: "help 結尾 p 閉唇接 with。" },
   { id: "p2", phrase: "aligned with", sentence: "My experience is <span class='highlight-kw'>aligned with</span> the requirements.", plain: "My experience is aligned with the requirements.", mean: "與...一致", tip: "aligned d 輕讀接 with。" },
   { id: "p3", phrase: "focus on", sentence: "I <span class='highlight-kw'>focus on</span> my breathing.", plain: "I focus on my breathing.", mean: "專注於", tip: "focus on 連音 fo-kə-san。" },
@@ -469,15 +519,30 @@ window.prepData = [
   { id: "p9", phrase: "go for", sentence: "We would <span class='highlight-kw'>go for</span> the peninsula booth.", plain: "We would go for the peninsula booth.", mean: "選擇", tip: "go 圓唇接 for。" },
   { id: "p10", phrase: "connected to", sentence: "Be <span class='highlight-kw'>connected to</span> this port.", plain: "Be connected to this port.", mean: "連接到", tip: "connected ed 接 to 合併。" },
   { id: "p11", phrase: "looking forward to", sentence: "I am <span class='highlight-kw'>looking forward to</span> the meeting.", plain: "I am looking forward to the meeting.", mean: "期待", tip: "to 弱化成 tə。" },
-  { id: "p12", phrase: "done with", sentence: "Are you <span class='highlight-kw'>done with</span> the invitation letters?", plain: "Are you done with the invitation letters?", mean: "完成...", tip: "done n 接 with。" },
-  { id: "p13", phrase: "reimbursed for", sentence: "They will be <span class='highlight-kw'>reimbursed for</span> the actual costs.", plain: "They will be reimbursed for the actual costs.", mean: "核銷...的費用", tip: "reimbursed d 接 for。" },
-  { id: "p14", phrase: "pay for", sentence: "We only <span class='highlight-kw'>pay for</span> the economy class.", plain: "We only pay for the economy class.", mean: "支付...費用", tip: "pay y 接 for。" },
-  { id: "p15", phrase: "aware of", sentence: "Make sure they are <span class='highlight-kw'>aware of</span> this.", plain: "Make sure they are aware of this.", mean: "意識到/知道", tip: "aware r 接 of 連音。" },
-  { id: "p16", phrase: "incurred by", sentence: "Expenses <span class='highlight-kw'>incurred by</span> spouses.", plain: "Expenses incurred by spouses.", mean: "由...產生(費用)", tip: "incurred d 接 by。" },
-  { id: "p17", phrase: "take care of", sentence: "He needs to <span class='highlight-kw'>take care of</span> the expenses.", plain: "He needs to take care of the expenses.", mean: "處理/照顧", tip: "care r 接 of。" },
-  { id: "p18", phrase: "when it comes to", sentence: "<span class='highlight-kw'>When it comes to</span> HSR, it's different.", plain: "When it comes to HSR, it's different.", mean: "說到...", tip: "comes z 接 to。" },
-  { id: "p19", phrase: "middle of", sentence: "I am in the <span class='highlight-kw'>middle of</span> something.", plain: "I am in the middle of something.", mean: "正忙於...", tip: "middle l 接 of。" },
-  { id: "p20", phrase: "get back to", sentence: "Can I <span class='highlight-kw'>get back to</span> you later?", plain: "Can I get back to you later?", mean: "稍後回覆", tip: "back k 接 to 停頓。" },
-  { id: "p21", phrase: "talk to", sentence: "I need to <span class='highlight-kw'>talk to</span> you right now.", plain: "I need to talk to you right now.", mean: "和...談話", tip: "talk k 接 to。" },
-  { id: "p22", phrase: "cope with", sentence: "Struggling to <span class='highlight-kw'>cope with</span> this event.", plain: "Struggling to cope with this event.", mean: "處理/應對", tip: "cope p 閉唇接 with。" }
+
+  // === Unit 5 (更新為新格式 ID) ===
+  { id: "p-u5-1", phrase: "done with", sentence: "Are you <span class='highlight-kw'>done with</span> the letter?", plain: "Are you done with the letter?", mean: "完成...", tip: "done n 接 with。" },
+  { id: "p-u5-2", phrase: "reimbursed for", sentence: "Be <span class='highlight-kw'>reimbursed for</span> actual costs.", plain: "Be reimbursed for actual costs.", mean: "核銷...費用", tip: "d 接 f 輕讀。" },
+  { id: "p-u5-3", phrase: "pay for", sentence: "We only <span class='highlight-kw'>pay for</span> economy class.", plain: "We only pay for economy class.", mean: "支付...費用", tip: "pay y 接 for。" },
+  { id: "p-u5-4", phrase: "aware of", sentence: "Make sure they are <span class='highlight-kw'>aware of</span> this.", plain: "Make sure they are aware of this.", mean: "意識到", tip: "aware r 接 of 連音。" },
+  { id: "p-u5-5", phrase: "incurred by", sentence: "Expenses <span class='highlight-kw'>incurred by</span> spouses.", plain: "Expenses incurred by spouses.", mean: "由...產生", tip: "incurred d 接 by。" },
+  { id: "p-u5-6", phrase: "take care of", sentence: "<span class='highlight-kw'>Take care of</span> the expenses.", plain: "Take care of the expenses.", mean: "處理/負擔", tip: "care r 接 of。" },
+  { id: "p-u5-7", phrase: "on his own", sentence: "Pay expenses <span class='highlight-kw'>on his own</span>.", plain: "Pay expenses on his own.", mean: "自行(負擔)", tip: "on 接 his 連音。" },
+  { id: "p-u5-8", phrase: "when it comes to", sentence: "<span class='highlight-kw'>When it comes to</span> HSR...", plain: "When it comes to HSR...", mean: "說到...", tip: "comes z 接 to。" },
+
+  // === Unit 6 (更新為新格式 ID) ===
+  { id: "p-u6-1", phrase: "have a minute", sentence: "Do you <span class='highlight-kw'>have a minute</span>?", plain: "Do you have a minute?", mean: "有空嗎", tip: "have v 接 a。" },
+  { id: "p-u6-2", phrase: "middle of", sentence: "I'm in the <span class='highlight-kw'>middle of</span> something.", plain: "I'm in the middle of something.", mean: "正忙於...", tip: "middle l 接 of。" },
+  { id: "p-u6-3", phrase: "get back to", sentence: "Can I <span class='highlight-kw'>get back to</span> you later?", plain: "Can I get back to you later?", mean: "稍後回覆", tip: "back k 接 to 停頓。" },
+  { id: "p-u6-4", phrase: "talk to", sentence: "I need to <span class='highlight-kw'>talk to</span> you.", plain: "I need to talk to you.", mean: "和...談話", tip: "talk k 接 to。" },
+  { id: "p-u6-5", phrase: "cope with", sentence: "Struggling to <span class='highlight-kw'>cope with</span> this.", plain: "Struggling to cope with this.", mean: "處理/應對", tip: "cope p 閉唇接 with。" },
+  { id: "p-u6-6", phrase: "crossed my mind", sentence: "Names just <span class='highlight-kw'>crossed my mind</span>.", plain: "Names just crossed my mind.", mean: "掠過腦海(想到)", tip: "crossed d 接 m。" },
+  { id: "p-u6-7", phrase: "owe you one", sentence: "I <span class='highlight-kw'>owe you one</span>.", plain: "I owe you one.", mean: "欠你一次人情", tip: "owe 接 you 連音。" },
+
+  // === Unit 7 (全新加入) ===
+  { id: "p-u7-1", phrase: "variety of", sentence: "Prepare a <span class='highlight-kw'>variety of</span> dishes.", plain: "Prepare a variety of dishes.", mean: "各式各樣的", tip: "variety 接 of 連音。" },
+  { id: "p-u7-2", phrase: "attend to", sentence: "Needs that we have to <span class='highlight-kw'>attend to</span>.", plain: "Needs that we have to attend to.", mean: "照料/處理", tip: "attend d 省略接 to。" },
+  { id: "p-u7-3", phrase: "how about", sentence: "<span class='highlight-kw'>How about</span> some Laksa?", plain: "How about some Laksa?", mean: "...如何？", tip: "how 接 about 連音。" },
+  { id: "p-u7-4", phrase: "wrong with", sentence: "You can't go <span class='highlight-kw'>wrong with</span> it.", plain: "You can't go wrong with it.", mean: "選...不會錯", tip: "wrong ng 接 with。" },
+  { id: "p-u7-5", phrase: "see to it", sentence: "I'll <span class='highlight-kw'>see to it</span> that needs are met.", plain: "I'll see to it that needs are met.", mean: "務必做到/確認", tip: "see 接 to 接 it 連貫。" }
 ];
