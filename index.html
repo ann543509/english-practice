@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>商務英語會話 (Unit 1-7 循環播放版)</title>
+  <title>商務英語會話 (循環播放版)</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -15,44 +15,33 @@
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
     body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; }
     .font-serif-en { font-family: 'Merriweather', serif; }
-    .highlight-kw { font-weight: 700; border-bottom: 2px solid currentColor; }
     
+    /* 動畫定義 */
     @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
     .animate-pulse-red { animation: pulse-red 1.5s infinite; }
-    
     @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .animate-spin-slow { animation: spin-slow 2s linear infinite; }
-
     .animate-fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     
+    /* 功能樣式 */
     .blind-mode-blur { filter: blur(6px); user-select: none; transition: filter 0.3s ease; cursor: help; }
     .blind-mode-blur:hover { filter: blur(0px); }
-
     .chunk-separator { color: #cbd5e1; font-weight: 300; margin: 0 6px; display: inline-block; transform: translateY(-1px); }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
-    
     .word-correct { color: #16a34a; font-weight: bold; }
     .word-missed { color: #dc2626; text-decoration: line-through; opacity: 0.6; }
     
-    .playing-card { background-color: #eff6ff; border-color: #3b82f6; transform: scale(1.01); transition: all 0.3s ease; }
-
-    /* 錯誤顯示區 */
-    #error-display { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 100000; padding: 20px; overflow: auto; color: red; font-family: monospace; font-size: 16px; white-space: pre-wrap; }
+    /* 播放中高亮樣式 (邏輯核心視覺化) */
+    .playing-card { background-color: #eff6ff; border-color: #3b82f6; transform: scale(1.01); transition: all 0.3s ease; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1); }
+    
+    /* 啟動畫面波紋 */
+    .wave-bar { width: 4px; height: 10px; background-color: #fff; border-radius: 2px; animation: wave 1s ease-in-out infinite; }
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; } .wave-bar:nth-child(3) { animation-delay: 0.2s; } .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    @keyframes slide-up-bounce { 0% { transform: translateY(100%); opacity: 0; } 70% { transform: translateY(-10px); opacity: 1; } 100% { transform: translateY(0); opacity: 1; } }
+    .animate-slide-up-bounce { animation: slide-up-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
   </style>
 </head>
 <body class="bg-gray-50 selection:bg-yellow-100 min-h-screen relative">
-
-  <div id="error-display"></div>
-  <script>
-    window.onerror = function(message, source, lineno, colno, error) {
-      const errorDiv = document.getElementById('error-display');
-      errorDiv.style.display = 'block';
-      errorDiv.innerHTML = `<h1>💥 程式發生錯誤 (Error)</h1><hr/><strong>Message:</strong> ${message}<br/><strong>Source:</strong> ${source}<br/><strong>Line:</strong> ${lineno}`;
-    };
-  </script>
 
   <div id="root"></div>
   <div id="feedback-portal-root"></div>
@@ -63,12 +52,12 @@
     const { useState, useEffect, useRef, useMemo, useCallback } = React;
     const { createPortal } = ReactDOM;
 
-    // --- 1. 取得資料 (來自 data.js 的 window 變數) ---
+    // --- 安全讀取資料 (防止 data.js 未載入時崩潰) ---
     const vocabData = window.vocabData || [];
     const sentenceData = window.sentenceData || [];
     const prepData = window.prepData || [];
 
-    // --- 2. 全域語音變數 ---
+    // --- 全域語音變數 ---
     let globalRecognition = null;
     let globalTimeout = null;
 
@@ -86,11 +75,8 @@
       return globalRecognition;
     };
 
-    // --- 3. 圖示元件 ---
-    const Icon = ({ children, className, ...props }) => (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>{children}</svg>
-    );
-    // 定義所有需要的圖示
+    // --- 圖示元件集 (Icon Components) ---
+    const Icon = ({ children, className, ...props }) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>{children}</svg>;
     const Briefcase = (p) => <Icon {...p}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></Icon>;
     const BookOpen = (p) => <Icon {...p}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
     const MessageCircle = (p) => <Icon {...p}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></Icon>;
@@ -115,4 +101,479 @@
     const Settings = (p) => <Icon {...p}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
     const Wifi = (p) => <Icon {...p}><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></Icon>;
     const Eye = (p) => <Icon {...p}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></Icon>;
-    const EyeOff = (p) => <Icon {...p}><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1
+    const EyeOff = (p) => <Icon {...p}><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></Icon>;
+    const Scissors = (p) => <Icon {...p}><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" x2="8.12" y1="4" y2="15.88"/><line x1="14.47" x2="20" y1="14.48" y2="20"/><line x1="8.12" x2="12" y1="8.12" y2="12"/></Icon>;
+    const Loader2 = (p) => <Icon {...p}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></Icon>;
+    const CreditCard = (p) => <Icon {...p}><rect width="20" height="14" x="2" y="5" rx="2" ry="2"/><line x1="2" x2="22" y1="10" y2="10"/></Icon>;
+    const AlertTriangle = (p) => <Icon {...p}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></Icon>;
+    const Repeat = (p) => <Icon {...p}><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></Icon>;
+    const PauseCircle = (p) => <Icon {...p}><circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/></Icon>;
+
+    const IconMap = { Briefcase, BookOpen, MessageCircle, Link2, Play, Turtle, Volume2, Info, Trash2, X, Save, Lightbulb, Feather, Layout, MapPin, Zap, Mic, Check, AlertCircle, MousePointerClick, Filter, Settings, Wifi, Eye, EyeOff, Scissors, Loader2, CreditCard, AlertTriangle, Repeat, PauseCircle };
+
+    // --- 核心播放函式 (支援監聽結束) ---
+    const speakText = (text, rate = 0.85, onEndCallback = null) => {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = rate;
+      if (onEndCallback) {
+        utterance.onend = onEndCallback;
+      }
+      window.speechSynthesis.speak(utterance);
+    };
+
+    const cleanText = (text) => {
+      if (!text) return "";
+      return text.replace(/<[^>]*>/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~?]/g, "").replace(/\s{2,}/g, " ").trim().toLowerCase();
+    };
+
+    const renderChunkedText = (htmlContent, showChunks) => {
+      if (!showChunks) return <InteractiveSentence htmlContent={htmlContent} />;
+      const parts = htmlContent.split(/(<[^>]+>)/g);
+      const chunkedElements = parts.map((part) => {
+        if (part.startsWith('<')) return part;
+        return part.replace(/([,.;?])/g, "$1<span class='chunk-separator'>|</span>")
+                   .replace(/\s(and|but|or|because|that|which|where|when)\s/gi, " <span class='chunk-separator'>|</span> $1 ");
+      });
+      return <InteractiveSentence htmlContent={chunkedElements.join('')} />;
+    };
+
+    const InteractiveSentence = ({ htmlContent, isBlindMode }) => {
+      const regex = /(<span class='[^']+'>.*?<\/span>)|([^<]+)/g;
+      const parts = htmlContent.match(regex) || [];
+      const handleWordClick = (e, word) => {
+        e.stopPropagation();
+        const cleanWord = word.replace(/[.,?!:;|]/g, '');
+        if(cleanWord.trim()) speakText(cleanWord, 0.75);
+      };
+      return (
+        <span className={`leading-relaxed transition-all duration-500 ${isBlindMode ? 'blind-mode-blur' : ''}`}>
+          {parts.map((part, index) => {
+            if (part.startsWith('<span')) {
+              const classMatch = part.match(/class='([^']+)'/);
+              const className = classMatch ? classMatch[1] : '';
+              const contentMatch = part.match(/>(.*?)</);
+              const content = contentMatch ? contentMatch[1] : '';
+              if (className.includes('chunk-separator')) return <span key={index} className={className} dangerouslySetInnerHTML={{__html: content}}></span>;
+              const words = content.split(' ');
+              return (
+                <span key={index} className={className}>
+                  {words.map((word, wIndex) => (
+                    <React.Fragment key={wIndex}>
+                      <span className="cursor-pointer hover:bg-yellow-200 hover:text-black rounded px-0.5 transition-colors active:scale-95 inline-block" onClick={(e) => handleWordClick(e, word)}>{word}</span>
+                      {wIndex < words.length - 1 && ' '}
+                    </React.Fragment>
+                  ))}
+                </span>
+              );
+            } else {
+              const words = part.split(' ');
+              return <span key={index}>{words.map((word, wIndex) => <React.Fragment key={wIndex}><span className="cursor-pointer hover:bg-yellow-200 hover:text-black rounded px-0.5 transition-colors active:scale-95 inline-block" onClick={(e) => handleWordClick(e, word)}>{word}</span>{wIndex < words.length - 1 && ' '}</React.Fragment>)}</span>;
+            }
+          })}
+        </span>
+      );
+    };
+
+    const RenderComparison = ({ feedback }) => {
+       if (!feedback || !feedback.spokenText) return null;
+       const targetWords = cleanText(feedback.targetText).split(' ');
+       const spokenWords = cleanText(feedback.spokenText).split(' ');
+       return (
+          <div className="mt-2 text-sm bg-white p-3 rounded border border-gray-200 shadow-inner">
+             {feedback.advice && (
+                <div className="mb-2 pb-2 border-b border-gray-100 bg-yellow-50 p-2 rounded">
+                   <div className="text-yellow-700 text-xs font-bold mb-1 flex items-center"><Lightbulb className="w-3 h-3 mr-1" />教練的發音診斷：</div>
+                   <div className="text-gray-700 text-sm font-medium">{feedback.advice}</div>
+                </div>
+             )}
+            <div className="mb-1 text-gray-500 text-xs">辨識結果比對 (嚴格模式)：</div>
+            <div className="mb-2">
+              {targetWords.map((word, idx) => {
+                const isMatch = spokenWords.some(sw => sw === word || (sw.length > 3 && (sw.includes(word) || word.includes(sw))));
+                return <span key={idx} className={`mr-1 ${isMatch ? 'word-correct' : 'word-missed'}`}>{word}</span>;
+              })}
+            </div>
+            <div className="mt-1 text-xs text-gray-400">(我聽到: <span className="text-gray-600 italic">{feedback.spokenText}</span>)</div>
+          </div>
+       );
+    };
+
+    const MobileFeedbackToast = ({ feedback, showDetails, toggleDetails, onClose }) => {
+       if (!feedback) return null;
+       const portalRoot = document.getElementById('feedback-portal-root');
+       if (!portalRoot) return null;
+       return createPortal(
+          <div className={`md:hidden fixed bottom-0 left-0 right-0 z-[99999] p-4 pb-8 rounded-t-2xl shadow-[0_-8px_40px_rgba(0,0,0,0.3)] border-t transition-transform duration-300 animate-slide-up-bounce bg-white ${feedback.type === 'success' ? 'border-green-400 bg-green-50 ring-4 ring-green-100' : feedback.type === 'warning' ? 'border-yellow-300 bg-yellow-50' : feedback.type === 'error' ? 'border-red-300 bg-red-50' : 'border-blue-300 bg-blue-50'}`}>
+             <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2 overflow-hidden">
+                   {feedback.type === 'success' && <Check className="w-6 h-6 text-green-600 flex-shrink-0 animate-bounce"/>}
+                   {feedback.type === 'warning' && <AlertCircle className="w-6 h-6 text-yellow-600 flex-shrink-0"/>}
+                   {feedback.type === 'error' && <X className="w-6 h-6 text-red-600 flex-shrink-0"/>}
+                   <span className={`font-bold text-lg truncate ${feedback.type === 'success' ? 'text-green-800' : 'text-slate-800'}`}>{feedback.text} {feedback.score !== undefined && `(${feedback.score}%)`}</span>
+                </div>
+                <div className="flex gap-2 flex-shrink-0">
+                   {feedback.spokenText && <button onClick={toggleDetails} className="px-4 py-2 bg-white rounded-full text-sm font-bold shadow-sm border border-gray-100 active:bg-gray-100 transition-all text-slate-700">{showDetails ? '隱藏' : '詳情'}</button>}
+                   <button onClick={onClose} className="w-9 h-9 flex items-center justify-center bg-white rounded-full text-gray-400 hover:text-red-500 shadow-sm border border-gray-100 active:bg-gray-100 transition-all"><X className="w-5 h-5" /></button>
+                </div>
+             </div>
+             {showDetails && <div className="max-h-[50vh] overflow-y-auto overscroll-contain pb-2 mt-3 bg-white/50 rounded-xl p-2 animate-fade-in"><RenderComparison feedback={feedback} /></div>}
+          </div>, portalRoot 
+       );
+    };
+
+    const VoiceEvaluatorButton = ({ id, status, feedback, showDetails, toggleDetails, onRecord }) => {
+      let buttonClass = "bg-white text-gray-500 border-gray-200 hover:bg-gray-50 hover:text-blue-600";
+      let icon = <Mic className="w-5 h-5" />;
+      if (status === 'init') { buttonClass = "bg-yellow-100 text-yellow-600 border-yellow-300"; icon = <Loader2 className="w-5 h-5 animate-spin-slow" />; } 
+      else if (status === 'listening') { buttonClass = "bg-red-500 text-white border-red-500 animate-pulse-red"; icon = <div className="text-xs font-bold font-sans">GO!</div>; }
+      return (
+        <div className="relative inline-block ml-2 text-left">
+          <button onClick={(e) => { e.stopPropagation(); onRecord(id); }} className={`flex items-center justify-center w-10 h-10 rounded-full border shadow-sm transition-all ${buttonClass}`} title="點擊開始錄音 (嚴格模式)">{icon}</button>
+          {status === 'init' && <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 text-[10px] text-yellow-600 font-bold whitespace-nowrap">準備中...</div>}
+          {feedback && (
+            <div className={`hidden md:block absolute top-full right-0 mt-2 p-3 rounded-lg text-sm font-bold whitespace-normal min-w-[300px] z-30 shadow-xl border animate-fade-in ${feedback.type === 'success' ? 'bg-green-50 text-green-800 border-green-200' : feedback.type === 'warning' ? 'bg-yellow-50 text-yellow-800 border-yellow-200' : feedback.type === 'error' ? 'bg-red-50 text-red-800 border-red-200' : 'bg-blue-50 text-blue-800 border-blue-200'}`}>
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                   {feedback.type === 'success' && <Check className="w-4 h-4 text-green-600"/>}
+                   {feedback.type === 'warning' && <AlertCircle className="w-4 h-4 text-yellow-600"/>}
+                   {feedback.type === 'error' && <X className="w-4 h-4 text-red-600"/>}
+                   <span className="font-medium">{feedback.text} {feedback.score !== undefined && `(${feedback.score}%)`}</span>
+                </div>
+                {feedback.spokenText && <button onClick={(e) => { e.stopPropagation(); toggleDetails(); }} className="text-xs underline opacity-70 hover:opacity-100">{showDetails ? '隱藏' : '詳情'}</button>}
+              </div>
+              {showDetails && <RenderComparison feedback={feedback} />}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    const VocabCard = ({ item, colorTheme, onDelete }) => {
+       const themes = {
+        blue: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-800", badge: "bg-blue-100 text-blue-700", icon: "text-blue-500", btn: "bg-blue-600 hover:bg-blue-700" },
+        green: { bg: "bg-green-50", border: "border-green-200", text: "text-green-800", badge: "bg-green-100 text-green-700", icon: "text-green-500", btn: "bg-green-600 hover:bg-green-700" },
+        amber: { bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-800", badge: "bg-amber-100 text-amber-700", icon: "text-amber-500", btn: "bg-amber-600 hover:bg-amber-700" },
+        purple: { bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-800", badge: "bg-purple-100 text-purple-700", icon: "text-purple-500", btn: "bg-purple-600 hover:bg-purple-700" }, 
+        teal: { bg: "bg-teal-50", border: "border-teal-200", text: "text-teal-800", badge: "bg-teal-100 text-teal-700", icon: "text-teal-500", btn: "bg-teal-600 hover:bg-teal-700" },
+        indigo: { bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-800", badge: "bg-indigo-100 text-indigo-700", icon: "text-indigo-500", btn: "bg-indigo-600 hover:bg-indigo-700" },
+        orange: { bg: "bg-orange-50", border: "border-orange-200", text: "text-orange-800", badge: "bg-orange-100 text-orange-700", icon: "text-orange-500", btn: "bg-orange-600 hover:bg-orange-700" },
+        red: { bg: "bg-red-50", border: "border-red-200", text: "text-red-800", badge: "bg-red-100 text-red-700", icon: "text-red-500", btn: "bg-red-600 hover:bg-red-700" },
+      };
+      const theme = themes[colorTheme] || themes.blue;
+      return (
+        <div onClick={() => speakText(item.word)} className={`relative flex flex-col justify-between p-5 rounded-xl border-2 ${theme.bg} ${theme.border} shadow-sm hover:shadow-md transition-all cursor-pointer group hover:-translate-y-1 h-full`}>
+          <div className="flex justify-between items-start mb-3">
+            <div><h3 className="text-xl font-bold text-gray-800 group-hover:text-black tracking-wide">{item.word}</h3><span className="text-sm font-medium text-gray-600 block mt-1">{item.mean}</span></div>
+            <button className={`w-8 h-8 rounded-full flex items-center justify-center text-white shadow-sm transition-transform group-hover:scale-110 ${theme.btn}`}><Volume2 className="w-4 h-4" /></button>
+          </div>
+          <div className="space-y-3 mt-auto">
+            <div className={`inline-block px-2 py-1 rounded-md text-xs font-bold font-mono ${theme.badge} opacity-90`}>{item.kk}</div>
+            <div className="text-xs text-gray-600 flex items-start bg-white/60 p-2 rounded-lg backdrop-blur-sm relative"><Info className={`w-3 h-3 mr-1.5 mt-0.5 flex-shrink-0 ${theme.icon}`} /><span className="flex-1 leading-snug">{item.tip}</span></div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- 補回遺失的 StartScreen 元件 (這是重點) ---
+    const StartScreen = ({ onStart }) => {
+      return (
+        <div className="fixed inset-0 z-[9999] bg-slate-900 flex flex-col overflow-y-auto">
+          <div className="min-h-full flex flex-col items-center justify-center p-4">
+             <div className="max-w-md w-full bg-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-700 text-center relative overflow-hidden my-auto">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-blue-400 ring-4 ring-slate-600/50"><i className="fas fa-headset text-3xl md:text-4xl"></i></div>
+                <h1 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight text-white">商務英語會話特訓</h1>
+                <p className="text-slate-400 mb-6 text-sm leading-relaxed">為了確保最佳的練習體驗，我們需要先取得您的麥克風權限。<br/><br/><span className="text-blue-300 font-medium bg-blue-900/30 px-2 py-1 rounded">點擊一次允許，全程無縫練習</span></p>
+                <button onClick={onStart} className="group w-full relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-lg hover:shadow-blue-500/30 active:scale-95"><span>開啟麥克風並開始</span><div className="ml-3 flex items-center gap-1 h-4"><div className="wave-bar"></div><div className="wave-bar"></div><div className="wave-bar"></div></div></button>
+                <p className="mt-6 text-xs text-slate-500"><i className="fas fa-shield-alt mr-1"></i> 您的隱私受保護，錄音僅在瀏覽器內處理</p>
+             </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- Main App ---
+    const InterviewPracticeApp = () => {
+      const [hasStarted, setHasStarted] = useState(false);
+      const [activeTab, setActiveTab] = useState('vocab');
+      const [selectedUnit, setSelectedUnit] = useState('All');
+      const [isBlindMode, setIsBlindMode] = useState(false);
+      const [showChunks, setShowChunks] = useState(false);
+      const [recState, setRecState] = useState({ activeId: null, status: 'idle', feedbackMap: {} });
+      const [showDetailsMap, setShowDetailsMap] = useState({});
+      
+      // --- 循環播放狀態 ---
+      const [isLooping, setIsLooping] = useState(false);
+      const [currentPlayingIndex, setCurrentPlayingIndex] = useState(-1);
+      const loopQueueRef = useRef([]);
+
+      const handleStartApp = async () => {
+          const recognition = getSharedRecognition();
+          if (recognition) {
+              try {
+                  recognition.start();
+                  setTimeout(() => { recognition.stop(); setHasStarted(true); }, 100);
+              } catch (err) { console.log("Auto start check", err); setHasStarted(true); }
+          } else { alert("您的瀏覽器不支援語音識別"); setHasStarted(true); }
+      };
+
+      const stopGlobalRecording = () => {
+        if (globalRecognition) { try { globalRecognition.stop(); } catch(e) {} }
+        if (globalTimeout) { clearTimeout(globalTimeout); globalTimeout = null; }
+      };
+
+      const handleStartRecording = (id, targetText, diagnosticsConfig = {}) => {
+        stopGlobalRecording();
+        if (isLooping) {
+            setIsLooping(false);
+            setCurrentPlayingIndex(-1);
+            window.speechSynthesis.cancel();
+        }
+
+        if (recState.activeId === id && (recState.status === 'listening' || recState.status === 'init')) {
+          setRecState(prev => ({ ...prev, status: 'idle', activeId: null }));
+          return;
+        }
+        const recognition = getSharedRecognition();
+        if (!recognition) { alert("瀏覽器不支援語音辨識"); return; }
+        setRecState(prev => ({ ...prev, activeId: id, status: 'init', feedbackMap: { ...prev.feedbackMap, [id]: null } }));
+        setShowDetailsMap(prev => ({ ...prev, [id]: false }));
+        recognition.onstart = () => {
+          setRecState(prev => ({ ...prev, status: 'listening' }));
+          if (globalTimeout) clearTimeout(globalTimeout);
+          globalTimeout = setTimeout(() => { try { recognition.stop(); } catch(e) {} }, 20000); 
+        };
+        recognition.onresult = (event) => {
+          if (globalTimeout) clearTimeout(globalTimeout);
+          const spoken = event.results[0][0].transcript;
+          processResult(id, targetText, spoken, diagnosticsConfig);
+        };
+        recognition.onerror = (event) => {
+          if (globalTimeout) clearTimeout(globalTimeout);
+          if (event.error === 'aborted') return;
+          let msg = '無法辨識';
+          if (event.error === 'not-allowed') msg = '請檢查麥克風權限';
+          if (event.error === 'no-speech') msg = '沒聽到聲音';
+          setRecState(prev => ({ ...prev, status: 'idle', feedbackMap: { ...prev.feedbackMap, [id]: { type: 'error', text: msg } } }));
+        };
+        recognition.onend = () => { setRecState(prev => { if (prev.activeId === id) return { ...prev, status: 'idle' }; return prev; }); };
+        try { recognition.start(); } catch(e) { try { recognition.stop(); setTimeout(() => recognition.start(), 100); } catch(err) { setRecState(prev => ({ ...prev, status: 'idle' })); } }
+      };
+
+      const processResult = (id, targetText, spoken, diagnosticsConfig) => {
+          const targetClean = cleanText(targetText); const spokenClean = cleanText(spoken);
+          const targetWords = targetClean.split(' '); const spokenWords = spokenClean.split(' ');
+          const functionWords = ['a', 'an', 'the', 'to', 'of', 'in', 'on', 'at', 'is', 'are', 'was', 'were', 'be', 'it', 'that', 'this', 'and', 'but', 'or', 'for', 'with', 'as'];
+          let matchCount = 0; let missingContentWords = []; let missingFunctionWords = [];
+          targetWords.forEach(w => { if (spokenWords.some(sw => sw === w || (sw.length > 3 && (sw.includes(w) || w.includes(sw))))) { matchCount++; } else { if (functionWords.includes(w)) { missingFunctionWords.push(w); } else { missingContentWords.push(w); } } });
+          let accuracy = 0; if (targetWords.length > 0) accuracy = Math.round((matchCount / targetWords.length) * 100);
+          if (targetWords.length <= 3) { if (spokenClean === targetClean) accuracy = 100; else accuracy = (spokenClean === targetClean) ? 100 : (accuracy > 90 ? 90 : accuracy); }
+          let feedbackType = 'error'; let feedbackMsg = `請重新調整發音`; let adviceMsg = ""; let trapFound = false;
+          if (diagnosticsConfig && diagnosticsConfig.traps) { Object.keys(diagnosticsConfig.traps).forEach(trapKey => { if (spokenClean.includes(trapKey.toLowerCase())) { adviceMsg = diagnosticsConfig.traps[trapKey]; trapFound = true; } }); }
+          if (!trapFound && accuracy < 100) { if (missingContentWords.length > 0) { adviceMsg = `關鍵字 "${missingContentWords[0]}" 聲音不夠突出。這是句子的靈魂，請加強重音。`; } else if (missingFunctionWords.length > 0) { adviceMsg = `雖然有些虛字 (如 ${missingFunctionWords[0]}) 沒抓到，但別擔心。重點是語調流暢，注意連音即可。`; } else { adviceMsg = `語調似乎有點平淡，試著模仿示範音檔的抑揚頓挫。`; } }
+          if (accuracy === 100) { feedbackType = 'success'; feedbackMsg = `完美無瑕！(Flawless)`; if (navigator.vibrate) navigator.vibrate(50); } else if (accuracy >= 90) { feedbackType = 'success'; feedbackMsg = `很好，語流順暢`; } else if (accuracy >= 80) { feedbackType = 'warning'; feedbackMsg = `不錯，注意細節`; } else if (accuracy >= 60) { feedbackType = 'warning'; feedbackMsg = `語調或發音有誤`; } else { feedbackType = 'error'; feedbackMsg = `請放慢速度，重新練習`; }
+          const feedbackData = { type: feedbackType, text: feedbackMsg, score: accuracy, spokenText: spoken, targetText: targetText, advice: adviceMsg, intonationDisplay: diagnosticsConfig?.intonation || null };
+          setRecState(prev => ({ ...prev, status: 'idle', feedbackMap: { ...prev.feedbackMap, [id]: feedbackData } }));
+          setShowDetailsMap(prev => ({ ...prev, [id]: true }));
+      };
+
+      const toggleDetails = (id) => { setShowDetailsMap(prev => ({ ...prev, [id]: !prev[id] })); };
+      const closeActiveFeedback = () => { if (recState.activeId) { setRecState(prev => ({ ...prev, feedbackMap: { ...prev.feedbackMap, [prev.activeId]: null } })); } };
+      
+      const availableUnits = useMemo(() => { const units = new Set(); vocabData.forEach(s => s.unitId && units.add(s.unitId)); sentenceData.forEach(s => s.unitId && units.add(s.unitId)); return ['All', ...Array.from(units).sort()]; }, [vocabData, sentenceData]);
+      const filteredVocabSections = vocabData.filter(section => selectedUnit === 'All' || section.unitId === selectedUnit);
+      const filteredInterviewData = sentenceData.filter(section => selectedUnit === 'All' || section.unitId === selectedUnit);
+      
+      const toggleLoop = () => {
+        if (isLooping) {
+            setIsLooping(false);
+            setCurrentPlayingIndex(-1);
+            window.speechSynthesis.cancel();
+        } else {
+            // 建立播放清單
+            const queue = [];
+            filteredInterviewData.forEach(section => {
+                section.sentences.forEach(item => {
+                    queue.push({ id: item.id, text: item.plain });
+                });
+            });
+            loopQueueRef.current = queue;
+            if (queue.length > 0) {
+                setIsLooping(true);
+                playNextInLoop(0);
+            }
+        }
+      };
+
+      const playNextInLoop = (index) => {
+          if (index >= loopQueueRef.current.length) {
+              // 播完最後一首，從頭開始
+              playNextInLoop(0);
+              return;
+          }
+          const item = loopQueueRef.current[index];
+          setCurrentPlayingIndex(index); // 使用 index 而不是 ID 來標記順序
+          
+          speakText(item.text, 0.85, () => {
+              // 確保組件還在掛載且仍處於循環模式
+              if (loopQueueRef.current.length > 0 && isLooping) { 
+                  playNextInLoop(index + 1);
+              }
+          });
+      };
+
+      // 如果手動點擊某一句，或者離開頁面，要停止循環
+      const handleManualPlay = (text, rate) => {
+          if (isLooping) {
+              setIsLooping(false);
+              setCurrentPlayingIndex(-1);
+              loopQueueRef.current = []; // 清空佇列以停止遞迴
+          }
+          speakText(text, rate);
+      };
+
+      // 切換 Tab 或 Unit 時停止播放
+      useEffect(() => {
+          if (isLooping) {
+              setIsLooping(false);
+              setCurrentPlayingIndex(-1);
+              window.speechSynthesis.cancel();
+              loopQueueRef.current = [];
+          }
+      }, [activeTab, selectedUnit]);
+
+      const themes = {
+        blue: { bg: "bg-blue-50", border: "border-blue-200", title: "text-blue-800", typeTag: "bg-blue-600 text-white", btn: "bg-blue-600 hover:bg-blue-700", icon: "text-blue-600" },
+        green: { bg: "bg-green-50", border: "border-green-200", title: "text-green-800", typeTag: "bg-green-600 text-white", btn: "bg-green-600 hover:bg-green-700", icon: "text-green-600" },
+        amber: { bg: "bg-amber-50", border: "border-amber-200", title: "text-amber-800", typeTag: "bg-amber-600 text-white", btn: "bg-amber-600 hover:bg-amber-700", icon: "text-amber-600" },
+        purple: { bg: "bg-purple-50", border: "border-purple-200", title: "text-purple-800", typeTag: "bg-purple-600 text-white", btn: "bg-purple-600 hover:bg-purple-700", icon: "text-purple-600" },
+        teal: { bg: "bg-teal-50", border: "border-teal-200", title: "text-teal-800", typeTag: "bg-teal-600 text-white", btn: "bg-teal-600 hover:bg-teal-700", icon: "text-teal-600" },
+        indigo: { bg: "bg-indigo-50", border: "border-indigo-200", title: "text-indigo-800", typeTag: "bg-indigo-600 text-white", btn: "bg-indigo-600 hover:bg-indigo-700", icon: "text-indigo-600" },
+        orange: { bg: "bg-orange-50", border: "border-orange-200", title: "text-orange-800", typeTag: "bg-orange-600 text-white", btn: "bg-orange-600 hover:bg-orange-700", icon: "text-orange-600" },
+        red: { bg: "bg-red-50", border: "border-red-200", title: "text-red-800", typeTag: "bg-red-600 text-white", btn: "bg-red-600 hover:bg-red-700", icon: "text-red-600" },
+      };
+
+      if (!hasStarted) return <StartScreen onStart={handleStartApp} />;
+      const activeFeedback = recState.activeId ? recState.feedbackMap[recState.activeId] : null;
+      const isShowDetails = recState.activeId ? showDetailsMap[recState.activeId] : false;
+
+      return (
+        <div id="app-container" className="relative min-h-screen">
+          <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in pb-24 md:pb-8">
+            <header className="text-center mb-6">
+              <div className="inline-flex items-center justify-center p-3 bg-white rounded-full shadow-sm mb-4"><Briefcase className="w-8 h-8 text-blue-600 mr-2" /><span className="text-gray-500 font-medium">商務英語口說教練</span></div>
+              <h1 className="text-3xl font-bold text-gray-800 mb-2 tracking-tight">商務英語會話 <span className="text-blue-600">實戰特訓班</span></h1>
+            </header>
+            <div className="flex justify-center mb-6">
+              <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200 flex items-center space-x-2">
+                 <Filter className="w-5 h-5 text-gray-500" /><span className="text-sm font-bold text-gray-700">選擇單元：</span>
+                 <select value={selectedUnit} onChange={(e) => setSelectedUnit(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 outline-none font-medium">
+                   <option value="All">顯示全部課程 (Show All)</option>
+                   {availableUnits.filter(u => u !== 'All').map(u => <option key={u} value={u}>{u}</option>)}
+                 </select>
+              </div>
+            </div>
+            <div className="flex justify-center mb-10">
+              <div className="bg-white p-1 rounded-xl shadow-sm border border-gray-200 flex overflow-x-auto">
+                <button onClick={() => setActiveTab('vocab')} className={`px-4 md:px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center whitespace-nowrap ${activeTab === 'vocab' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}><BookOpen className="w-4 h-4 mr-2" />1. 單字特訓</button>
+                <button onClick={() => setActiveTab('sentences')} className={`px-4 md:px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center whitespace-nowrap ${activeTab === 'sentences' ? 'bg-green-600 text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}><MessageCircle className="w-4 h-4 mr-2" />2. 句型跟讀 (V15)</button>
+                <button onClick={() => setActiveTab('prepositions')} className={`px-4 md:px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center whitespace-nowrap ${activeTab === 'prepositions' ? 'bg-orange-600 text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}><Link2 className="w-4 h-4 mr-2" />3. 介係詞用法</button>
+              </div>
+            </div>
+
+            {activeTab === 'sentences' && (
+               <div className="sticky top-2 z-20 mb-6 flex justify-center gap-2 flex-wrap">
+                  <button onClick={() => setShowChunks(!showChunks)} className={`px-4 py-2 rounded-full shadow-md text-sm font-bold transition-all flex items-center ${showChunks ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 border border-gray-200'}`}><Scissors className="w-4 h-4 mr-1" />{showChunks ? '隱藏斷句' : '斷句輔助'}</button>
+                  <button onClick={() => setIsBlindMode(!isBlindMode)} className={`px-4 py-2 rounded-full shadow-md text-sm font-bold transition-all flex items-center ${isBlindMode ? 'bg-black text-white' : 'bg-white text-gray-600 border border-gray-200'}`}>{isBlindMode ? <EyeOff className="w-4 h-4 mr-1" /> : <Eye className="w-4 h-4 mr-1" />}{isBlindMode ? '盲聽模式 ON' : '遮蔽文字'}</button>
+                  <button onClick={toggleLoop} className={`px-4 py-2 rounded-full shadow-md text-sm font-bold transition-all flex items-center ${isLooping ? 'bg-purple-600 text-white animate-pulse' : 'bg-white text-gray-600 border border-gray-200'}`}>
+                    {isLooping ? <PauseCircle className="w-4 h-4 mr-1" /> : <Repeat className="w-4 h-4 mr-1" />}
+                    {isLooping ? '循環播放中...' : '循環播放整課'}
+                  </button>
+               </div>
+            )}
+
+            {activeTab === 'vocab' && (
+              <div className="space-y-8">
+                 {filteredVocabSections.length > 0 ? filteredVocabSections.map((section, idx) => {
+                   const SectionIcon = IconMap[section.icon] || Briefcase;
+                   return (
+                     <section key={idx}>
+                       <div className="flex items-center mb-4 ml-1"><div className={`p-2 rounded-lg mr-3 bg-${section.color}-100 text-${section.color}-600`}><SectionIcon className="w-5 h-5" /></div><div><h2 className="text-xl font-bold text-gray-800">{section.title}</h2><p className="text-sm text-gray-500">{section.desc}</p></div></div>
+                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">{section.words.map((word, wIdx) => <VocabCard key={wIdx} item={word} colorTheme={section.color} />)}</div>
+                     </section>
+                   );
+                 }) : <div className="text-center py-10 text-gray-400 bg-gray-100 rounded-xl">無資料</div>}
+              </div>
+            )}
+
+            {activeTab === 'sentences' && (
+              <div className="space-y-8">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800 flex flex-col md:flex-row items-start md:items-center justify-between"><div className="flex items-start mb-2 md:mb-0"><MousePointerClick className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" /><span><strong>專業語感模式：</strong> 100% 正確才是合格。AI 教練會自動分辨關鍵字與虛字，給出最符合商務溝通的建議！</span></div></div>
+                {filteredInterviewData.length > 0 ? filteredInterviewData.map((section, sectionIndex) => {
+                  const theme = themes[section.colorTheme] || themes.blue; 
+                  const SectionIcon = IconMap[section.icon] || MessageCircle;
+                  
+                  let previousSentencesCount = 0;
+                  for(let i=0; i<sectionIndex; i++) {
+                      previousSentencesCount += filteredInterviewData[i].sentences.length;
+                  }
+
+                  return (
+                    <section key={section.id} className="bg-white rounded-2xl shadow-sm border border-gray-100">
+                      <div className={`px-6 py-4 border-b ${theme.border} ${theme.bg} flex items-center justify-between rounded-t-2xl`}><div><h2 className={`text-xl font-bold ${theme.title} flex items-center`}>{section.category}</h2><p className="text-sm text-gray-600 mt-1 opacity-90">{section.desc}</p></div><SectionIcon className={`w-6 h-6 ${theme.icon} opacity-50`} /></div>
+                      <div className="divide-y divide-gray-50">
+                        {section.sentences.map((item, idx) => {
+                          const globalIndex = previousSentencesCount + idx;
+                          const isPlaying = isLooping && currentPlayingIndex === globalIndex;
+                          return (
+                            <div key={item.id} onClick={() => handleManualPlay(item.plain, 0.85)} className={`group p-6 hover:bg-gray-50 transition-colors cursor-pointer relative ${isPlaying ? 'playing-card' : ''}`}>
+                              <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                <div className="flex-1">
+                                  <span className={`inline-block text-xs font-bold px-2 py-0.5 rounded mb-2 ${theme.typeTag} opacity-80`}>{item.type}</span>
+                                  <div className={`text-xl md:text-2xl text-gray-800 font-serif-en mb-3 ${theme.title}`}>{renderChunkedText(item.text, showChunks)}</div>
+                                  <p className={`text-gray-600 font-medium text-sm md:text-base mb-3 transition-opacity ${isBlindMode ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>{item.mean}</p>
+                                  <div className={`inline-flex items-start text-xs md:text-sm text-gray-500 bg-gray-100 px-3 py-2 rounded-lg leading-relaxed transition-opacity ${isBlindMode ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}><Info className="w-4 h-4 mr-2 mt-0.5 text-gray-400 flex-shrink-0" /><span>{item.tip}</span></div>
+                                </div>
+                                <div className="flex items-center space-x-2 flex-shrink-0 self-end md:self-center mt-4 md:mt-0 opacity-80 group-hover:opacity-100 transition-opacity">
+                                  <VoiceEvaluatorButton id={item.id} status={recState.activeId === item.id ? recState.status : 'idle'} feedback={recState.feedbackMap[item.id]} showDetails={showDetailsMap[item.id]} toggleDetails={() => toggleDetails(item.id)} onRecord={() => handleStartRecording(item.id, item.plain, { intonation: item.intonation, traps: item.traps })} />
+                                  <button onClick={(e) => { e.stopPropagation(); handleManualPlay(item.plain, 0.75); }} className="flex items-center justify-center h-10 px-3 rounded-full bg-white border border-gray-200 text-green-600 hover:bg-green-50 hover:border-green-200 hover:scale-105 transition-all shadow-sm text-xs font-bold" title="慢速跟讀 (0.75x)"><Turtle className="w-4 h-4 mr-1" /> 0.75x</button>
+                                  <button onClick={(e) => { e.stopPropagation(); handleManualPlay(item.plain, 1.0); }} className={`flex items-center justify-center h-10 px-3 rounded-full text-white hover:scale-105 transition-all shadow-md text-xs font-bold ${theme.btn}`} title="原速挑戰 (1.0x)"><Play className="w-4 h-4 mr-1" /> 1.0x</button>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  );
+                }) : <div className="text-center py-10 text-gray-400 bg-gray-100 rounded-xl">無資料</div>}
+              </div>
+            )}
+
+            {activeTab === 'prepositions' && (
+               <div className="space-y-6">
+                 <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 shadow-sm mb-6"><div className="flex items-start gap-4"><div className="bg-orange-100 p-3 rounded-full text-orange-600"><Link2 className="w-8 h-8" /></div><div><h2 className="text-xl font-bold text-orange-900 mb-2">為什麼介係詞很重要？</h2><p className="text-orange-800 text-sm leading-relaxed">介係詞是單字間的「強力膠」。點擊下方卡片，注意粗體字的「連音」！</p></div></div></div>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   {prepData.map((item) => (
+                     <div key={item.id} onClick={() => speakText(item.plain)} className="bg-white rounded-xl shadow-sm border border-orange-100 p-5 hover:shadow-md hover:border-orange-300 transition-all cursor-pointer group flex flex-col">
+                       <div className="flex justify-between items-start mb-3"><span className="inline-block px-3 py-1 bg-orange-100 text-orange-700 text-sm font-bold rounded-full">{item.phrase}</span><div className="flex items-center gap-2"><VoiceEvaluatorButton id={item.id} status={recState.activeId === item.id ? recState.status : 'idle'} feedback={recState.feedbackMap[item.id]} showDetails={showDetailsMap[item.id]} toggleDetails={() => toggleDetails(item.id)} onRecord={() => handleStartRecording(item.id, item.plain)} /><Volume2 className="w-5 h-5 text-gray-300 group-hover:text-orange-500 transition-colors" /></div></div>
+                       <div className="mb-4 flex-grow"><h3 className="text-lg md:text-xl text-gray-800 font-serif-en mb-2 leading-relaxed"><InteractiveSentence htmlContent={item.sentence} isBlindMode={false} /></h3><p className="text-gray-500 text-sm font-medium">{item.mean}</p></div>
+                       <div className="mt-auto pt-3 border-t border-gray-50"><div className="flex items-start text-xs text-orange-600 bg-orange-50 p-2 rounded-lg"><Zap className="w-3 h-3 mr-1.5 mt-0.5 flex-shrink-0" />{item.tip}</div></div>
+                     </div>
+                   ))}
+                 </div>
+              </div>
+            )}
+          </div>
+          <MobileFeedbackToast feedback={activeFeedback} showDetails={isShowDetails} toggleDetails={() => toggleDetails(recState.activeId)} onClose={closeActiveFeedback} />
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<InterviewPracticeApp />);
+  </script>
+</body>
+</html>
