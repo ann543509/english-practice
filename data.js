@@ -1,19 +1,27 @@
-// ===============================================================
-// 檔案名稱：data.js (資料庫)
-// 說明：此檔案儲存所有課程內容。
-// 若要新增 Unit 7，請在對應的陣列 (vocabData, sentenceData) 最後面，
-// 依照格式貼上新的區塊即可。
-// ===============================================================
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>商務英語會話 (Lesson 1-8 完整版)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');body{font-family:'Noto Sans TC',sans-serif;-webkit-tap-highlight-color:transparent}.font-serif-en{font-family:'Merriweather',serif}@keyframes pulse-red{0%{box-shadow:0 0 0 0 rgba(239,68,68,0.7)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}.animate-pulse-red{animation:pulse-red 1.5s infinite}@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}.animate-spin-slow{animation:spin-slow 2s linear infinite}.animate-fade-in{animation:fadeIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.blind-mode-blur{filter:blur(6px);user-select:none;transition:filter 0.3s ease;cursor:help}.blind-mode-blur:hover{filter:blur(0px)}.chunk-separator{color:#cbd5e1;font-weight:300;margin:0 6px;display:inline-block;transform:translateY(-1px)}.word-correct{color:#16a34a;font-weight:bold}.word-missed{color:#dc2626;text-decoration:line-through;opacity:0.6}.playing-card{background-color:#eff6ff;border-color:#3b82f6;transform:scale(1.01);transition:all 0.3s ease;box-shadow:0 4px 6px -1px rgba(59,130,246,0.2)}.wave-bar{width:4px;height:10px;background-color:#fff;border-radius:2px;animation:wave 1s ease-in-out infinite}.wave-bar:nth-child(2){animation-delay:0.1s}.wave-bar:nth-child(3){animation-delay:0.2s}.wave-bar:nth-child(4){animation-delay:0.3s}@keyframes slide-up-bounce{0%{transform:translateY(100%);opacity:0}70%{transform:translateY(-10px);opacity:1}100%{transform:translateY(0);opacity:1}}.animate-slide-up-bounce{animation:slide-up-bounce 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards}#error-display{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:white;z-index:100000;padding:20px;overflow:auto;color:red;font-family:monospace;font-size:16px;white-space:pre-wrap}</style>
+</head>
+<body class="bg-gray-50 selection:bg-yellow-100 min-h-screen relative">
+<div id="error-display"></div>
+<script>window.onerror=function(m,s,l,c,e){const d=document.getElementById('error-display');d.style.display='block';d.innerHTML=`<h1>💥 Error</h1><hr/><strong>Msg:</strong> ${m}<br/><strong>Src:</strong> ${s}<br/><strong>Line:</strong> ${l}`;};</script>
+<div id="root"></div><div id="feedback-portal-root"></div>
 
+<script>
 // --- 1. 單字資料庫 (Vocab) ---
 window.vocabData = [
   // --- Unit 1 ---
   {
-    title: "Unit 1: 求職面試 (1-12)",
-    unitId: "Unit 1",
-    desc: "基礎單字 Part A",
-    color: "blue",
-    icon: "Briefcase",
+    title: "Unit 1: 求職面試 (1-12)", unitId: "Unit 1", desc: "基礎單字 Part A", color: "blue", icon: "Briefcase",
     words: [
       { word: "Interview", kk: "[ˈɪntɚˌvju]", mean: "面試", tip: "重音在最前。中間 t 常被吞掉，唸 Inner-view。" },
       { word: "Employer", kk: "[ɪmˈplɔɪɚ]", mean: "雇主", tip: "重音在第二音節 ploy。" },
@@ -30,11 +38,7 @@ window.vocabData = [
     ]
   },
   {
-    title: "Unit 1: 求職面試 (13-24)",
-    unitId: "Unit 1",
-    desc: "基礎單字 Part B",
-    color: "green",
-    icon: "Feather",
+    title: "Unit 1: 求職面試 (13-24)", unitId: "Unit 1", desc: "基礎單字 Part B", color: "green", icon: "Feather",
     words: [
       { word: "Thoroughly", kk: "[ˈθɝroli]", mean: "徹底地", tip: "th 輕咬舌尖吐氣，馬上接 r 捲舌。" },
       { word: "The Lalu", kk: "[ðə ˈlalu]", mean: "涵碧樓", tip: "專有名詞，發音輕鬆清楚即可。" },
@@ -52,11 +56,7 @@ window.vocabData = [
   },
   // --- Unit 2 ---
   {
-    title: "Unit 2: 商務參展 (1-12)",
-    unitId: "Unit 2",
-    desc: "基礎單字 Part A",
-    color: "amber",
-    icon: "Layout",
+    title: "Unit 2: 商務參展 (1-12)", unitId: "Unit 2", desc: "基礎單字 Part A", color: "amber", icon: "Layout",
     words: [
       { word: "Exhibition", kk: "[ˌɛksəˈbɪʃən]", mean: "展覽", tip: "ex 唸 [ɛks]；h 不發音；重音在 bi。" },
       { word: "Booth", kk: "[buθ]", mean: "展位/攤位", tip: "字尾 th 舌頭伸出輕咬吐氣，別唸成 s。" },
@@ -73,11 +73,7 @@ window.vocabData = [
     ]
   },
   {
-    title: "Unit 2: 商務參展 (13-25)",
-    unitId: "Unit 2",
-    desc: "基礎單字 Part B",
-    color: "purple",
-    icon: "MapPin",
+    title: "Unit 2: 商務參展 (13-25)", unitId: "Unit 2", desc: "基礎單字 Part B", color: "purple", icon: "MapPin",
     words: [
       { word: "Package", kk: "[ˈpækɪdʒ]", mean: "套裝方案", tip: "重音 Pac 发 [æ]；age 唸 [ɪdʒ]。" },
       { word: "Comprise", kk: "[kəmˈpraɪz]", mean: "包含", tip: "重音在後 prise；pri 發 [praɪ]。" },
@@ -96,11 +92,7 @@ window.vocabData = [
   },
   // --- Unit 3 ---
   {
-    title: "Unit 3: 參展會議 (1-12)",
-    unitId: "Unit 3",
-    desc: "基礎單字 Part A",
-    color: "teal",
-    icon: "MessageCircle",
+    title: "Unit 3: 參展會議 (1-12)", unitId: "Unit 3", desc: "基礎單字 Part A", color: "teal", icon: "MessageCircle",
     words: [
       { word: "Discuss", kk: "[dɪˈskʌs]", mean: "討論", tip: "重音在後 scuss。字尾 ss 的氣音要長一點。" },
       { word: "Suggestion", kk: "[səˈdʒɛstʃən]", mean: "建議", tip: "重音在 ges。ges 發 [dʒɛs] (傑)。" },
@@ -117,11 +109,7 @@ window.vocabData = [
     ]
   },
   {
-    title: "Unit 3: 參展會議 (13-25)",
-    unitId: "Unit 3",
-    desc: "基礎單字 Part B",
-    color: "orange",
-    icon: "Lightbulb",
+    title: "Unit 3: 參展會議 (13-25)", unitId: "Unit 3", desc: "基礎單字 Part B", color: "orange", icon: "Lightbulb",
     words: [
       { word: "Comfortable", kk: "[ˈkʌmfɚtəb!]", mean: "舒適的", tip: "重音在第一音節！口語常唸 Comf-ta-ble。" },
       { word: "Launch", kk: "[lɔntʃ]", mean: "發布/推出", tip: "[ɔ] 嘴巴成 O 型。字尾 ch 要短促有力。" },
@@ -140,11 +128,7 @@ window.vocabData = [
   },
   // --- Unit 4 ---
   {
-    title: "Unit 4: 設備檢查 (1-11)",
-    unitId: "Unit 4",
-    desc: "基礎單字 Part A",
-    color: "indigo",
-    icon: "Wifi",
+    title: "Unit 4: 設備檢查 (1-11)", unitId: "Unit 4", desc: "基礎單字 Part A", color: "indigo", icon: "Wifi",
     words: [
       { word: "Held", kk: "[hɛld]", mean: "舉行", tip: "尾音 ld 要輕，舌尖頂住上顎，勿唸 hel-do。" },
       { word: "Ma'am", kk: "[mæm]", mean: "女士", tip: "扁平母音 [æ]。madam 的縮讀。" },
@@ -160,11 +144,7 @@ window.vocabData = [
     ]
   },
   {
-    title: "Unit 4: 設備檢查 (12-21)",
-    unitId: "Unit 4",
-    desc: "基礎單字 Part B",
-    color: "blue",
-    icon: "Settings",
+    title: "Unit 4: 設備檢查 (12-21)", unitId: "Unit 4", desc: "基礎單字 Part B", color: "blue", icon: "Settings",
     words: [
       { word: "Wiring", kk: "[ˈwaɪrɪŋ]", mean: "線路", tip: "wire + ing。中間 [r] 要滑順。" },
       { word: "Port", kk: "[pɔrt]", mean: "連接埠", tip: "母音 [ɔ] 嘴巴圓，最後加上捲舌 rt。" },
@@ -180,11 +160,7 @@ window.vocabData = [
   },
   // --- Unit 5 ---
   {
-    title: "Unit 5: 差旅核銷 (1-10)",
-    unitId: "Unit 5",
-    desc: "Reimbursement Policy Part A",
-    color: "red",
-    icon: "CreditCard",
+    title: "Unit 5: 差旅核銷 (1-10)", unitId: "Unit 5", desc: "Reimbursement Policy Part A", color: "red", icon: "CreditCard",
     words: [
       { word: "Reimbursement", kk: "[͵riɪmˋbɝsmənt]", mean: "核銷；報帳", tip: "★難字挑戰。重音在 bur。注意 re-im-burse-ment 四個音節清楚。中間的 [m] 和 [b] 嘴巴都要確實閉起來。" },
       { word: "Keynote speaker", kk: "[ˋki͵not ˋspikɚ]", mean: "主講人", tip: "Keynote 的 [o] 是長母音，嘴型要圓且凸。Speaker 的 [sp] 不送氣，聽起來像「ㄅ」。" },
@@ -199,11 +175,7 @@ window.vocabData = [
     ]
   },
   {
-    title: "Unit 5: 差旅核銷 (11-20)",
-    unitId: "Unit 5",
-    desc: "Reimbursement Policy Part B",
-    color: "amber",
-    icon: "Briefcase",
+    title: "Unit 5: 差旅核銷 (11-20)", unitId: "Unit 5", desc: "Reimbursement Policy Part B", color: "amber", icon: "Briefcase",
     words: [
       { word: "Accompany", kk: "[əˋkʌmpənɪ]", mean: "陪同；伴隨", tip: "重音在 cum。[m] 接 [p] 是標準雙唇音練習，嘴唇閉緊再爆開。" },
       { word: "Itinerary", kk: "[aɪˋtɪnə͵rɛrɪ]", mean: "行程表", tip: "[aɪ] 發音飽滿。注意音節多，慢慢唸 i-tin-e-rar-y。" },
@@ -219,11 +191,7 @@ window.vocabData = [
   },
   // --- Unit 6 ---
   {
-    title: "Unit 6: 緊急變更 (1-10)",
-    unitId: "Unit 6",
-    desc: "Emergency Change Part A",
-    color: "red",
-    icon: "AlertTriangle",
+    title: "Unit 6: 緊急變更 (1-10)", unitId: "Unit 6", desc: "Emergency Change Part A", color: "red", icon: "AlertTriangle",
     words: [
       { word: "Urgent", kk: "[ˋɝdʒənt]", mean: "緊急的", tip: "重音在首。Ur- 要捲舌發 [ɝ]，gent 的 [dʒ] 嘴巴要嘟起來震動。" },
       { word: "Terrorist", kk: "[ˋtɛrərɪst]", mean: "恐怖份子", tip: "重音在第一音節。注意中間的 ro 是弱音，rist 結尾的 [st] 輕輕收尾。" },
@@ -238,11 +206,7 @@ window.vocabData = [
     ]
   },
   {
-    title: "Unit 6: 緊急變更 (11-20)",
-    unitId: "Unit 6",
-    desc: "Emergency Change Part B",
-    color: "orange",
-    icon: "AlertTriangle",
+    title: "Unit 6: 緊急變更 (11-20)", unitId: "Unit 6", desc: "Emergency Change Part B", color: "orange", icon: "AlertTriangle",
     words: [
       { word: "Student", kk: "[ˋstjudnt]", mean: "學生", tip: "[st] 不送氣重點。不要噴氣，唸起來像「斯丟等」。" },
       { word: "Start", kk: "[stɑrt]", mean: "開始", tip: "[st] 不送氣重點。[ar] 要發飽滿的捲舌長音。" },
@@ -258,11 +222,7 @@ window.vocabData = [
   },
   // --- Unit 7 Vocab ---
   {
-    title: "Unit 7: 特殊需求 (1-23)",
-    unitId: "Unit 7",
-    desc: "Special Requests",
-    color: "teal",
-    icon: "Check",
+    title: "Unit 7: 特殊需求 (1-23)", unitId: "Unit 7", desc: "Special Requests", color: "teal", icon: "Check",
     words: [
       { word: "Confirm", kk: "[kənˋfɝm]", mean: "確認", tip: "[m] 閉嘴練習。字尾的 irm 要把嘴巴閉緊。" },
       { word: "Arrangement", kk: "[əˋrendʒmənt]", mean: "安排", tip: "重音在 range。ment 的 m 也要確實閉嘴。" },
@@ -288,7 +248,33 @@ window.vocabData = [
       { word: "Problem", kk: "[ˋprɑbləm]", mean: "問題", tip: "[m] 閉嘴練習。請務必在結尾閉上嘴巴。" },
       { word: "See to it", kk: "[si tu ɪt]", mean: "確實執行", tip: "三個字連成一氣。it 的 [t] 可以輕輕停頓。" }
     ]
-  } 
+  },
+  // --- Unit 8 (New) ---
+  {
+    title: "Lesson 8: Dress Code (服裝儀容)", unitId: "Lesson 8", desc: "發音與會話特訓", color: "purple", icon: "Settings",
+    words: [
+      { word: "Reception", kk: "[rɪˋsɛpʃən]", mean: "歡迎會", tip: "[p] 閉唇練習。重音在 sep，唸到 p 時雙唇輕閉再發 shun。" },
+      { word: "Cocktail", kk: "[ˋkɑk͵tel]", mean: "雞尾酒", tip: "重音第一音節。tail 是長母音 [e]，嘴角拉開。" },
+      { word: "Dress code", kk: "[drɛs kod]", mean: "著裝標準", tip: "Code 母音 [o] 飽滿，結尾 [d] 輕帶過，勿發成 code-uh。" },
+      { word: "Formal", kk: "[ˋfɔrməl]", mean: "正式", tip: "[ɔr] 嘴圓捲舌。結尾 [l] 舌尖頂上齒齦。" },
+      { word: "Registered", kk: "[ˋrɛdʒɪstɚd]", mean: "報名的", tip: "g 發 [dʒ] 嘟嘴。字尾 [d] 輕聲唸出。" },
+      { word: "Potential", kk: "[pəˋtɛnʃəl]", mean: "潛在的", tip: "重音 ten。注意 [t] 送氣與結尾鼻音 [n]。" },
+      { word: "Exhibitor", kk: "[ɪgˋzɪbɪtɚ]", mean: "參展商", tip: "重音在 zi。x 發 [gz] 濁音。" },
+      { word: "Attire", kk: "[əˋtaɪr]", mean: "服裝", tip: "重音在後。ire 是捲舌雙母音，尾音拉長回捲。" },
+      { word: "Engage", kk: "[ɪnˋgedʒ]", mean: "接待/互動", tip: "重音 gage。結尾 [dʒ] 厚實有震動感。" },
+      { word: "Professional", kk: "[prəˋfɛʃənəl]", mean: "專業的", tip: "[p] 爆破。重音 fesh。結尾 nal 舌尖頂上。" },
+      { word: "Opportunity", kk: "[͵ɑpɚˋtjunətɪ]", mean: "機會", tip: "[p] 在母音間。重音 tu。分段練：op-per-tu-ni-ty。" },
+      { word: "Expand", kk: "[ɪkˋspænd]", mean: "擴展", tip: "[p] 不送氣。s 後面的 p 唸像「ㄅ」。" },
+      { word: "Tuxedo", kk: "[tʌkˋsido]", mean: "(美)晚禮服", tip: "重音 xi。x 發 [ks]，[k] 輕音接 [s]。" },
+      { word: "Lounge suit", kk: "[laʊndʒ sut]", mean: "(英)西裝", tip: "Lounge [dʒ] 嘟嘴。suit [u] 長音嘴圓。" },
+      { word: "Casual", kk: "[ˋkæʒʊəl]", mean: "休閒的", tip: "重音第一。中間 [ʒ] 像「日」但有氣流摩擦。" },
+      { word: "Comfortable", kk: "[ˋkʌmfɚtəbl]", mean: "舒適的", tip: "易錯！重音 com，中間 for 輕讀縮短。" },
+      { word: "Exhibition", kk: "[͵ɛksəˋbɪʃən]", mean: "展覽", tip: "重音在 bi，x 發 [ks]。" },
+      { word: "Sparkling", kk: "[ˋspɑrklɪŋ]", mean: "氣泡的", tip: "[p] 不送氣。像「死八-kling」，勿噴氣。" },
+      { word: "Attendee", kk: "[ə͵tɛnˋdi]", mean: "參加者", tip: "重音字尾 dee。雙 e 發長音 [i]。" },
+      { word: "Suggestion", kk: "[səˋdʒɛstʃən]", mean: "建議", tip: "g 發 [dʒ]。結尾 stion 唸 [stʃən]。" }
+    ]
+  }
 ];
 
 // --- 2. 句型資料庫 (Sentences) ---
@@ -502,7 +488,37 @@ window.sentenceData = [
       { id: "u7-9", type: "Suggest", text: "<span class='highlight-kw'>How about</span> some curry <span class='highlight-kw'>Laksa</span>? You <span class='highlight-kw'>can't go wrong with</span> it.", plain: "How about some curry Laksa? You can't go wrong with it.", mean: "來點咖哩叻沙如何？選它絕對不會錯。", tip: "How about 連音。Laksa 兩個 a 都要張大口。", traps: { "laksa": "a 張大口。" } },
       { id: "u7-10", type: "Promise", text: "I'll <span class='highlight-kw'>try my best</span> to <span class='highlight-kw'>see to it</span> that all your needs are satisfied.", plain: "I'll try my best to see to it that all your needs are satisfied.", mean: "我會盡力確認您的所有需求都得到滿足。", tip: "See to it 連讀 [si-tu-wɪt]。", traps: { "satisfied": "d 輕音。" } }
     ]
-  }
+  },
+  // --- Lesson 8 (New) ---
+  { id: "L8-part1", unitId: "Lesson 8", category: "1. Discussing the Evening Plan", desc: "討論晚間行程", colorTheme: "purple", icon: "MessageCircle", sentences: [
+    { id: "s8-1", plain: "Hi, Ken. What's up?", text: "Hi, Ken. <u>What's up</u>?", mean: "嗨，Ken。怎麼了？", tip: "What's up 必連音 [hwɑ-tsʌp]。", type: "Greeting" },
+    { id: "s8-2", plain: "Are you going to the dinner reception this evening?", text: "Are you <u>going to</u> the <u>dinner reception</u> this evening?", mean: "你今晚會去參加歡迎晚宴嗎？", tip: "Going to 常縮讀為 gonna。Reception 重音第二音節。", type: "Question" },
+    { id: "s8-3", plain: "Of course! That's the best part of a trade show.", text: "Of course! That's the best part of a <u>trade show</u>.", mean: "當然！那是貿易展最棒的部分。", tip: "Trade show 複合名詞重音在前。", type: "Statement" },
+    { id: "s8-4", plain: "I'm looking forward to it.", text: "I'm <u>looking forward to</u> it.", mean: "我很期待呢。", tip: "forward 與 to 連讀，it 的 [t] 輕停。", type: "Statement" },
+    { id: "s8-5", plain: "I can't wait to put on my cocktail dress.", text: "I <u>can't wait to</u> put on my <u>cocktail dress</u>.", mean: "我等不及要穿上我的雞尾酒禮服。", tip: "Can't wait to 的 t 省略。Cocktail 重音 cock。", type: "Statement" }
+  ]},
+  { id: "L8-part2", unitId: "Lesson 8", category: "2. Clarifying the Dress Code", desc: "確認著裝標準", colorTheme: "indigo", icon: "Filter", sentences: [
+    { id: "s8-6", plain: "Cocktail dress? Is there a dress code?", text: "Cocktail dress? Is there a <u>dress code</u>?", mean: "雞尾酒禮服？有規定著裝標準嗎？", tip: "Dress code 結尾 s 接 k，舌頭快移。問句上揚。", type: "Question" },
+    { id: "s8-7", plain: "It's not a black tie event, but it's definitely formal, though.", text: "It's not a <u>black tie event</u>, but it's <u>definitely formal</u>, though.", mean: "不至於要打黑領結，但也算是正式場合。", tip: "Black tie 連讀。Formal 的 [l] 頂上齒齦。", type: "Statement" },
+    { id: "s8-8", plain: "Most registered exhibitors and potential buyers are going to be there.", text: "Most <u>registered exhibitors</u> and <u>potential buyers</u> are going to be there.", mean: "大多數參展商和潛在客戶都會出席。", tip: "Registered [d] 輕唸。Buyers 的 s 發 [z]。", type: "Statement" },
+    { id: "s8-9", plain: "So, no jeans or T-shirts are allowed.", text: "So, no <u>jeans</u> or <u>T-shirts</u> are allowed.", mean: "因此，牛仔褲或 T-shirt 都不行。", tip: "Are allowed 連音 [ar-ə-laʊd]。", type: "Rule" }
+  ]},
+  { id: "L8-part3", unitId: "Lesson 8", category: "3. Expressing Personal Feelings", desc: "表達個人感受", colorTheme: "blue", icon: "User", sentences: [
+    { id: "s8-10", plain: "I thought it's business casual.", text: "I <u>thought it's</u> <u>business casual</u>.", mean: "我以為是商務休閒場合。", tip: "Thought it's 連音 [θɔ-tɪts]。Casual 嘟嘴摩擦。", type: "Statement" },
+    { id: "s8-11", plain: "I was planning to get there in this attire after the closing of the trade show.", text: "I was planning to get there in this <u>attire</u> after the <u>closing</u> of the trade show.", mean: "我本來打算展覽結束後直接穿這套去。", tip: "Attire 重音在後。Closing 的 s 發 [z]。", type: "Statement" },
+    { id: "s8-12", plain: "I have been standing and engaging attendees for long hours.", text: "I have been <u>standing and engaging</u> <u>attendees</u> for long hours.", mean: "我已長時間站著接待來賓。", tip: "Standing and 的 d 可省。Attendees 重音字尾。", type: "Statement" },
+    { id: "s8-13", plain: "I know it's hard to be comfortable and professional at the same time.", text: "I know it's hard to be <u>comfortable</u> and <u>professional</u> at the <u>same time</u>.", mean: "我知道要兼顧舒適與專業很難。", tip: "Same time 的 m 閉嘴後直發 t。Professional 重音 fesh。", type: "Statement" }
+  ]},
+  { id: "L8-part4", unitId: "Lesson 8", category: "4. Final Advice and Conclusion", desc: "最終建議與結論", colorTheme: "teal", icon: "Check", sentences: [
+    { id: "s8-14", plain: "I can cover your shift if you need to go back to the hotel to dress up.", text: "I can <u>cover your shift</u> if you need to <u>go back</u> to the hotel to <u>dress up</u>.", mean: "若你需要回飯店打扮，我可以代班。", tip: "Dress up 連音 [drɛ-sʌp]。", type: "Offer" },
+    { id: "s8-15", plain: "The reception begins at 7:00 p.m., right?", text: "The <u>reception</u> begins at 7:00 p.m., right?", mean: "晚宴七點開始對嗎？", tip: "Begins 的 s 發 [z]。Right 語氣上揚。", type: "Question" },
+    { id: "s8-16", plain: "You still have two hours to freshen yourself up.", text: "You still have two hours to <u>freshen yourself up</u>.", mean: "你還有兩小時可以梳洗打扮。", tip: "Freshen yourself up 三字連讀，up 的 p 輕爆。", type: "Advice" },
+    { id: "s8-17", plain: "If you hurry, you might be able to get a glass of sparkling wine before dinner.", text: "If you <u>hurry</u>, you might be able to get a glass of <u>sparkling wine</u> before dinner.", mean: "動作快點也許能趕上喝杯氣泡酒。", tip: "Sparkling 的 p 不送氣。Wine 結尾 [n] 頂上顎。", type: "Suggestion" },
+    { id: "s8-18", plain: "Do I really have to go? John asked me to attend the dinner reception, but I'm really not into it.", text: "Do I really have to go? John asked me to <u>attend the dinner reception</u>, but I'm really <u>not into it</u>.", mean: "我真的得去嗎？John 叫我去，但我真的沒興趣。", tip: "Not into it 連讀 [nɑ-tɪn-tu-wɪt]。", type: "Complaint" },
+    { id: "s8-19", plain: "Actually, I am not a people-person.", text: "Actually, I am not a <u>people-person</u>.", mean: "老實說，我不擅長交際。", tip: "People-person 重音都在第一音節。", type: "Statement" },
+    { id: "s8-20", plain: "It's an order, not a suggestion. Remember, he's the boss.", text: "It's an <u>order</u>, not a <u>suggestion</u>. Remember, he's the boss.", mean: "這是命令不是建議。記住他是老闆。", tip: "Order 重音在前。Remember 嘴圓。", type: "Warning" },
+    { id: "s8-21", plain: "You can say that again. Maybe it's a good opportunity to expand social networking for our business.", text: "<u>You can say that again</u>. Maybe it's a good <u>opportunity</u> to <u>expand</u> social networking for our business.", mean: "說得也是。也許這是擴展業務人脈的好機會。", tip: "You can say that again 表示強烈同意。", type: "Conclusion" }
+  ]}
 ];
 
 // --- 3. 介係詞資料庫 (Prepositions) ---
@@ -520,7 +536,7 @@ window.prepData = [
   { id: "p10", phrase: "connected to", sentence: "Be <span class='highlight-kw'>connected to</span> this port.", plain: "Be connected to this port.", mean: "連接到", tip: "connected ed 接 to 合併。" },
   { id: "p11", phrase: "looking forward to", sentence: "I am <span class='highlight-kw'>looking forward to</span> the meeting.", plain: "I am looking forward to the meeting.", mean: "期待", tip: "to 弱化成 tə。" },
 
-  // === Unit 5 (更新為新格式 ID) ===
+  // === Unit 5 ===
   { id: "p-u5-1", phrase: "done with", sentence: "Are you <span class='highlight-kw'>done with</span> the letter?", plain: "Are you done with the letter?", mean: "完成...", tip: "done n 接 with。" },
   { id: "p-u5-2", phrase: "reimbursed for", sentence: "Be <span class='highlight-kw'>reimbursed for</span> actual costs.", plain: "Be reimbursed for actual costs.", mean: "核銷...費用", tip: "d 接 f 輕讀。" },
   { id: "p-u5-3", phrase: "pay for", sentence: "We only <span class='highlight-kw'>pay for</span> economy class.", plain: "We only pay for economy class.", mean: "支付...費用", tip: "pay y 接 for。" },
@@ -530,7 +546,7 @@ window.prepData = [
   { id: "p-u5-7", phrase: "on his own", sentence: "Pay expenses <span class='highlight-kw'>on his own</span>.", plain: "Pay expenses on his own.", mean: "自行(負擔)", tip: "on 接 his 連音。" },
   { id: "p-u5-8", phrase: "when it comes to", sentence: "<span class='highlight-kw'>When it comes to</span> HSR...", plain: "When it comes to HSR...", mean: "說到...", tip: "comes z 接 to。" },
 
-  // === Unit 6 (更新為新格式 ID) ===
+  // === Unit 6 ===
   { id: "p-u6-1", phrase: "have a minute", sentence: "Do you <span class='highlight-kw'>have a minute</span>?", plain: "Do you have a minute?", mean: "有空嗎", tip: "have v 接 a。" },
   { id: "p-u6-2", phrase: "middle of", sentence: "I'm in the <span class='highlight-kw'>middle of</span> something.", plain: "I'm in the middle of something.", mean: "正忙於...", tip: "middle l 接 of。" },
   { id: "p-u6-3", phrase: "get back to", sentence: "Can I <span class='highlight-kw'>get back to</span> you later?", plain: "Can I get back to you later?", mean: "稍後回覆", tip: "back k 接 to 停頓。" },
@@ -539,10 +555,70 @@ window.prepData = [
   { id: "p-u6-6", phrase: "crossed my mind", sentence: "Names just <span class='highlight-kw'>crossed my mind</span>.", plain: "Names just crossed my mind.", mean: "掠過腦海(想到)", tip: "crossed d 接 m。" },
   { id: "p-u6-7", phrase: "owe you one", sentence: "I <span class='highlight-kw'>owe you one</span>.", plain: "I owe you one.", mean: "欠你一次人情", tip: "owe 接 you 連音。" },
 
-  // === Unit 7 (全新加入) ===
+  // === Unit 7 ===
   { id: "p-u7-1", phrase: "variety of", sentence: "Prepare a <span class='highlight-kw'>variety of</span> dishes.", plain: "Prepare a variety of dishes.", mean: "各式各樣的", tip: "variety 接 of 連音。" },
   { id: "p-u7-2", phrase: "attend to", sentence: "Needs that we have to <span class='highlight-kw'>attend to</span>.", plain: "Needs that we have to attend to.", mean: "照料/處理", tip: "attend d 省略接 to。" },
   { id: "p-u7-3", phrase: "how about", sentence: "<span class='highlight-kw'>How about</span> some Laksa?", plain: "How about some Laksa?", mean: "...如何？", tip: "how 接 about 連音。" },
   { id: "p-u7-4", phrase: "wrong with", sentence: "You can't go <span class='highlight-kw'>wrong with</span> it.", plain: "You can't go wrong with it.", mean: "選...不會錯", tip: "wrong ng 接 with。" },
-  { id: "p-u7-5", phrase: "see to it", sentence: "I'll <span class='highlight-kw'>see to it</span> that needs are met.", plain: "I'll see to it that needs are met.", mean: "務必做到/確認", tip: "see 接 to 接 it 連貫。" }
+  { id: "p-u7-5", phrase: "see to it", sentence: "I'll <span class='highlight-kw'>see to it</span> that needs are met.", plain: "I'll see to it that needs are met.", mean: "務必做到/確認", tip: "see 接 to 接 it 連貫。" },
+
+  // === Lesson 8 (New) ===
+  { id: "L8-p1", unitId: "Lesson 8", phrase: "look forward to", plain: "I look forward to it.", sentence: "I <b>look forward to</b> it.", mean: "期待 (to 為介係詞，後接名詞/Ving)", tip: "to 弱讀為 [tə]，連音順暢。" },
+  { id: "L8-p2", unitId: "Lesson 8", phrase: "put on", plain: "I can't wait to put on my dress.", sentence: "I can't wait to <b>put on</b> my dress.", mean: "穿上 (強調動作)", tip: "Put 的 t 與 on 連音變 [pʊ-tɑn]。" },
+  { id: "L8-p3", unitId: "Lesson 8", phrase: "dress up", plain: "You need to dress up for the party.", sentence: "You need to <b>dress up</b> for the party.", mean: "盛裝打扮", tip: "Dress 的 s 與 up 連音 [drɛ-sʌp]。" },
+  { id: "L8-p4", unitId: "Lesson 8", phrase: "go back to", plain: "I need to go back to the hotel.", sentence: "I need to <b>go back to</b> the hotel.", mean: "回到...去", tip: "Back 的 k 輕頓，不需強力爆破。" },
+  { id: "L8-p5", unitId: "Lesson 8", phrase: "not into it", plain: "I'm really not into it.", sentence: "I'm really <b>not into it</b>.", mean: "對...不感興趣/不熱衷", tip: "連讀技巧：[nɑ-tɪn-tu-wɪt]。" },
+  { id: "L8-p6", unitId: "Lesson 8", phrase: "freshen up", plain: "Time to freshen yourself up.", sentence: "Time to <b>freshen yourself up</b>.", mean: "梳洗一番 (讓自己精神煥發)", tip: "Sh 音與 up 連接，流暢帶過。" }
 ];
+</script>
+
+<script type="text/babel">
+const{useState,useEffect,useRef,useMemo,useCallback}=React;const{createPortal}=ReactDOM;
+let globalRecognition=null;let globalTimeout=null;let globalUtterance=null;
+const getSharedRecognition=()=>{if(!globalRecognition){const S=window.SpeechRecognition||window.webkitSpeechRecognition;if(S){globalRecognition=new S();globalRecognition.lang='en-US';globalRecognition.interimResults=false;globalRecognition.maxAlternatives=1;globalRecognition.continuous=false;}}return globalRecognition;};
+const Icon=({children,className,...p})=><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...p}>{children}</svg>;
+const Briefcase=(p)=><Icon {...p}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></Icon>;
+const BookOpen=(p)=><Icon {...p}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
+const MessageCircle=(p)=><Icon {...p}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></Icon>;
+const Link2=(p)=><Icon {...p}><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></Icon>;
+const Play=(p)=><Icon {...p}><polygon points="5 3 19 12 5 21 5 3"/></Icon>;
+const Turtle=(p)=><Icon {...p}><path d="m19 12-1.5 3"/><path d="M16.5 10.5 19 8"/><path d="m7 16 1.5 3"/><path d="M7.5 10.5 5 8"/><path d="M12 21a6 6 0 0 0 6-6v-2a6 6 0 0 0-6-6 6 6 0 0 0-6 6v2a6 6 0 0 0 6 6Z"/><path d="M12 21V9"/><path d="M12 21a4 4 0 0 1-4-4H6"/><path d="M12 21a4 4 0 0 0 4-4h2"/></Icon>;
+const Volume2=(p)=><Icon {...p}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></Icon>;
+const Info=(p)=><Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></Icon>;
+const Trash2=(p)=><Icon {...p}><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></Icon>;
+const X=(p)=><Icon {...p}><path d="M18 6 6 18"/><path d="m6 6 18 18"/></Icon>;
+const Save=(p)=><Icon {...p}><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></Icon>;
+const Lightbulb=(p)=><Icon {...p}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2 1.5-3.5 0-3-2.5-5.5-5.5-5.5S7 5 7 8c0 1.5.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></Icon>;
+const Feather=(p)=><Icon {...p}><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></Icon>;
+const Layout=(p)=><Icon {...p}><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></Icon>;
+const MapPin=(p)=><Icon {...p}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></Icon>;
+const Zap=(p)=><Icon {...p}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></Icon>;
+const Mic=(p)=><Icon {...p}><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></Icon>;
+const Check=(p)=><Icon {...p}><polyline points="20 6 9 17 4 12"/></Icon>;
+const AlertCircle=(p)=><Icon {...p}><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></Icon>;
+const MousePointerClick=(p)=><Icon {...p}><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></Icon>;
+const Filter=(p)=><Icon {...p}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Icon>;
+const Settings=(p)=><Icon {...p}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
+const Wifi=(p)=><Icon {...p}><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></Icon>;
+const Eye=(p)=><Icon {...p}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></Icon>;
+const EyeOff=(p)=><Icon {...p}><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></Icon>;
+const Scissors=(p)=><Icon {...p}><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" x2="8.12" y1="4" y2="15.88"/><line x1="14.47" x2="20" y1="14.48" y2="20"/><line x1="8.12" x2="12" y1="8.12" y2="12"/></Icon>;
+const Loader2=(p)=><Icon {...p}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></Icon>;
+const CreditCard=(p)=><Icon {...p}><rect width="20" height="14" x="2" y="5" rx="2" ry="2"/><line x1="2" x2="22" y1="10" y2="10"/></Icon>;
+const AlertTriangle=(p)=><Icon {...p}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></Icon>;
+const Repeat=(p)=><Icon {...p}><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></Icon>;
+const PauseCircle=(p)=><Icon {...p}><circle cx="12" cy="12" r="10"/><line x1="10" x2="10" y1="15" y2="9"/><line x1="14" x2="14" y1="15" y2="9"/></Icon>;
+const IconMap={Briefcase,BookOpen,MessageCircle,Link2,Play,Turtle,Volume2,Info,Trash2,X,Save,Lightbulb,Feather,Layout,MapPin,Zap,Mic,Check,AlertCircle,MousePointerClick,Filter,Settings,Wifi,Eye,EyeOff,Scissors,Loader2,CreditCard,AlertTriangle,Repeat,PauseCircle};
+const speakText=(t,r=0.85,c=null)=>{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);globalUtterance=u;u.lang='en-US';u.rate=r;if(c){u.onend=(e)=>{c(e);};}u.onerror=(e)=>{console.error("SpeechSynthesis Error:",e);if(c)c(e);};window.speechSynthesis.speak(u);};
+const cleanText=(t)=>{if(!t)return"";return t.replace(/<[^>]*>/g,'').replace(/[.,\/#!$%\^&\*;:{}=\-_`~?]/g,"").replace(/\s{2,}/g," ").trim().toLowerCase();};
+const renderChunkedText=(h,s)=>{if(!s)return<InteractiveSentence htmlContent={h}/>;const p=h.split(/(<[^>]+>)/g);const c=p.map((x)=>{if(x.startsWith('<'))return x;return x.replace(/([,.;?])/g,"$1<span class='chunk-separator'>|</span>").replace(/\s(and|but|or|because|that|which|where|when)\s/gi," <span class='chunk-separator'>|</span> $1 ");});return<InteractiveSentence htmlContent={c.join('')}/>;};
+const InteractiveSentence=({htmlContent,isBlindMode})=>{const regex=/(<span class='[^']+'>.*?<\/span>)|([^<]+)/g;const parts=htmlContent.match(regex)||[];const handleWordClick=(e,w)=>{e.stopPropagation();const cw=w.replace(/[.,?!:;|]/g,'');if(cw.trim())speakText(cw,0.75);};return(<span className={`leading-relaxed transition-all duration-500 ${isBlindMode?'blind-mode-blur':''}`}>{parts.map((p,i)=>{if(p.startsWith('<span')){const cm=p.match(/class='([^']+)'/);const cn=cm?cm[1]:'';const ctm=p.match(/>(.*?)</);const c=ctm?ctm[1]:'';if(cn.includes('chunk-separator'))return<span key={i} className={cn} dangerouslySetInnerHTML={{__html:c}}></span>;const ws=c.split(' ');return(<span key={i} className={cn}>{ws.map((w,wi)=>(<React.Fragment key={wi}><span className="cursor-pointer hover:bg-yellow-200 hover:text-black rounded px-0.5 transition-colors active:scale-95 inline-block" onClick={(e)=>handleWordClick(e,w)}>{w}</span>{wi<ws.length-1&&' '}</React.Fragment>))}</span>);}else{const ws=p.split(' ');return<span key={i}>{ws.map((w,wi)=><React.Fragment key={wi}><span className="cursor-pointer hover:bg-yellow-200 hover:text-black rounded px-0.5 transition-colors active:scale-95 inline-block" onClick={(e)=>handleWordClick(e,w)}>{w}</span>{wi<ws.length-1&&' '}</React.Fragment>)}</span>;}})}</span>);};
+const RenderComparison=({feedback})=>{if(!feedback||!feedback.spokenText)return null;const tw=cleanText(feedback.targetText).split(' ');const sw=cleanText(feedback.spokenText).split(' ');return(<div className="mt-2 text-sm bg-white p-3 rounded border border-gray-200 shadow-inner">{feedback.advice&&(<div className="mb-2 pb-2 border-b border-gray-100 bg-yellow-50 p-2 rounded"><div className="text-yellow-700 text-xs font-bold mb-1 flex items-center"><Lightbulb className="w-3 h-3 mr-1"/>教練的發音診斷：</div><div className="text-gray-700 text-sm font-medium">{feedback.advice}</div></div>)}<div className="mb-1 text-gray-500 text-xs">辨識結果比對 (嚴格模式)：</div><div className="mb-2">{tw.map((w,i)=>{const m=sw.some(x=>x===w||(x.length>3&&(x.includes(w)||w.includes(x))));return<span key={i} className={`mr-1 ${m?'word-correct':'word-missed'}`}>{w}</span>;})}</div><div className="mt-1 text-xs text-gray-400">(我聽到: <span className="text-gray-600 italic">{feedback.spokenText}</span>)</div></div>);};
+const MobileFeedbackToast=({feedback,showDetails,toggleDetails,onClose})=>{if(!feedback)return null;const pr=document.getElementById('feedback-portal-root');if(!pr)return null;return createPortal(<div className={`md:hidden fixed bottom-0 left-0 right-0 z-[99999] p-4 pb-8 rounded-t-2xl shadow-[0_-8px_40px_rgba(0,0,0,0.3)] border-t transition-transform duration-300 animate-slide-up-bounce bg-white ${feedback.type==='success'?'border-green-400 bg-green-50 ring-4 ring-green-100':feedback.type==='warning'?'border-yellow-300 bg-yellow-50':feedback.type==='error'?'border-red-300 bg-red-50':'border-blue-300 bg-blue-50'}`}><div className="flex items-center justify-between gap-2 mb-2"><div className="flex items-center gap-2 overflow-hidden">{feedback.type==='success'&&<Check className="w-6 h-6 text-green-600 flex-shrink-0 animate-bounce"/>}{feedback.type==='warning'&&<AlertCircle className="w-6 h-6 text-yellow-600 flex-shrink-0"/>}{feedback.type==='error'&&<X className="w-6 h-6 text-red-600 flex-shrink-0"/>}<span className={`font-bold text-lg truncate ${feedback.type==='success'?'text-green-800':'text-slate-800'}`}>{feedback.text} {feedback.score!==undefined&&`(${feedback.score}%)`}</span></div><div className="flex gap-2 flex-shrink-0">{feedback.spokenText&&<button onClick={toggleDetails} className="px-4 py-2 bg-white rounded-full text-sm font-bold shadow-sm border border-gray-100 active:bg-gray-100 transition-all text-slate-700">{showDetails?'隱藏':'詳情'}</button>}<button onClick={onClose} className="w-9 h-9 flex items-center justify-center bg-white rounded-full text-gray-400 hover:text-red-500 shadow-sm border border-gray-100 active:bg-gray-100 transition-all"><X className="w-5 h-5"/></button></div></div>{showDetails&&<div className="max-h-[50vh] overflow-y-auto overscroll-contain pb-2 mt-3 bg-white/50 rounded-xl p-2 animate-fade-in"><RenderComparison feedback={feedback}/></div>}</div>,pr);};
+const VoiceEvaluatorButton=({id,status,feedback,showDetails,toggleDetails,onRecord})=>{let bc="bg-white text-gray-500 border-gray-200 hover:bg-gray-50 hover:text-blue-600";let ic=<Mic className="w-5 h-5"/>;if(status==='init'){bc="bg-yellow-100 text-yellow-600 border-yellow-300";ic=<Loader2 className="w-5 h-5 animate-spin-slow"/>;}else if(status==='listening'){bc="bg-red-500 text-white border-red-500 animate-pulse-red";ic=<div className="text-xs font-bold font-sans">GO!</div>;}return(<div className="relative inline-block ml-2 text-left"><button onClick={(e)=>{e.stopPropagation();onRecord(id);}} className={`flex items-center justify-center w-10 h-10 rounded-full border shadow-sm transition-all ${bc}`} title="點擊開始錄音">{ic}</button>{status==='init'&&<div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 text-[10px] text-yellow-600 font-bold whitespace-nowrap">準備中...</div>}{feedback&&(<div className={`hidden md:block absolute top-full right-0 mt-2 p-3 rounded-lg text-sm font-bold whitespace-normal min-w-[300px] z-30 shadow-xl border animate-fade-in ${feedback.type==='success'?'bg-green-50 text-green-800 border-green-200':feedback.type==='warning'?'bg-yellow-50 text-yellow-800 border-yellow-200':feedback.type==='error'?'bg-red-50 text-red-800 border-red-200':'bg-blue-50 text-blue-800 border-blue-200'}`}><div className="flex items-center justify-between gap-2"><div className="flex items-center gap-2">{feedback.type==='success'&&<Check className="w-4 h-4 text-green-600"/>}{feedback.type==='warning'&&<AlertCircle className="w-4 h-4 text-yellow-600"/>}{feedback.type==='error'&&<X className="w-4 h-4 text-red-600"/>}<span className="font-medium">{feedback.text} {feedback.score!==undefined&&`(${feedback.score}%)`}</span></div>{feedback.spokenText&&<button onClick={(e)=>{e.stopPropagation();toggleDetails();}} className="text-xs underline opacity-70 hover:opacity-100">{showDetails?'隱藏':'詳情'}</button>}</div>{showDetails&&<RenderComparison feedback={feedback}/>}</div>)}</div>);};
+const VocabCard=({item,colorTheme})=>{const th={blue:{bg:"bg-blue-50",border:"border-blue-200",text:"text-blue-800",badge:"bg-blue-100 text-blue-700",icon:"text-blue-500",btn:"bg-blue-600 hover:bg-blue-700"},green:{bg:"bg-green-50",border:"border-green-200",text:"text-green-800",badge:"bg-green-100 text-green-700",icon:"text-green-500",btn:"bg-green-600 hover:bg-green-700"},amber:{bg:"bg-amber-50",border:"border-amber-200",text:"text-amber-800",badge:"bg-amber-100 text-amber-700",icon:"text-amber-500",btn:"bg-amber-600 hover:bg-amber-700"},purple:{bg:"bg-purple-50",border:"border-purple-200",text:"text-purple-800",badge:"bg-purple-100 text-purple-700",icon:"text-purple-500",btn:"bg-purple-600 hover:bg-purple-700"},teal:{bg:"bg-teal-50",border:"border-teal-200",text:"text-teal-800",badge:"bg-teal-100 text-teal-700",icon:"text-teal-500",btn:"bg-teal-600 hover:bg-teal-700"},indigo:{bg:"bg-indigo-50",border:"border-indigo-200",text:"text-indigo-800",badge:"bg-indigo-100 text-indigo-700",icon:"text-indigo-500",btn:"bg-indigo-600 hover:bg-indigo-700"},orange:{bg:"bg-orange-50",border:"border-orange-200",text:"text-orange-800",badge:"bg-orange-100 text-orange-700",icon:"text-orange-500",btn:"bg-orange-600 hover:bg-orange-700"},red:{bg:"bg-red-50",border:"border-red-200",text:"text-red-800",badge:"bg-red-100 text-red-700",icon:"text-red-500",btn:"bg-red-600 hover:bg-red-700"}};const t=th[colorTheme]||th.blue;return(<div onClick={()=>speakText(item.word)} className={`relative flex flex-col justify-between p-5 rounded-xl border-2 ${t.bg} ${t.border} shadow-sm hover:shadow-md transition-all cursor-pointer group hover:-translate-y-1 h-full`}><div className="flex justify-between items-start mb-3"><div><h3 className="text-xl font-bold text-gray-800 group-hover:text-black tracking-wide">{item.word}</h3><span className="text-sm font-medium text-gray-600 block mt-1">{item.mean}</span></div><button className={`w-8 h-8 rounded-full flex items-center justify-center text-white shadow-sm transition-transform group-hover:scale-110 ${t.btn}`}><Volume2 className="w-4 h-4"/></button></div><div className="space-y-3 mt-auto"><div className={`inline-block px-2 py-1 rounded-md text-xs font-bold font-mono ${t.badge} opacity-90`}>{item.kk}</div><div className="text-xs text-gray-600 flex items-start bg-white/60 p-2 rounded-lg backdrop-blur-sm relative"><Info className={`w-3 h-3 mr-1.5 mt-0.5 flex-shrink-0 ${t.icon}`}/><span className="flex-1 leading-snug">{item.tip}</span></div></div></div>);};
+const StartScreen=({onStart})=>(<div className="fixed inset-0 z-[9999] bg-slate-900 flex flex-col overflow-y-auto"><div className="min-h-full flex flex-col items-center justify-center p-4"><div className="max-w-md w-full bg-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-700 text-center relative overflow-hidden my-auto"><div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div><div className="w-16 h-16 md:w-20 md:h-20 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-blue-400 ring-4 ring-slate-600/50"><i className="fas fa-headset text-3xl md:text-4xl"></i></div><h1 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight text-white">商務英語會話特訓</h1><p className="text-slate-400 mb-6 text-sm leading-relaxed">為了確保最佳的練習體驗，我們需要先取得您的麥克風權限。<br/><br/><span className="text-blue-300 font-medium bg-blue-900/30 px-2 py-1 rounded">點擊一次允許，全程無縫練習</span></p><button onClick={onStart} className="group w-full relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-lg hover:shadow-blue-500/30 active:scale-95"><span>開啟麥克風並開始</span><div className="ml-3 flex items-center gap-1 h-4"><div className="wave-bar"></div><div className="wave-bar"></div><div className="wave-bar"></div></div></button><p className="mt-6 text-xs text-slate-500"><i className="fas fa-shield-alt mr-1"></i> 您的隱私受保護，錄音僅在瀏覽器內處理</p></div></div></div>);
+const InterviewPracticeApp=()=>{const[hasStarted,setHasStarted]=useState(false);const[activeTab,setActiveTab]=useState('vocab');const[selectedUnit,setSelectedUnit]=useState('All');const[isBlindMode,setIsBlindMode]=useState(false);const[showChunks,setShowChunks]=useState(false);const[recState,setRecState]=useState({activeId:null,status:'idle',feedbackMap:{}});const[showDetailsMap,setShowDetailsMap]=useState({});const[isLooping,setIsLooping]=useState(false);const[currentPlayingIndex,setCurrentPlayingIndex]=useState(-1);const loopQueueRef=useRef([]);const isLoopingRef=useRef(false);const handleStartApp=async()=>{const r=getSharedRecognition();if(r){try{r.start();setTimeout(()=>{r.stop();setHasStarted(true);},100);}catch(e){console.log("Auto start",e);setHasStarted(true);}}else{alert("瀏覽器不支援語音");setHasStarted(true);}};const stopGlobalRecording=()=>{if(globalRecognition){try{globalRecognition.stop();}catch(e){}}if(globalTimeout){clearTimeout(globalTimeout);globalTimeout=null;}};const handleStartRecording=(id,targetText,diagnosticsConfig={})=>{stopGlobalRecording();if(isLooping){setIsLooping(false);isLoopingRef.current=false;setCurrentPlayingIndex(-1);window.speechSynthesis.cancel();}if(recState.activeId===id&&(recState.status==='listening'||recState.status==='init')){setRecState(p=>({...p,status:'idle',activeId:null}));return;}const r=getSharedRecognition();if(!r){alert("No Rec");return;}setRecState(p=>({...p,activeId:id,status:'init',feedbackMap:{...p.feedbackMap,[id]:null}}));setShowDetailsMap(p=>({...p,[id]:false}));r.onstart=()=>{setRecState(p=>({...p,status:'listening'}));if(globalTimeout)clearTimeout(globalTimeout);globalTimeout=setTimeout(()=>{try{r.stop();}catch(e){}},20000);};r.onresult=(e)=>{if(globalTimeout)clearTimeout(globalTimeout);const sp=e.results[0][0].transcript;processResult(id,targetText,sp,diagnosticsConfig);};r.onerror=(e)=>{if(globalTimeout)clearTimeout(globalTimeout);if(e.error==='aborted')return;let m='無法辨識';if(e.error==='not-allowed')m='請檢查麥克風';setRecState(p=>({...p,status:'idle',feedbackMap:{...p.feedbackMap,[id]:{type:'error',text:m}}}));};r.onend=()=>{setRecState(p=>{if(p.activeId===id)return{...p,status:'idle'};return p;});};try{r.start();}catch(e){try{r.stop();setTimeout(()=>r.start(),100);}catch(er){setRecState(p=>({...p,status:'idle'}));}}};const processResult=(id,tt,sp,dc)=>{const tc=cleanText(tt);const sc=cleanText(sp);const tw=tc.split(' ');const sw=sc.split(' ');const fw=['a','an','the','to','of','in','on','at','is','are','was','were','be','it','that','this','and','but','or','for','with','as'];let mc=0;let missingCW=[];let missingFW=[];tw.forEach(w=>{if(sw.some(x=>x===w||(x.length>3&&(x.includes(w)||w.includes(x))))){mc++;}else{if(fw.includes(w))missingFW.push(w);else missingCW.push(w);}});let acc=0;if(tw.length>0)acc=Math.round((mc/tw.length)*100);if(tw.length<=3){if(sc===tc)acc=100;else acc=(sc===tc)?100:(acc>90?90:acc);}let ft='error';let fm=`請調整發音`;let am="";let tf=false;if(dc&&dc.traps){Object.keys(dc.traps).forEach(tk=>{if(sc.includes(tk.toLowerCase())){am=dc.traps[tk];tf=true;}});}if(!tf&&acc<100){if(missingCW.length>0){am=`關鍵字 "${missingCW[0]}" 不清楚。`;}else if(missingFW.length>0){am=`連音要注意 (如 ${missingFW[0]})。`;}else{am=`語調請再加強。`;}}if(acc===100){ft='success';fm=`完美無瑕！`;if(navigator.vibrate)navigator.vibrate(50);}else if(acc>=90){ft='success';fm=`很好，順暢`;}else if(acc>=80){ft='warning';fm=`不錯，注意細節`;}else if(acc>=60){ft='warning';fm=`語調有誤`;}else{ft='error';fm=`請放慢速度`;}setRecState(p=>({...p,status:'idle',feedbackMap:{...p.feedbackMap,[id]:{type:ft,text:fm,score:acc,spokenText:sp,targetText:tt,advice:am}}}));setShowDetailsMap(p=>({...p,[id]:true}));};const toggleDetails=(id)=>{setShowDetailsMap(p=>({...p,[id]:!p[id]}));};const closeActiveFeedback=()=>{if(recState.activeId){setRecState(p=>({...p,feedbackMap:{...p.feedbackMap,[p.activeId]:null}}));}};const availableUnits=useMemo(()=>{const u=new Set();vocabData.forEach(s=>s.unitId&&u.add(s.unitId));sentenceData.forEach(s=>s.unitId&&u.add(s.unitId));return['All',...Array.from(u).sort()];},[]);const filteredVocabSections=vocabData.filter(s=>selectedUnit==='All'||s.unitId===selectedUnit);const filteredInterviewData=sentenceData.filter(s=>selectedUnit==='All'||s.unitId===selectedUnit);const toggleLoop=()=>{if(isLooping){setIsLooping(false);isLoopingRef.current=false;setCurrentPlayingIndex(-1);window.speechSynthesis.cancel();}else{const q=[];let gic=0;filteredInterviewData.forEach(s=>{s.sentences.forEach(i=>{q.push({id:i.id,text:i.plain,globalIndex:gic});gic++;});});loopQueueRef.current=q;if(q.length>0){setIsLooping(true);isLoopingRef.current=true;playNextInLoop(0);}}};const playNextInLoop=(idx)=>{if(!isLoopingRef.current)return;if(idx>=loopQueueRef.current.length){playNextInLoop(0);return;}const item=loopQueueRef.current[idx];setCurrentPlayingIndex(idx);speakText(item.text,0.85,()=>{if(isLoopingRef.current){playNextInLoop(idx+1);}});};const handleManualPlay=(t,r)=>{if(isLooping){setIsLooping(false);isLoopingRef.current=false;setCurrentPlayingIndex(-1);loopQueueRef.current=[];}speakText(t,r);};useEffect(()=>{if(isLooping){setIsLooping(false);isLoopingRef.current=false;setCurrentPlayingIndex(-1);window.speechSynthesis.cancel();loopQueueRef.current=[];}},[activeTab,selectedUnit]);const themes={blue:{bg:"bg-blue-50",border:"border-blue-200",title:"text-blue-800",typeTag:"bg-blue-600 text-white",btn:"bg-blue-600 hover:bg-blue-700",icon:"text-blue-600"},green:{bg:"bg-green-50",border:"border-green-200",title:"text-green-800",typeTag:"bg-green-600 text-white",btn:"bg-green-600 hover:bg-green-700",icon:"text-green-600"},amber:{bg:"bg-amber-50",border:"border-amber-200",title:"text-amber-800",typeTag:"bg-amber-600 text-white",btn:"bg-amber-600 hover:bg-amber-700",icon:"text-amber-600"},purple:{bg:"bg-purple-50",border:"border-purple-200",title:"text-purple-800",typeTag:"bg-purple-600 text-white",btn:"bg-purple-600 hover:bg-purple-700",icon:"text-purple-600"},teal:{bg:"bg-teal-50",border:"border-teal-200",title:"text-teal-800",typeTag:"bg-teal-600 text-white",btn:"bg-teal-600 hover:bg-teal-700",icon:"text-teal-600"},indigo:{bg:"bg-indigo-50",border:"border-indigo-200",title:"text-indigo-800",typeTag:"bg-indigo-600 text-white",btn:"bg-indigo-600 hover:bg-indigo-700",icon:"text-indigo-600"},orange:{bg:"bg-orange-50",border:"border-orange-200",title:"text-orange-800",typeTag:"bg-orange-600 text-white",btn:"bg-orange-600 hover:bg-orange-700",icon:"text-orange-600"},red:{bg:"bg-red-50",border:"border-red-200",title:"text-red-800",typeTag:"bg-red-600 text-white",btn:"bg-red-600 hover:bg-red-700",icon:"text-red-600"}};if(!hasStarted)return<StartScreen onStart={handleStartApp}/>;const activeFeedback=recState.activeId?recState.feedbackMap[recState.activeId]:null;const isShowDetails=recState.activeId?showDetailsMap[recState.activeId]:false;return(<div id="app-container" className="relative min-h-screen"><div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in pb-24 md:pb-8"><header className="text-center mb-6"><div className="inline-flex items-center justify-center p-3 bg-white rounded-full shadow-sm mb-4"><Briefcase className="w-8 h-8 text-blue-600 mr-2"/><span className="text-gray-500 font-medium">商務英語口說教練</span></div><h1 className="text-3xl font-bold text-gray-800 mb-2 tracking-tight">商務英語會話 <span className="text-blue-600">實戰特訓班</span></h1></header><div className="flex justify-center mb-6"><div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200 flex items-center space-x-2"><Filter className="w-5 h-5 text-gray-500"/><span className="text-sm font-bold text-gray-700">選擇單元：</span><select value={selectedUnit} onChange={(e)=>setSelectedUnit(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 outline-none font-medium"><option value="All">顯示全部課程 (Show All)</option>{availableUnits.filter(u=>u!=='All').map(u=><option key={u} value={u}>{u}</option>)}</select></div></div><div className="flex justify-center mb-10"><div className="bg-white p-1 rounded-xl shadow-sm border border-gray-200 flex overflow-x-auto"><button onClick={()=>setActiveTab('vocab')} className={`px-4 md:px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center whitespace-nowrap ${activeTab==='vocab'?'bg-blue-600 text-white shadow-md':'text-gray-500 hover:bg-gray-50'}`}><BookOpen className="w-4 h-4 mr-2"/>1. 單字特訓</button><button onClick={()=>setActiveTab('sentences')} className={`px-4 md:px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center whitespace-nowrap ${activeTab==='sentences'?'bg-green-600 text-white shadow-md':'text-gray-500 hover:bg-gray-50'}`}><MessageCircle className="w-4 h-4 mr-2"/>2. 句型跟讀 (V15)</button><button onClick={()=>setActiveTab('prepositions')} className={`px-4 md:px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center whitespace-nowrap ${activeTab==='prepositions'?'bg-orange-600 text-white shadow-md':'text-gray-500 hover:bg-gray-50'}`}><Link2 className="w-4 h-4 mr-2"/>3. 介係詞用法</button></div></div>{activeTab==='sentences'&&(<div className="sticky top-2 z-20 mb-6 flex justify-center gap-2 flex-wrap"><button onClick={()=>setShowChunks(!showChunks)} className={`px-4 py-2 rounded-full shadow-md text-sm font-bold transition-all flex items-center ${showChunks?'bg-indigo-600 text-white':'bg-white text-gray-600 border border-gray-200'}`}><Scissors className="w-4 h-4 mr-1"/>{showChunks?'隱藏斷句':'斷句輔助'}</button><button onClick={()=>setIsBlindMode(!isBlindMode)} className={`px-4 py-2 rounded-full shadow-md text-sm font-bold transition-all flex items-center ${isBlindMode?'bg-black text-white':'bg-white text-gray-600 border border-gray-200'}`}>{isBlindMode?<EyeOff className="w-4 h-4 mr-1"/>:<Eye className="w-4 h-4 mr-1"/>}{isBlindMode?'盲聽模式 ON':'遮蔽文字'}</button><button onClick={toggleLoop} className={`px-4 py-2 rounded-full shadow-md text-sm font-bold transition-all flex items-center ${isLooping?'bg-purple-600 text-white animate-pulse':'bg-white text-gray-600 border border-gray-200'}`}>{isLooping?<PauseCircle className="w-4 h-4 mr-1"/>:<Repeat className="w-4 h-4 mr-1"/>}{isLooping?'循環播放中...':'循環播放整課'}</button></div>)}{activeTab==='vocab'&&(filteredVocabSections.length>0?<div className="space-y-8">{filteredVocabSections.map((s,i)=>{const SI=IconMap[s.icon]||Briefcase;return(<section key={i}><div className="flex items-center mb-4 ml-1"><div className={`p-2 rounded-lg mr-3 bg-${s.color}-100 text-${s.color}-600`}><SI className="w-5 h-5"/></div><div><h2 className="text-xl font-bold text-gray-800">{s.title}</h2><p className="text-sm text-gray-500">{s.desc}</p></div></div><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">{s.words.map((w,wi)=><VocabCard key={wi} item={w} colorTheme={s.color}/>)}</div></section>);})}</div>:<div className="text-center py-10 text-gray-400 bg-gray-100 rounded-xl">無資料</div>)}{activeTab==='sentences'&&(filteredInterviewData.length>0?<div className="space-y-8"><div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800 flex flex-col md:flex-row items-start md:items-center justify-between"><div className="flex items-start mb-2 md:mb-0"><MousePointerClick className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0"/><span><strong>專業語感模式：</strong> 100% 正確才是合格。AI 教練會自動分辨關鍵字與虛字，給出最符合商務溝通的建議！</span></div></div>{filteredInterviewData.map((s,si)=>{const th=themes[s.colorTheme]||themes.blue;const SI=IconMap[s.icon]||MessageCircle;let prevCnt=0;for(let i=0;i<si;i++)prevCnt+=filteredInterviewData[i].sentences.length;return(<section key={s.id} className="bg-white rounded-2xl shadow-sm border border-gray-100"><div className={`px-6 py-4 border-b ${th.border} ${th.bg} flex items-center justify-between rounded-t-2xl`}><div><h2 className={`text-xl font-bold ${th.title} flex items-center`}>{s.category}</h2><p className="text-sm text-gray-600 mt-1 opacity-90">{s.desc}</p></div><SI className={`w-6 h-6 ${th.icon} opacity-50`}/></div><div className="divide-y divide-gray-50">{s.sentences.map((it,idx)=>{const gIdx=prevCnt+idx;const isP=isLooping&&currentPlayingIndex===gIdx;return(<div key={it.id} onClick={()=>handleManualPlay(it.plain,0.85)} className={`group p-6 hover:bg-gray-50 transition-colors cursor-pointer relative ${isP?'playing-card':''}`}><div className="flex flex-col md:flex-row md:items-start justify-between gap-4"><div className="flex-1"><span className={`inline-block text-xs font-bold px-2 py-0.5 rounded mb-2 ${th.typeTag} opacity-80`}>{it.type}</span><div className={`text-xl md:text-2xl text-gray-800 font-serif-en mb-3 ${th.title}`}>{renderChunkedText(it.text,showChunks)}</div><p className={`text-gray-600 font-medium text-sm md:text-base mb-3 transition-opacity ${isBlindMode?'opacity-0 group-hover:opacity-100':'opacity-100'}`}>{it.mean}</p><div className={`inline-flex items-start text-xs md:text-sm text-gray-500 bg-gray-100 px-3 py-2 rounded-lg leading-relaxed transition-opacity ${isBlindMode?'opacity-0 group-hover:opacity-100':'opacity-100'}`}><Info className="w-4 h-4 mr-2 mt-0.5 text-gray-400 flex-shrink-0"/><span>{it.tip}</span></div></div><div className="flex items-center space-x-2 flex-shrink-0 self-end md:self-center mt-4 md:mt-0 opacity-80 group-hover:opacity-100 transition-opacity"><VoiceEvaluatorButton id={it.id} status={recState.activeId===it.id?recState.status:'idle'} feedback={recState.feedbackMap[it.id]} showDetails={showDetailsMap[it.id]} toggleDetails={()=>toggleDetails(it.id)} onRecord={()=>handleStartRecording(it.id,it.plain,{intonation:it.intonation,traps:it.traps})}/><button onClick={(e)=>{e.stopPropagation();handleManualPlay(it.plain,0.75);}} className="flex items-center justify-center h-10 px-3 rounded-full bg-white border border-gray-200 text-green-600 hover:bg-green-50 hover:border-green-200 hover:scale-105 transition-all shadow-sm text-xs font-bold" title="慢速"><Turtle className="w-4 h-4 mr-1"/> 0.75x</button><button onClick={(e)=>{e.stopPropagation();handleManualPlay(it.plain,1.0);}} className={`flex items-center justify-center h-10 px-3 rounded-full text-white hover:scale-105 transition-all shadow-md text-xs font-bold ${th.btn}`} title="原速"><Play className="w-4 h-4 mr-1"/> 1.0x</button></div></div></div>);})}</div></section>);})}</div>:<div className="text-center py-10 text-gray-400 bg-gray-100 rounded-xl">無資料</div>)}{activeTab==='prepositions'&&(prepData.length>0?<div className="space-y-6"><div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 shadow-sm mb-6"><div className="flex items-start gap-4"><div className="bg-orange-100 p-3 rounded-full text-orange-600"><Link2 className="w-8 h-8"/></div><div><h2 className="text-xl font-bold text-orange-900 mb-2">為什麼介係詞很重要？</h2><p className="text-orange-800 text-sm leading-relaxed">介係詞是單字間的「強力膠」。點擊下方卡片，注意粗體字的「連音」！</p></div></div></div><div className="grid grid-cols-1 md:grid-cols-2 gap-6">{prepData.map((it)=>(<div key={it.id} onClick={()=>speakText(it.plain)} className="bg-white rounded-xl shadow-sm border border-orange-100 p-5 hover:shadow-md hover:border-orange-300 transition-all cursor-pointer group flex flex-col"><div className="flex justify-between items-start mb-3"><span className="inline-block px-3 py-1 bg-orange-100 text-orange-700 text-sm font-bold rounded-full">{it.phrase}</span><div className="flex items-center gap-2"><VoiceEvaluatorButton id={it.id} status={recState.activeId===it.id?recState.status:'idle'} feedback={recState.feedbackMap[it.id]} showDetails={showDetailsMap[it.id]} toggleDetails={()=>toggleDetails(it.id)} onRecord={()=>handleStartRecording(it.id,it.plain)}/><Volume2 className="w-5 h-5 text-gray-300 group-hover:text-orange-500 transition-colors"/></div></div><div className="mb-4 flex-grow"><h3 className="text-lg md:text-xl text-gray-800 font-serif-en mb-2 leading-relaxed"><InteractiveSentence htmlContent={it.sentence} isBlindMode={false}/></h3><p className="text-gray-500 text-sm font-medium">{it.mean}</p></div><div className="mt-auto pt-3 border-t border-gray-50"><div className="flex items-start text-xs text-orange-600 bg-orange-50 p-2 rounded-lg"><Zap className="w-3 h-3 mr-1.5 mt-0.5 flex-shrink-0"/>{it.tip}</div></div></div>))}</div></div>:<div className="text-center py-10 text-gray-400 bg-gray-100 rounded-xl">無資料</div>)}</div><MobileFeedbackToast feedback={activeFeedback} showDetails={isShowDetails} toggleDetails={()=>toggleDetails(recState.activeId)} onClose={closeActiveFeedback}/></div>);};const root=ReactDOM.createRoot(document.getElementById('root'));root.render(<InterviewPracticeApp/>);
+</script>
+</body>
+</html>
