@@ -1,5 +1,5 @@
 // ===============================================================
-// 檔案名稱：data.js (資料庫 - Unit 1-8 完整版)
+// 檔案名稱：data.js (資料庫 - Unit 1-8 修正版)
 // ===============================================================
 
 // --- 1. 單字資料庫 (Vocab) ---
@@ -89,7 +89,7 @@ window.vocabData = [
       { word: "Inviting", kk: "[ɪnˈvaɪtɪŋ]", mean: "誘人的", tip: "重音在 vi。注意 v 要咬下唇震動。" },
       { word: "Invaluable", kk: "[ɪnˈvæljʊəb!]", mean: "無價的", tip: "重音在 va。注意 l 接 u 的滑音。" },
       { word: "Sufficient", kk: "[səˈfɪʃənt]", mean: "足夠的", tip: "重音在 fi。ci 發 [ʃ] (許)。" },
-      { word: "Cramped", kk: "[kræmpt]", mean: "擁擠的", tip: "蝴蝶音 [æ]。字尾 mp 嘴巴閉緊再吐氣接 t。" },
+      { word: "Cramped", kk: "[kræmpt]", mean: "擁擠的", tip: "蝴蝶音 [æ]。字尾 mp 閉嘴後吐氣接 t。" },
       { word: "Spacious", kk: "[ˈspeʃəs]", mean: "寬敞的", tip: "ci 發 [ʃ] (許)。唸 Spei-shus。" }
     ]
   },
@@ -234,7 +234,7 @@ window.vocabData = [
       { word: "See to it", kk: "[si tu ɪt]", mean: "確實執行", tip: "三個字連成一氣。it 的 [t] 可以輕輕停頓。" }
     ]
   },
-  // --- Unit 8 (Renamed from Lesson 8) ---
+  // --- Unit 8 (New & Renamed) ---
   {
     title: "Unit 8: Dress Code (服裝儀容)", unitId: "Unit 8", desc: "發音與會話特訓", color: "purple", icon: "Settings",
     words: [
@@ -464,7 +464,7 @@ window.sentenceData = [
     sentences: [
       { id: "u7-1", type: "Intro", text: "I'm calling to <span class='highlight-kw'>confirm</span> the <span class='highlight-kw'>arrangements</span> for the <span class='highlight-kw'>accommodations</span>.", plain: "I'm calling to confirm the arrangements for the accommodations.", mean: "我打來確認住宿的安排。", tip: "Calling to 的 g 省略。Confirm 的 m 閉嘴。", traps: { "confirm": "m 閉嘴練習。" } },
       { id: "u7-2", type: "Confirm", text: "You booked five double rooms and one <span class='highlight-kw'>connecting room</span>, right?", plain: "You booked five double rooms and one connecting room, right?", mean: "您預訂了五間雙人房和一間連通房，對嗎？", tip: "Connecting room 的 g 不發音。", traps: { "connecting": "g 不發音。" } },
-      { id: "u7-3", type: "Req", text: "Do you have any <span class='highlight-kw'>special requests</span> for the dinner party?", plain: "Do you have any special requests for the dinner party?", mean: "晚餐派對有什麼特別的要求嗎？", tip: "Requests 結尾 sts 氣音要輕。", traps: { "request": "kw 嘴圓。" } },
+      { id: "u7-3", type: "Req", text: "Do you have any <span class='highlight-kw'>special requests</span> for the dinner party?", plain: "Do you have any special requests for the dinner party?", mean: "晚餐派對有什麼特別的要求嗎？", tip: "Requests結尾 sts 氣音要輕。", traps: { "request": "kw 嘴圓。" } },
       { id: "u7-4", type: "Detail", text: "Make sure that your <span class='highlight-kw'>chef</span> can prepare a <span class='highlight-kw'>variety of</span> dishes for different <span class='highlight-kw'>religious needs</span>.", plain: "Make sure that your chef can prepare a variety of dishes for different religious needs.", mean: "請確保您的廚師可以因應不同宗教需求來烹調各種料理。", tip: "Variety of 連音 [vəˋraɪətɪ-jəv]。", traps: { "chef": "發 [ʃ] 噓聲。" } },
       { id: "u7-5", type: "List", text: "Some clients are <span class='highlight-kw'>strict</span> Buddhist <span class='highlight-kw'>vegetarians</span> who can't have eggs, <span class='highlight-kw'>garlic</span>, or <span class='highlight-kw'>leeks</span>.", plain: "Some clients are strict Buddhist vegetarians who can't have eggs, garlic, or leeks.", mean: "有些客戶是嚴謹的佛教徒，不吃蛋、蒜或韭菜。", tip: "Garlic, leeks 注意標點停頓。", traps: { "strict": "str 不送氣。" } },
       { id: "u7-6", type: "Attend", text: "Any other religious needs that we have to <span class='highlight-kw'>attend to</span>?", plain: "Any other religious needs that we have to attend to?", mean: "還有其他我們需要注意的宗教需求嗎？", tip: "Attend to 的 d 省略。", traps: { "attend": "d 省略。" } },
@@ -476,33 +476,33 @@ window.sentenceData = [
   },
   // --- Unit 8 (New & Renamed) ---
   { id: "L8-part1", unitId: "Unit 8", category: "Unit 8: Discussing the Evening Plan", desc: "討論晚間行程", colorTheme: "purple", icon: "MessageCircle", sentences: [
-    { id: "s8-1", plain: "Hi, Ken. What's up?", text: "Hi, Ken. <span class='highlight-kw'>What's up</span>?", mean: "嗨，Ken。怎麼了？", tip: "What's up 必連音 [hwɑ-tsʌp]。", type: "Greeting" },
-    { id: "s8-2", plain: "Are you going to the dinner reception this evening?", text: "Are you <span class='highlight-kw'>going to</span> the <span class='highlight-kw'>dinner reception</span> this evening?", mean: "你今晚會去參加歡迎晚宴嗎？", tip: "Going to 常縮讀為 gonna。Reception 重音第二音節。", type: "Question" },
-    { id: "s8-3", plain: "Of course! That's the best part of a trade show.", text: "Of course! That's the best part of a <span class='highlight-kw'>trade show</span>.", mean: "當然！那是貿易展最棒的部分。", tip: "Trade show 複合名詞重音在前。", type: "Statement" },
-    { id: "s8-4", plain: "I'm looking forward to it.", text: "I'm <span class='highlight-kw'>looking forward to</span> it.", mean: "我很期待呢。", tip: "forward 與 to 連讀，it 的 [t] 輕停。", type: "Statement" },
-    { id: "s8-5", plain: "I can't wait to put on my cocktail dress.", text: "I <span class='highlight-kw'>can't wait to</span> put on my <span class='highlight-kw'>cocktail dress</span>.", mean: "我等不及要穿上我的雞尾酒禮服。", tip: "Can't wait to 的 t 省略。Cocktail 重音 cock。", type: "Statement" }
+    { id: "s8-1", type: "Greeting", text: "Hi, Ken. <span class='highlight-kw'>What's up</span>?", plain: "Hi, Ken. What's up?", mean: "嗨，Ken。怎麼了？", tip: "What's up 必連音 [hwɑ-tsʌp]。" },
+    { id: "s8-2", type: "Question", text: "Are you <span class='highlight-kw'>going to</span> the <span class='highlight-kw'>dinner reception</span> this evening?", plain: "Are you going to the dinner reception this evening?", mean: "你今晚會去參加歡迎晚宴嗎？", tip: "Going to 常縮讀為 gonna。Reception 重音第二音節。" },
+    { id: "s8-3", type: "Statement", text: "Of course! That's the best part of a <span class='highlight-kw'>trade show</span>.", plain: "Of course! That's the best part of a trade show.", mean: "當然！那是貿易展最棒的部分。", tip: "Trade show 複合名詞重音在前。" },
+    { id: "s8-4", type: "Statement", text: "I'm <span class='highlight-kw'>looking forward to</span> it.", plain: "I'm looking forward to it.", mean: "我很期待呢。", tip: "forward 與 to 連讀，it 的 [t] 輕停。" },
+    { id: "s8-5", type: "Statement", text: "I <span class='highlight-kw'>can't wait to</span> put on my <span class='highlight-kw'>cocktail dress</span>.", plain: "I can't wait to put on my cocktail dress.", mean: "我等不及要穿上我的雞尾酒禮服。", tip: "Can't wait to 的 t 省略。Cocktail 重音 cock。" }
   ]},
   { id: "L8-part2", unitId: "Unit 8", category: "Unit 8: Clarifying the Dress Code", desc: "確認著裝標準", colorTheme: "indigo", icon: "Filter", sentences: [
-    { id: "s8-6", plain: "Cocktail dress? Is there a dress code?", text: "Cocktail dress? Is there a <span class='highlight-kw'>dress code</span>?", mean: "雞尾酒禮服？有規定著裝標準嗎？", tip: "Dress code 結尾 s 接 k，舌頭快移。問句上揚。", type: "Question" },
-    { id: "s8-7", plain: "It's not a black tie event, but it's definitely formal, though.", text: "It's not a <span class='highlight-kw'>black tie event</span>, but it's <span class='highlight-kw'>definitely formal</span>, though.", mean: "不至於要打黑領結，但也算是正式場合。", tip: "Black tie 連讀。Formal 的 [l] 頂上齒齦。", type: "Statement" },
-    { id: "s8-8", plain: "Most registered exhibitors and potential buyers are going to be there.", text: "Most <span class='highlight-kw'>registered exhibitors</span> and <span class='highlight-kw'>potential buyers</span> are going to be there.", mean: "大多數參展商和潛在客戶都會出席。", tip: "Registered [d] 輕唸。Buyers 的 s 發 [z]。", type: "Statement" },
-    { id: "s8-9", plain: "So, no jeans or T-shirts are allowed.", text: "So, no <span class='highlight-kw'>jeans</span> or <span class='highlight-kw'>T-shirts</span> are allowed.", mean: "因此，牛仔褲或 T-shirt 都不行。", tip: "Are allowed 連音 [ar-ə-laʊd]。", type: "Rule" }
+    { id: "s8-6", type: "Question", text: "Cocktail dress? Is there a <span class='highlight-kw'>dress code</span>?", plain: "Cocktail dress? Is there a dress code?", mean: "雞尾酒禮服？有規定著裝標準嗎？", tip: "Dress code 結尾 s 接 k，舌頭快移。問句上揚。" },
+    { id: "s8-7", type: "Statement", text: "It's not a <span class='highlight-kw'>black tie event</span>, but it's <span class='highlight-kw'>definitely formal</span>, though.", plain: "It's not a black tie event, but it's definitely formal, though.", mean: "不至於要打黑領結，但也算是正式場合。", tip: "Black tie 連讀。Formal 的 [l] 頂上齒齦。" },
+    { id: "s8-8", type: "Statement", text: "Most <span class='highlight-kw'>registered exhibitors</span> and <span class='highlight-kw'>potential buyers</span> are going to be there.", plain: "Most registered exhibitors and potential buyers are going to be there.", mean: "大多數參展商和潛在客戶都會出席。", tip: "Registered [d] 輕唸。Buyers 的 s 發 [z]。" },
+    { id: "s8-9", type: "Rule", text: "So, no <span class='highlight-kw'>jeans</span> or <span class='highlight-kw'>T-shirts</span> are allowed.", plain: "So, no jeans or T-shirts are allowed.", mean: "因此，牛仔褲或 T-shirt 都不行。", tip: "Are allowed 連音 [ar-ə-laʊd]。" }
   ]},
   { id: "L8-part3", unitId: "Unit 8", category: "Unit 8: Expressing Personal Feelings", desc: "表達個人感受", colorTheme: "blue", icon: "User", sentences: [
-    { id: "s8-10", plain: "I thought it's business casual.", text: "I <span class='highlight-kw'>thought it's</span> <span class='highlight-kw'>business casual</span>.", mean: "我以為是商務休閒場合。", tip: "Thought it's 連音 [θɔ-tɪts]。Casual 嘟嘴摩擦。", type: "Statement" },
-    { id: "s8-11", plain: "I was planning to get there in this attire after the closing of the trade show.", text: "I was planning to get there in this <span class='highlight-kw'>attire</span> after the <span class='highlight-kw'>closing</span> of the trade show.", mean: "我本來打算展覽結束後直接穿這套去。", tip: "Attire 重音在後。Closing 的 s 發 [z]。", type: "Statement" },
-    { id: "s8-12", plain: "I have been standing and engaging attendees for long hours.", text: "I have been <span class='highlight-kw'>standing and engaging</span> <span class='highlight-kw'>attendees</span> for long hours.", mean: "我已長時間站著接待來賓。", tip: "Standing and 的 d 可省。Attendees 重音字尾。", type: "Statement" },
-    { id: "s8-13", plain: "I know it's hard to be comfortable and professional at the same time.", text: "I know it's hard to be <span class='highlight-kw'>comfortable</span> and <span class='highlight-kw'>professional</span> at the <span class='highlight-kw'>same time</span>.", mean: "我知道要兼顧舒適與專業很難。", tip: "Same time 的 m 閉嘴後直發 t。Professional 重音 fesh。", type: "Statement" }
+    { id: "s8-10", type: "Statement", text: "I <span class='highlight-kw'>thought it's</span> <span class='highlight-kw'>business casual</span>.", plain: "I thought it's business casual.", mean: "我以為是商務休閒場合。", tip: "Thought it's 連音 [θɔ-tɪts]。Casual 嘟嘴摩擦。" },
+    { id: "s8-11", type: "Statement", text: "I was planning to get there in this <span class='highlight-kw'>attire</span> after the <span class='highlight-kw'>closing</span> of the trade show.", plain: "I was planning to get there in this attire after the closing of the trade show.", mean: "我本來打算展覽結束後直接穿這套去。", tip: "Attire 重音在後。Closing 的 s 發 [z]。" },
+    { id: "s8-12", type: "Statement", text: "I have been <span class='highlight-kw'>standing and engaging</span> <span class='highlight-kw'>attendees</span> for long hours.", plain: "I have been standing and engaging attendees for long hours.", mean: "我已長時間站著接待來賓。", tip: "Standing and 的 d 可省。Attendees 重音字尾。" },
+    { id: "s8-13", type: "Statement", text: "I know it's hard to be <span class='highlight-kw'>comfortable</span> and <span class='highlight-kw'>professional</span> at the <span class='highlight-kw'>same time</span>.", plain: "I know it's hard to be comfortable and professional at the same time.", mean: "我知道要兼顧舒適與專業很難。", tip: "Same time 的 m 閉嘴後直發 t。Professional 重音 fesh。" }
   ]},
   { id: "L8-part4", unitId: "Unit 8", category: "Unit 8: Final Advice and Conclusion", desc: "最終建議與結論", colorTheme: "teal", icon: "Check", sentences: [
-    { id: "s8-14", plain: "I can cover your shift if you need to go back to the hotel to dress up.", text: "I can <span class='highlight-kw'>cover your shift</span> if you need to <span class='highlight-kw'>go back</span> to the hotel to <span class='highlight-kw'>dress up</span>.", mean: "若你需要回飯店打扮，我可以代班。", tip: "Dress up 連音 [drɛ-sʌp]。", type: "Offer" },
-    { id: "s8-15", plain: "The reception begins at 7:00 p.m., right?", text: "The <span class='highlight-kw'>reception</span> begins at 7:00 p.m., right?", mean: "晚宴七點開始對嗎？", tip: "Begins 的 s 發 [z]。Right 語氣上揚。", type: "Question" },
-    { id: "s8-16", plain: "You still have two hours to freshen yourself up.", text: "You still have two hours to <span class='highlight-kw'>freshen yourself up</span>.", mean: "你還有兩小時可以梳洗打扮。", tip: "Freshen yourself up 三字連讀，up 的 p 輕爆。", type: "Advice" },
-    { id: "s8-17", plain: "If you hurry, you might be able to get a glass of sparkling wine before dinner.", text: "If you <span class='highlight-kw'>hurry</span>, you might be able to get a glass of <span class='highlight-kw'>sparkling wine</span> before dinner.", mean: "動作快點也許能趕上喝杯氣泡酒。", tip: "Sparkling 的 p 不送氣。Wine 結尾 [n] 頂上顎。", type: "Suggestion" },
-    { id: "s8-18", plain: "Do I really have to go? John asked me to attend the dinner reception, but I'm really not into it.", text: "Do I really have to go? John asked me to <span class='highlight-kw'>attend the dinner reception</span>, but I'm really <span class='highlight-kw'>not into it</span>.", mean: "我真的得去嗎？John 叫我去，但我真的沒興趣。", tip: "Not into it 連讀 [nɑ-tɪn-tu-wɪt]。", type: "Complaint" },
-    { id: "s8-19", plain: "Actually, I am not a people-person.", text: "Actually, I am not a <span class='highlight-kw'>people-person</span>.", mean: "老實說，我不擅長交際。", tip: "People-person 重音都在第一音節。", type: "Statement" },
-    { id: "s8-20", plain: "It's an order, not a suggestion. Remember, he's the boss.", text: "It's an <span class='highlight-kw'>order</span>, not a <span class='highlight-kw'>suggestion</span>. Remember, he's the boss.", mean: "這是命令不是建議。記住他是老闆。", tip: "Order 重音在前。Remember 嘴圓。", type: "Warning" },
-    { id: "s8-21", plain: "You can say that again. Maybe it's a good opportunity to expand social networking for our business.", text: "<span class='highlight-kw'>You can say that again</span>. Maybe it's a good <span class='highlight-kw'>opportunity</span> to <span class='highlight-kw'>expand</span> social networking for our business.", mean: "說得也是。也許這是擴展業務人脈的好機會。", tip: "You can say that again 表示強烈同意。", type: "Conclusion" }
+    { id: "s8-14", type: "Offer", text: "I can <span class='highlight-kw'>cover your shift</span> if you need to <span class='highlight-kw'>go back</span> to the hotel to <span class='highlight-kw'>dress up</span>.", plain: "I can cover your shift if you need to go back to the hotel to dress up.", mean: "若你需要回飯店打扮，我可以代班。", tip: "Dress up 連音 [drɛ-sʌp]。" },
+    { id: "s8-15", type: "Question", text: "The <span class='highlight-kw'>reception</span> begins at 7:00 p.m., right?", plain: "The reception begins at 7:00 p.m., right?", mean: "晚宴七點開始對嗎？", tip: "Begins 的 s 發 [z]。Right 語氣上揚。" },
+    { id: "s8-16", type: "Advice", text: "You still have two hours to <span class='highlight-kw'>freshen yourself up</span>.", plain: "You still have two hours to freshen yourself up.", mean: "你還有兩小時可以梳洗打扮。", tip: "Freshen yourself up 三字連讀，up 的 p 輕爆。" },
+    { id: "s8-17", type: "Suggestion", text: "If you <span class='highlight-kw'>hurry</span>, you might be able to get a glass of <span class='highlight-kw'>sparkling wine</span> before dinner.", plain: "If you hurry, you might be able to get a glass of sparkling wine before dinner.", mean: "動作快點也許能趕上喝杯氣泡酒。", tip: "Sparkling 的 p 不送氣。Wine 結尾 [n] 頂上顎。" },
+    { id: "s8-18", type: "Complaint", text: "Do I really have to go? John asked me to <span class='highlight-kw'>attend the dinner reception</span>, but I'm really <span class='highlight-kw'>not into it</span>.", plain: "Do I really have to go? John asked me to attend the dinner reception, but I'm really not into it.", mean: "我真的得去嗎？John 叫我去，但我真的沒興趣。", tip: "Not into it 連讀 [nɑ-tɪn-tu-wɪt]。" },
+    { id: "s8-19", type: "Statement", text: "Actually, I am not a <span class='highlight-kw'>people-person</span>.", plain: "Actually, I am not a people-person.", mean: "老實說，我不擅長交際。", tip: "People-person 重音都在第一音節。" },
+    { id: "s8-20", type: "Warning", text: "It's an <span class='highlight-kw'>order</span>, not a <span class='highlight-kw'>suggestion</span>. Remember, he's the boss.", plain: "It's an order, not a suggestion. Remember, he's the boss.", mean: "這是命令不是建議。記住他是老闆。", tip: "Order 重音在前。Remember 嘴圓。" },
+    { id: "s8-21", type: "Conclusion", text: "<span class='highlight-kw'>You can say that again</span>. Maybe it's a good <span class='highlight-kw'>opportunity</span> to <span class='highlight-kw'>expand</span> social networking for our business.", plain: "You can say that again. Maybe it's a good opportunity to expand social networking for our business.", mean: "說得也是。也許這是擴展業務人脈的好機會。", tip: "You can say that again 表示強烈同意。" }
   ]}
 ];
 
