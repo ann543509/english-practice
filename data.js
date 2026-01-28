@@ -236,7 +236,7 @@ window.vocabData = [
   },
   // --- Unit 8 ---
   {
-    title: "Lesson 8: Dress Code (服裝儀容)", unitId: "Lesson 8", desc: "發音與會話特訓", color: "purple", icon: "Settings",
+    title: "Unit 8: Dress Code (服裝儀容)", unitId: "Lesson 8", desc: "發音與會話特訓", color: "purple", icon: "Settings",
     words: [
       { word: "Reception", kk: "[rɪˋsɛpʃən]", mean: "歡迎會", tip: "[p] 閉唇練習。重音在 sep，唸到 p 時雙唇輕閉再發 shun。" },
       { word: "Cocktail", kk: "[ˋkɑk͵tel]", mean: "雞尾酒", tip: "重音第一音節。tail 是長母音 [e]，嘴角拉開。" },
