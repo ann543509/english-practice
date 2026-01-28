@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Lesson 8: Dress Code (服裝儀容)</title>
+<title>商務英語會話特訓 (Lesson 1-8)</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -21,6 +21,20 @@
 // 1. 單字特訓 (Vocabulary)
 // ==========================================
 const vocabData = [
+  // --- Lesson 7 ---
+  { unitId: "Lesson 7", title: "Lesson 7: Hotel Check-in", desc: "飯店入住必備詞彙", color: "blue", icon: "Briefcase", words: [
+    { word: "Reservation", kk: "[͵rɛzɚˋveʃən]", mean: "預約", tip: "重音在 va。tion 發 [ʃən]。" },
+    { word: "Check in", kk: "[tʃɛk ɪn]", mean: "辦理入住", tip: "連音唸成 [tʃɛ-kɪn]。" },
+    { word: "Passport", kk: "[ˋpæspɔrt]", mean: "護照", tip: "pass 的 a 發蝴蝶音 [æ]，嘴張大。" },
+    { word: "Credit card", kk: "[ˋkrɛdɪt kɑrd]", mean: "信用卡", tip: "Credit 的 t 輕聲，幾乎不發音。" },
+    { word: "Lobby", kk: "[ˋlɑbɪ]", mean: "大廳", tip: "o 發 [ɑ] 大口音。" },
+    { word: "Luggage", kk: "[ˋlʌgɪdʒ]", mean: "行李", tip: "ge 發 [dʒ]，類似「居」的輕音。" },
+    { word: "Available", kk: "[əˋveləbl]", mean: "可用的/有空房", tip: "v 咬下唇，ble 輕聲收尾。" },
+    { word: "Suite", kk: "[swit]", mean: "套房", tip: "發音同 sweet，不要唸成 suit。" },
+    { word: "Confirm", kk: "[kənˋfɝm]", mean: "確認", tip: "firm 的 ir 捲舌。" },
+    { word: "Elevator", kk: "[ˋɛlə͵vetɚ]", mean: "電梯", tip: "重音在最前，tor 捲舌。" }
+  ]},
+  // --- Lesson 8 (New) ---
   { unitId: "Lesson 8", title: "Lesson 8: Dress Code", desc: "服裝儀容發音特訓：[p] 不送氣與重音技巧", color: "purple", icon: "Settings", words: [
     { word: "Reception", kk: "[rɪˋsɛpʃən]", mean: "歡迎會", tip: "[p] 閉唇練習。重音在 sep，唸到 p 時雙唇輕閉再發 shun。" },
     { word: "Cocktail", kk: "[ˋkɑk͵tel]", mean: "雞尾酒", tip: "重音第一音節。tail 是長母音 [e]，嘴角拉開。" },
@@ -49,26 +63,32 @@ const vocabData = [
 // 2. 句型跟讀 (Sentences)
 // ==========================================
 const sentenceData = [
-  { id: "part1", unitId: "Lesson 8", category: "1. Discussing the Evening Plan", desc: "討論晚間行程", colorTheme: "purple", icon: "MessageCircle", sentences: [
+  // --- Lesson 7 ---
+  { id: "L7-p1", unitId: "Lesson 7", category: "1. Check-in Request", desc: "提出入住需求", colorTheme: "blue", icon: "Briefcase", sentences: [
+    { id: "s7-1", plain: "I'd like to check in, please.", text: "I'd like to <u>check in</u>, please.", mean: "你好，我想辦理入住。", tip: "Check in 連音 [tʃɛ-kɪn]。", type: "Request" },
+    { id: "s7-2", plain: "I have a reservation under the name of Lin.", text: "I have a <u>reservation</u> under the name of Lin.", mean: "我有用林的名字預約。", tip: "Reservation 重音在 va。", type: "Statement" }
+  ]},
+  // --- Lesson 8 (New) ---
+  { id: "L8-part1", unitId: "Lesson 8", category: "1. Discussing the Evening Plan", desc: "討論晚間行程", colorTheme: "purple", icon: "MessageCircle", sentences: [
     { id: "s8-1", plain: "Hi, Ken. What's up?", text: "Hi, Ken. <u>What's up</u>?", mean: "嗨，Ken。怎麼了？", tip: "What's up 必連音 [hwɑ-tsʌp]。", type: "Greeting" },
     { id: "s8-2", plain: "Are you going to the dinner reception this evening?", text: "Are you <u>going to</u> the <u>dinner reception</u> this evening?", mean: "你今晚會去參加歡迎晚宴嗎？", tip: "Going to 常縮讀為 gonna。Reception 重音第二音節。", type: "Question" },
     { id: "s8-3", plain: "Of course! That's the best part of a trade show.", text: "Of course! That's the best part of a <u>trade show</u>.", mean: "當然！那是貿易展最棒的部分。", tip: "Trade show 複合名詞重音在前。", type: "Statement" },
     { id: "s8-4", plain: "I'm looking forward to it.", text: "I'm <u>looking forward to</u> it.", mean: "我很期待呢。", tip: "forward 與 to 連讀，it 的 [t] 輕停。", type: "Statement" },
     { id: "s8-5", plain: "I can't wait to put on my cocktail dress.", text: "I <u>can't wait to</u> put on my <u>cocktail dress</u>.", mean: "我等不及要穿上我的雞尾酒禮服。", tip: "Can't wait to 的 t 省略。Cocktail 重音 cock。", type: "Statement" }
   ]},
-  { id: "part2", unitId: "Lesson 8", category: "2. Clarifying the Dress Code", desc: "確認著裝標準", colorTheme: "indigo", icon: "Filter", sentences: [
+  { id: "L8-part2", unitId: "Lesson 8", category: "2. Clarifying the Dress Code", desc: "確認著裝標準", colorTheme: "indigo", icon: "Filter", sentences: [
     { id: "s8-6", plain: "Cocktail dress? Is there a dress code?", text: "Cocktail dress? Is there a <u>dress code</u>?", mean: "雞尾酒禮服？有規定著裝標準嗎？", tip: "Dress code 結尾 s 接 k，舌頭快移。問句上揚。", type: "Question" },
     { id: "s8-7", plain: "It's not a black tie event, but it's definitely formal, though.", text: "It's not a <u>black tie event</u>, but it's <u>definitely formal</u>, though.", mean: "不至於要打黑領結，但也算是正式場合。", tip: "Black tie 連讀。Formal 的 [l] 頂上齒齦。", type: "Statement" },
     { id: "s8-8", plain: "Most registered exhibitors and potential buyers are going to be there.", text: "Most <u>registered exhibitors</u> and <u>potential buyers</u> are going to be there.", mean: "大多數參展商和潛在客戶都會出席。", tip: "Registered [d] 輕唸。Buyers 的 s 發 [z]。", type: "Statement" },
     { id: "s8-9", plain: "So, no jeans or T-shirts are allowed.", text: "So, no <u>jeans</u> or <u>T-shirts</u> are allowed.", mean: "因此，牛仔褲或 T-shirt 都不行。", tip: "Are allowed 連音 [ar-ə-laʊd]。", type: "Rule" }
   ]},
-  { id: "part3", unitId: "Lesson 8", category: "3. Expressing Personal Feelings", desc: "表達個人感受", colorTheme: "blue", icon: "User", sentences: [
+  { id: "L8-part3", unitId: "Lesson 8", category: "3. Expressing Personal Feelings", desc: "表達個人感受", colorTheme: "blue", icon: "User", sentences: [
     { id: "s8-10", plain: "I thought it's business casual.", text: "I <u>thought it's</u> <u>business casual</u>.", mean: "我以為是商務休閒場合。", tip: "Thought it's 連音 [θɔ-tɪts]。Casual 嘟嘴摩擦。", type: "Statement" },
     { id: "s8-11", plain: "I was planning to get there in this attire after the closing of the trade show.", text: "I was planning to get there in this <u>attire</u> after the <u>closing</u> of the trade show.", mean: "我本來打算展覽結束後直接穿這套去。", tip: "Attire 重音在後。Closing 的 s 發 [z]。", type: "Statement" },
     { id: "s8-12", plain: "I have been standing and engaging attendees for long hours.", text: "I have been <u>standing and engaging</u> <u>attendees</u> for long hours.", mean: "我已長時間站著接待來賓。", tip: "Standing and 的 d 可省。Attendees 重音字尾。", type: "Statement" },
     { id: "s8-13", plain: "I know it's hard to be comfortable and professional at the same time.", text: "I know it's hard to be <u>comfortable</u> and <u>professional</u> at the <u>same time</u>.", mean: "我知道要兼顧舒適與專業很難。", tip: "Same time 的 m 閉嘴後直發 t。Professional 重音 fesh。", type: "Statement" }
   ]},
-  { id: "part4", unitId: "Lesson 8", category: "4. Final Advice and Conclusion", desc: "最終建議與結論", colorTheme: "teal", icon: "Check", sentences: [
+  { id: "L8-part4", unitId: "Lesson 8", category: "4. Final Advice and Conclusion", desc: "最終建議與結論", colorTheme: "teal", icon: "Check", sentences: [
     { id: "s8-14", plain: "I can cover your shift if you need to go back to the hotel to dress up.", text: "I can <u>cover your shift</u> if you need to <u>go back</u> to the hotel to <u>dress up</u>.", mean: "若你需要回飯店打扮，我可以代班。", tip: "Dress up 連音 [drɛ-sʌp]。", type: "Offer" },
     { id: "s8-15", plain: "The reception begins at 7:00 p.m., right?", text: "The <u>reception</u> begins at 7:00 p.m., right?", mean: "晚宴七點開始對嗎？", tip: "Begins 的 s 發 [z]。Right 語氣上揚。", type: "Question" },
     { id: "s8-16", plain: "You still have two hours to freshen yourself up.", text: "You still have two hours to <u>freshen yourself up</u>.", mean: "你還有兩小時可以梳洗打扮。", tip: "Freshen yourself up 三字連讀，up 的 p 輕爆。", type: "Advice" },
@@ -84,12 +104,15 @@ const sentenceData = [
 // 3. 介係詞/片語用法 (Prepositions & Phrases)
 // ==========================================
 const prepData = [
-  { id: "p1", unitId: "Lesson 8", phrase: "look forward to", plain: "I look forward to it.", sentence: "I <b>look forward to</b> it.", mean: "期待 (to 為介係詞，後接名詞/Ving)", tip: "to 弱讀為 [tə]，連音順暢。" },
-  { id: "p2", unitId: "Lesson 8", phrase: "put on", plain: "I can't wait to put on my dress.", sentence: "I can't wait to <b>put on</b> my dress.", mean: "穿上 (強調動作)", tip: "Put 的 t 與 on 連音變 [pʊ-tɑn]。" },
-  { id: "p3", unitId: "Lesson 8", phrase: "dress up", plain: "You need to dress up for the party.", sentence: "You need to <b>dress up</b> for the party.", mean: "盛裝打扮", tip: "Dress 的 s 與 up 連音 [drɛ-sʌp]。" },
-  { id: "p4", unitId: "Lesson 8", phrase: "go back to", plain: "I need to go back to the hotel.", sentence: "I need to <b>go back to</b> the hotel.", mean: "回到...去", tip: "Back 的 k 輕頓，不需強力爆破。" },
-  { id: "p5", unitId: "Lesson 8", phrase: "not into it", plain: "I'm really not into it.", sentence: "I'm really <b>not into it</b>.", mean: "對...不感興趣/不熱衷", tip: "連讀技巧：[nɑ-tɪn-tu-wɪt]。" },
-  { id: "p6", unitId: "Lesson 8", phrase: "freshen up", plain: "Time to freshen yourself up.", sentence: "Time to <b>freshen yourself up</b>.", mean: "梳洗一番 (讓自己精神煥發)", tip: "Sh 音與 up 連接，流暢帶過。" }
+  // --- Lesson 7 ---
+  { id: "L7-p1", unitId: "Lesson 7", phrase: "check in", plain: "I'd like to check in.", sentence: "I'd like to <b>check in</b>.", mean: "辦理入住", tip: "Check 與 in 連音" },
+  // --- Lesson 8 (New) ---
+  { id: "L8-p1", unitId: "Lesson 8", phrase: "look forward to", plain: "I look forward to it.", sentence: "I <b>look forward to</b> it.", mean: "期待 (to 為介係詞，後接名詞/Ving)", tip: "to 弱讀為 [tə]，連音順暢。" },
+  { id: "L8-p2", unitId: "Lesson 8", phrase: "put on", plain: "I can't wait to put on my dress.", sentence: "I can't wait to <b>put on</b> my dress.", mean: "穿上 (強調動作)", tip: "Put 的 t 與 on 連音變 [pʊ-tɑn]。" },
+  { id: "L8-p3", unitId: "Lesson 8", phrase: "dress up", plain: "You need to dress up for the party.", sentence: "You need to <b>dress up</b> for the party.", mean: "盛裝打扮", tip: "Dress 的 s 與 up 連音 [drɛ-sʌp]。" },
+  { id: "L8-p4", unitId: "Lesson 8", phrase: "go back to", plain: "I need to go back to the hotel.", sentence: "I need to <b>go back to</b> the hotel.", mean: "回到...去", tip: "Back 的 k 輕頓，不需強力爆破。" },
+  { id: "L8-p5", unitId: "Lesson 8", phrase: "not into it", plain: "I'm really not into it.", sentence: "I'm really <b>not into it</b>.", mean: "對...不感興趣/不熱衷", tip: "連讀技巧：[nɑ-tɪn-tu-wɪt]。" },
+  { id: "L8-p6", unitId: "Lesson 8", phrase: "freshen up", plain: "Time to freshen yourself up.", sentence: "Time to <b>freshen yourself up</b>.", mean: "梳洗一番 (讓自己精神煥發)", tip: "Sh 音與 up 連接，流暢帶過。" }
 ];
 </script>
 
