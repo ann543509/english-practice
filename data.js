@@ -205,7 +205,7 @@ window.vocabData = [
       { word: "Minute", kk: "[ˋmɪnɪt]", mean: "分鐘", tip: "注意發音是 [ˋmɪnɪt]，不是 my-nute。i 發短母音 [ɪ]。" }
     ]
   },
-  // --- Unit 7 Vocab ---
+  // --- Unit 7 ---
   {
     title: "Unit 7: 特殊需求 (1-23)", unitId: "Unit 7", desc: "Special Requests", color: "teal", icon: "Check",
     words: [
@@ -234,7 +234,7 @@ window.vocabData = [
       { word: "See to it", kk: "[si tu ɪt]", mean: "確實執行", tip: "三個字連成一氣。it 的 [t] 可以輕輕停頓。" }
     ]
   },
-  // --- Unit 8 (New) ---
+  // --- Unit 8 ---
   {
     title: "Lesson 8: Dress Code (服裝儀容)", unitId: "Lesson 8", desc: "發音與會話特訓", color: "purple", icon: "Settings",
     words: [
@@ -458,7 +458,7 @@ window.sentenceData = [
       { id: "u6-14", type: "Thanks", text: "I totally understand your <span class='highlight-kw'>frustration</span> and concern. Thank you so much. I <span class='highlight-kw'>owe</span> you one.", plain: "I totally understand your frustration and concern. Thank you so much. I owe you one.", mean: "我完全理解妳的挫折與擔憂。非常感謝，我欠你一個人情。", tip: "Owe you 連音 [o-ju]。", traps: { "frustration": "[str] 不送氣。" } }
     ]
   },
-  // --- Unit 7 Sentences ---
+  // --- Unit 7 ---
   {
     id: 7, category: "Unit 7: 特殊需求", unitId: "Unit 7", desc: "Special Requests", colorTheme: "teal", icon: "Check",
     sentences: [
@@ -474,7 +474,7 @@ window.sentenceData = [
       { id: "u7-10", type: "Promise", text: "I'll <span class='highlight-kw'>try my best</span> to <span class='highlight-kw'>see to it</span> that all your needs are satisfied.", plain: "I'll try my best to see to it that all your needs are satisfied.", mean: "我會盡力確認您的所有需求都得到滿足。", tip: "See to it 連讀 [si-tu-wɪt]。", traps: { "satisfied": "d 輕音。" } }
     ]
   },
-  // --- Lesson 8 (New) ---
+  // --- Unit 8 ---
   { id: "L8-part1", unitId: "Lesson 8", category: "1. Discussing the Evening Plan", desc: "討論晚間行程", colorTheme: "purple", icon: "MessageCircle", sentences: [
     { id: "s8-1", plain: "Hi, Ken. What's up?", text: "Hi, Ken. <u>What's up</u>?", mean: "嗨，Ken。怎麼了？", tip: "What's up 必連音 [hwɑ-tsʌp]。", type: "Greeting" },
     { id: "s8-2", plain: "Are you going to the dinner reception this evening?", text: "Are you <u>going to</u> the <u>dinner reception</u> this evening?", mean: "你今晚會去參加歡迎晚宴嗎？", tip: "Going to 常縮讀為 gonna。Reception 重音第二音節。", type: "Question" },
@@ -547,7 +547,7 @@ window.prepData = [
   { id: "p-u7-4", phrase: "wrong with", sentence: "You can't go <span class='highlight-kw'>wrong with</span> it.", plain: "You can't go wrong with it.", mean: "選...不會錯", tip: "wrong ng 接 with。" },
   { id: "p-u7-5", phrase: "see to it", sentence: "I'll <span class='highlight-kw'>see to it</span> that needs are met.", plain: "I'll see to it that needs are met.", mean: "務必做到/確認", tip: "see 接 to 接 it 連貫。" },
 
-  // === Lesson 8 (New) ===
+  // === Unit 8 ===
   { id: "L8-p1", unitId: "Lesson 8", phrase: "look forward to", plain: "I look forward to it.", sentence: "I <b>look forward to</b> it.", mean: "期待 (to 為介係詞，後接名詞/Ving)", tip: "to 弱讀為 [tə]，連音順暢。" },
   { id: "L8-p2", unitId: "Lesson 8", phrase: "put on", plain: "I can't wait to put on my dress.", sentence: "I can't wait to <b>put on</b> my dress.", mean: "穿上 (強調動作)", tip: "Put 的 t 與 on 連音變 [pʊ-tɑn]。" },
   { id: "L8-p3", unitId: "Lesson 8", phrase: "dress up", plain: "You need to dress up for the party.", sentence: "You need to <b>dress up</b> for the party.", mean: "盛裝打扮", tip: "Dress 的 s 與 up 連音 [drɛ-sʌp]。" },
